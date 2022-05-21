@@ -1,0 +1,108 @@
+/*===========================*/
+/** Start styling the MAIN **/
+/*=========================*/
+
+main {
+    height: 100%;
+    width: 100%;
+    background-color: var(--clr-bg-gris);
+}
+
+.img-slider {
+    display: flex;
+    justify-content: center;
+    overflow-x: clip;
+}
+
+/********* Pay Methods ********/
+
+.pay-methods{
+    padding: 40px 0;
+    max-width: 1184px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    height: 80px;
+}
+
+/******** Cards Products *********/
+
+.cards-related {
+    padding: 40px 0;
+    max-width: 1184px;
+    margin: 0 auto;
+}
+
+.product-cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.card {
+    height: 330px;
+    width: 224px;
+    white-space: normal;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px 1px rgb(0 0 0 / 10%);
+    transition: all 0.1s ease-in-out;
+}
+
+.cards-title {
+    display: flex;
+    align-items: baseline;
+}
+
+.card-title {
+    margin-right: .6em;
+    font-size: 26px;
+    font-weight: 100;
+    color: var(--clr-letra-gris);
+    opacity: 0.8;
+}
+
+.text-blue {
+    color: var(--clr-letra-azul);
+}
+
+.card-img {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.24);
+}
+
+.card-info {
+    padding: 0 15px;
+}
+
+.card-price {
+    font-size: 24px;
+    color: var(--clr-letra-gris);
+}
+
+.card-desc {
+    color: var(--clr-letra-gris);
+    display: block;
+    font-size: 14px;
+}
+
+.card-extrainfo {
+    font-size: var(--letra-chica);
+    color: #666;
+    margin-top: 12px;
+    max-height: 2.6em;
+    overflow: hidden;
+    display: none;
+}
+
+.card:hover{
+    height: 350px;
+    max-height: 352px;
+    min-height: 330px;
+    height: auto;
+    box-shadow: 4px 4px 4px 4px rgb(0 0 0 / 10%);
+}
+
+.card:hover .card-extrainfo{
+    display: block;
+}
+

@@ -1,7 +1,8 @@
 import React from "react";
-import logo from '../imgs/logo__large_plus.png'
-import promo from '../imgs/nav-promo-lvl6.webp'
+import logo from '../../imgs/logo__large_plus.png'
+import promo from '../../imgs/nav-promo-lvl6.webp'
 import { BeakerIcon } from '@heroicons/react/solid'
+import './nav.css';
 
 export default function Navbar() {
     return (
@@ -36,7 +37,11 @@ export default function Navbar() {
                             </ul>
                         </div>
                         <div className="nav-user">
-
+                            <a href="#" className="user-data my-user">Marco</a>
+                            <a href="#" className="user-data my-buys">Mis compras</a>
+                            <a href="#" className="user-data my-favs">Favoritos</a>
+                            <a href="#" className="user-data my-notis"></a>
+                            <a href="#" className="user-data my-cart"></a>
                         </div>
                     </div>
                 </div>
