@@ -16,13 +16,65 @@ main {
 
 /********* Pay Methods ********/
 
+.pay-container{
+    padding: 40px;
+}
+
 .pay-methods{
-    padding: 40px 0;
-    max-width: 1184px;
+    padding: 0 15px;
+    max-width: 1155px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    height: 80px;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+}
+
+.pay-mains{
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.pay-group{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    flex: 1 0 auto;
+    font-size: 18px;
+    height: 50px;
+    padding: 20px;
+    white-space: nowrap;
+}
+
+.pay-method{
+    font-weight: 200;
+}
+
+.pay-advice{
+    color: var(--clr-letra-azul);
+    font-size: var(--letra-chicaXL);
+}
+
+.plus-info{
+    width: 100px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.pay-plus{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.plus-info::before{
+    content: "";
+    position: absolute;
+    background-color: var(--clr-bg-gris);
+    height: 100%;
+    width: 1px;
+    left: 0;
 }
 
 /******** Cards Products *********/
