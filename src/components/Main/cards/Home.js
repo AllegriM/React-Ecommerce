@@ -1,17 +1,24 @@
 import React from "react";
 import './main.css';
 import Card from './card';
-
+import data from './data';
 
 export default function Main() {
+    const ProductsElements = data.map(product => {
+        return <Card 
+        key = {product.id}
+        product = {product}
+        // {...product} me deja pasar todo
+        />
+    })
     return (
         <main>
             <div className="img-slider">
-                <img className="img" src={require("../../imgs/banner2.webp")} />
-                <img className="img" src={require("../../imgs/banner3.webp")} />
-                <img className="img" src={require("../../imgs/banner1.webp")} />
-                <img className="img" src={require("../../imgs/banner4.webp")} />
-                <img className="img" src={require("../../imgs/banner5.webp")} />
+                <img className="img" src={require("../../../imgs/banner2.webp")} />
+                <img className="img" src={require("../../../imgs/banner3.webp")} />
+                <img className="img" src={require("../../../imgs/banner1.webp")} />
+                <img className="img" src={require("../../../imgs/banner4.webp")} />
+                <img className="img" src={require("../../../imgs/banner5.webp")} />
             </div>
             <div className="pay-container">
                 <div className="pay-methods">
@@ -41,7 +48,7 @@ export default function Main() {
                             <div className="pay-texts">
                                 <div className="pay-method">Cuotas sin tarjeta</div>
                                 <div className="pay-advice">Conocé Mercado Crédito</div>
-                            </div>
+                            </div>  
                         </div>
                         <div className="pay-group" href="#">
                             <a className="logo-agree" href="#">
@@ -68,47 +75,8 @@ export default function Main() {
                     <p className="text-blue">Ver historial</p>
                 </div>
                 <div className="product-cards">
-                    <Card 
-                        img = "https://http2.mlstatic.com/D_Q_NP_720535-MLA49306407961_032022-AB.webp"
-                        price = "$ 3.600.000"
-                        desc = "2016 | 52000km"
-                        extrainfo = "Ford Mondeo 2.5 Se Automatico 170cv Unico."
-                    />
-                    <Card 
-                        img = "https://http2.mlstatic.com/D_Q_NP_720535-MLA49306407961_032022-AB.webp"
-                        price = "$ 3.600.000"
-                        desc = "2016 | 52000km"
-                        extrainfo = "Ford Mondeo 2.5 Se Automatico 170cv Unico."
-                    />
-                    <Card 
-                        img = "https://http2.mlstatic.com/D_Q_NP_720535-MLA49306407961_032022-AB.webp"
-                        price = "$ 3.600.000"
-                        desc = "2016 | 52000km"
-                        extrainfo = "Ford Mondeo 2.5 Se Automatico 170cv Unico."
-                    />
-                    <Card 
-                        img = "https://http2.mlstatic.com/D_Q_NP_720535-MLA49306407961_032022-AB.webp"
-                        price = "$ 3.600.000"
-                        desc = "2016 | 52000km"
-                        extrainfo = "Ford Mondeo 2.5 Se Automatico 170cv Unico."
-                    />
-                    <Card 
-                        img = "https://http2.mlstatic.com/D_Q_NP_720535-MLA49306407961_032022-AB.webp"
-                        price = "$ 3.600.000"
-                        desc = "2016 | 52000km"
-                        extrainfo = "Ford Mondeo 2.5 Se Automatico 170cv Unico."
-                    />
+                    {ProductsElements}
                 </div>
-                {/* Cards */}
-                
-                {/* <div className="card">
-                    <img className="card-img" src="https://http2.mlstatic.com/D_Q_NP_720535-MLA49306407961_032022-AB.webp" />
-                    <div className="card-info">
-                        <span className="card-price">$ 3.600.000</span>
-                        <p className="card-desc">2016 | 52000km</p>
-                        <p className="card-extrainfo">Ford Mondeo 2.5 Se Automatico 170cv Unico</p>
-                    </div>
-                </div> */}
             </div>
         </main>
     )

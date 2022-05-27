@@ -80,6 +80,7 @@ main {
 /******** Cards Products *********/
 
 .cards-related {
+    height: 410px;
     padding: 40px 0;
     max-width: 1184px;
     margin: 0 auto;
@@ -127,6 +128,7 @@ main {
 }
 
 .card-price {
+    margin: 1em 0;
     font-size: 24px;
     color: var(--clr-letra-gris);
 }
@@ -141,7 +143,7 @@ main {
     font-size: var(--letra-chica);
     color: #666;
     margin-top: 12px;
-    max-height: 2.6em;
+    height: auto;
     overflow: hidden;
     display: none;
 }
