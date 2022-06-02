@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Switch, Link, Route, Routes } from "react-rout
 
 
 export default function Card(props) {
-    
+    console.log(props)
 return (
-    <Link to='/Product' className="card">
-        <img className="card-img" src={props.product.img} />
+    <Link to='/Product' className="card" key={props.product.id}>
+        <img className="card-img" src={props.product.img} alt="product descriptive img" />
             <div className="card-info">
                 <span className="card-price">{props.product.price}</span>
                 <p className="card-desc">{props.product.desc}</p>
