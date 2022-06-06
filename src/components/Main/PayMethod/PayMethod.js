@@ -1,27 +1,8 @@
-import React from "react";
-import './main.css';
-import Card from './Card';
-import data from './data';
+import React from 'react'
 
-export default function Main(prop) {
-    console.log(prop)
-    const ProductsElements = data.map(product => {
-        return <Card 
-        key = {product.id}
-        product = {product}
-        // {...product} me deja pasar todo
-        />
-    })
+export const PayMethod = () => {
     return (
-        <main>
-            <h1>{prop.greeting}</h1>
-            <div className="img-slider">
-                <img alt="product img" className="img" src={require("../../../imgs/banner2.webp")} />
-                <img alt="product img" className="img" src={require("../../../imgs/banner3.webp")} />
-                <img alt="product img" className="img" src={require("../../../imgs/banner1.webp")} />
-                <img alt="product img" className="img" src={require("../../../imgs/banner4.webp")} />
-                <img alt="product img" className="img" src={require("../../../imgs/banner5.webp")} />
-            </div>
+        <>
             <div className="pay-container">
                 <div className="pay-methods">
                     <div className="pay-mains">
@@ -50,7 +31,7 @@ export default function Main(prop) {
                             <div className="pay-texts">
                                 <div className="pay-method">Cuotas sin tarjeta</div>
                                 <div className="pay-advice">Conocé Mercado Crédito</div>
-                            </div>  
+                            </div>
                         </div>
                         <div className="pay-group">
                             <a href="#" className="logo-agree">
@@ -71,15 +52,6 @@ export default function Main(prop) {
                     </div>
                 </div>
             </div>
-            <div className="cards-related">
-                <div className="cards-title">
-                    <h2 className="card-title">Basado en tu última visita</h2>
-                    <p className="text-blue">Ver historial</p>
-                </div>
-                <div className="product-cards">
-                    {ProductsElements}
-                </div>
-            </div>
-        </main>
+        </>
     )
 }

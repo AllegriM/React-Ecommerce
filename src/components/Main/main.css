@@ -80,7 +80,7 @@ main {
 /******** Cards Products *********/
 
 .cards-related {
-    height: 410px;
+    height: 100%;
     padding: 40px 0;
     max-width: 1184px;
     margin: 0 auto;
@@ -92,7 +92,7 @@ main {
 }
 
 .card {
-    height: 330px;
+    height: 345px;
     width: 224px;
     white-space: normal;
     background-color: white;
@@ -100,6 +100,7 @@ main {
     border-radius: 5px;
     box-shadow: 0 1px 1px 1px rgb(0 0 0 / 10%);
     transition: all 0.1s ease-in-out;
+    margin-bottom: 1em;
 }
 
 .cards-title {
@@ -120,15 +121,17 @@ main {
 }
 
 .card-img {
+    width: 224px;
+    height: 225px;
+    object-fit: contain;
     border-bottom: 1px solid rgba(128, 128, 128, 0.24);
 }
 
 .card-info {
-    padding: 0 15px;
+    padding: 10px 15px;
 }
 
 .card-price {
-    margin: 1em 0;
     font-size: 24px;
     color: var(--clr-letra-gris);
 }
@@ -140,7 +143,7 @@ main {
 }
 
 .card-extrainfo {
-    font-size: var(--letra-chica);
+    font-size: var(--letra-chicaXL);
     color: #666;
     margin-top: 12px;
     height: auto;

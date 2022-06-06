@@ -44,3 +44,7 @@ a{
 .contenedor{
   background-color: var(--clr-bg-gris);
 }
+
+.contenido{
+  background-color: var(--clr-bg-gris);
+}

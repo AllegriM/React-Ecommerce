@@ -1,12 +1,22 @@
-import React from "react";
+import { React, useState } from "react";
 import logo from '../../imgs/logo__large_plus.png'
 import promo from '../../imgs/nav-promo-lvl6.webp'
 import { BrowserRouter as Router, Switch, Link, Route, Routes } from "react-router-dom"
-import './nav.css';
-import searchProduct from "./getInfo";
+import './nav.css'; 
+import { forwardRef } from 'react'
+
 
 export default function Navbar() {
-
+    const [value, setValue] = useState('');
+    const searchProduct = (e) => {
+        const value = e.target.value;
+        setValue(value)
+        console.log(value)
+        if (e.keyCode === 13){
+            console.log("pressed enter")
+        }
+    }
+    
     return (
         <>
             <header className='nav-header'>
@@ -14,7 +24,7 @@ export default function Navbar() {
                     <nav className='nav-top'>
                         <Link to='/'><img src={logo} alt='logo' height='34px' width='134px' /></Link>
                         <div className='nav-search'>
-                            <input onClick={searchProduct} className='search-bar' type='text' placeholder='Buscar productos, marcas y mas...' />
+                            <input value={value} onChange={searchProduct} className='search-bar' id='searchBar' type='text' placeholder='Buscar productos, marcas y mas...' />
                             <button className='search-icon'>
                                 <div role='img' aria-label='buscar' className='loop-icon'></div>
                             </button>

@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Link, Route, Routes } from "react-rout
 
 
 export default function Card(props) {
-    console.log(props)
 return (
     <Link to='/Product' className="card" key={props.product.id}>
         <img className="card-img" src={props.product.img} alt="product descriptive img" />
