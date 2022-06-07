@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import '../Main/main.css';
 
-export const ProductList = () => {
+export const ProductList = (props) => {
     const [products, setProducts] = useState([])
     useEffect(() => {     
         const fetchData = async () => {
-            const resp = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=`)
+            const resp = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${props.keyword}`)
             const data = await resp.json()
             setProducts(data.results)
         }
         fetchData()
-    }, [])
+    }, [props.keyword])
     return (
         <>
             <div className="cards-related">

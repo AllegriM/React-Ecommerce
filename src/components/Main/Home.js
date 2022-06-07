@@ -5,8 +5,8 @@ import data from './cards/data';
 import { SliderBanner } from "./Slider/SliderBanner";
 import { PayMethod } from "./PayMethod/PayMethod";
 
-export default function Main() {
-    const ProductsElements = data.map(product => {
+export default function Main(props) {
+        const ProductsElements = data.map(product => {  
         return <Card 
         key = {product.id}
         product = {product}
@@ -15,6 +15,11 @@ export default function Main() {
     })
     return (
         <main>
+            <div className="counter">
+                <button onClick={props.handleResta}>Resta</button>
+                <h3>{props.count}</h3>
+                <button onClick={props.handleSuma}>Suma</button>
+            </div>
             <SliderBanner  />
             <PayMethod />
             <div className="cards-related">
