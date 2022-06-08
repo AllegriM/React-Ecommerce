@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Link, Route, Routes } from "react-rout
 import './nav.css'; 
 
 
-export default function Navbar(props) {
+export default function Navbar( {keyword, handleSubmit, handleChange} ) {
 
     return (
         <>
@@ -14,8 +14,8 @@ export default function Navbar(props) {
                     <nav className='nav-top'>
                         <Link to='/'><img src={logo} alt='logo' height='34px' width='134px' /></Link>
                         <div className='nav-search' >
-                            <form onSubmit={props.handleSubmit}>
-                                <input value={props.keyword} onChange={props.handleChange} className='search-bar' id='searchBar' type='text' placeholder='Buscar productos, marcas y mas...' />
+                            <form onSubmit={handleSubmit}>
+                                <input value={keyword} onChange={handleChange} className='search-bar' id='searchBar' type='text' placeholder='Buscar productos, marcas y mas...' />
                                 <button className='search-icon'>
                                     <div role='img' aria-label='buscar' className='loop-icon'></div>
                                 </button>

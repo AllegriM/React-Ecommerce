@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import '../Main/main.css';
+import { ProductCard } from './ProductCard';
 
 export const ProductList = (props) => {
+
     const [products, setProducts] = useState([])
+
     useEffect(() => {     
         const fetchData = async () => {
             const resp = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${props.keyword}`)
@@ -20,14 +23,7 @@ export const ProductList = (props) => {
                 </div>
                 <div className="product-cards">
                     {products.map((product) =>
-                        <div className="card" key={product.id}>
-                            <img className="card-img" src={product.thumbnail} alt="product descriptive img"/>
-                            <div className="card-info">
-                                <span className="card-price">{`$${product.price}`}</span>
-                                <p className="card-extrainfo">{product.title}</p>
-                                <p className="card-extrainfo">{product.address.city_name} - {product.address.state_name}</p>
-                            </div>
-                        </div>
+                        <ProductCard data={product} />
                     )}
                 </div>
             </div>

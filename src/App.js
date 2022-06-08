@@ -1,7 +1,7 @@
 import Navbar from "./components/Nav/Navbar"
 import Home from "./components/Main/Home"
 import Product from './components/Product/Product'
-import { BrowserRouter as Router, Switch, Link, Route, Routes } from "react-router-dom"
+import { Router, Switch, Link, Route, Routes } from "react-router-dom"
 import { ProductList } from './components/ProductsQ/ProductList';
 import { useState } from "react";
 
@@ -10,9 +10,9 @@ export default function App() {
   // NavBar search
   const [keyword, setKeyword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, ) => {
     e.preventDefault()
-    console.log(keyword)
+    setKeyword(keyword)
   }
 
   const handleChange = (e) => {
