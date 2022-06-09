@@ -2,15 +2,16 @@ import Navbar from "./components/Nav/Navbar"
 import Home from "./components/Main/Home"
 import Product from './components/Product/Product'
 import { Router, Switch, Link, Route, Routes } from "react-router-dom"
-import { ProductList } from './components/ProductsQ/ProductList';
+import { ProductList } from './components/ProductsList/ProductList';
 import { useState } from "react";
+import { SearchForm } from "./components/SearchForm/SearchForm";
 
 
 export default function App() {
   // NavBar search
   const [keyword, setKeyword] = useState('');
 
-  const handleSubmit = (e, ) => {
+  const handleSubmit = ( e ) => {
     e.preventDefault()
     setKeyword(keyword)
   }
@@ -18,6 +19,7 @@ export default function App() {
   const handleChange = (e) => {
     setKeyword(e.target.value)
   }
+
   //CONTADOR
   const [count, setCount] = useState(0);
   const stock = 5;
@@ -27,13 +29,16 @@ export default function App() {
   const restar = () => {
     return count === 0 ? alert("Carrito vacio") : setCount(prevCount => prevCount - 1)
   }
+
   return (
     <div className="App">
-      <Navbar
-        handleSubmit={handleSubmit}
-        handleChange={handleChange}
-        keyword={keyword}
-      />
+      <Navbar>
+        <SearchForm 
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          keyword={keyword}
+        />
+      </Navbar>
       <div className='contenido'>
         <Routes>
           <Route 

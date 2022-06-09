@@ -2,10 +2,10 @@ import { React, useState } from "react";
 import logo from '../../imgs/logo__large_plus.png'
 import promo from '../../imgs/nav-promo-lvl6.webp'
 import { BrowserRouter as Router, Switch, Link, Route, Routes } from "react-router-dom"
-import './nav.css'; 
+import './nav.css';
+import { SearchForm } from "../SearchForm/SearchForm";
 
-
-export default function Navbar( {keyword, handleSubmit, handleChange} ) {
+export default function Navbar() {
 
     return (
         <>
@@ -13,15 +13,8 @@ export default function Navbar( {keyword, handleSubmit, handleChange} ) {
                 <div className='nav-content'>
                     <nav className='nav-top'>
                         <Link to='/'><img src={logo} alt='logo' height='34px' width='134px' /></Link>
-                        <div className='nav-search' >
-                            <form onSubmit={handleSubmit}>
-                                <input value={keyword} onChange={handleChange} className='search-bar' id='searchBar' type='text' placeholder='Buscar productos, marcas y mas...' />
-                                <button className='search-icon'>
-                                    <div role='img' aria-label='buscar' className='loop-icon'></div>
-                                </button>
-                            </form>
-                        </div>
-                        <a href='#'><img src={promo} alt="promo" height='39px' width='340px' /></a>
+                        <SearchForm />
+                        <a href='#'><img src={promo} className='promo-img' alt="promo" height='39px' width='340px' /></a>
                     </nav>
                     <div className='nav-bot'>
                         <div className="nav-ubi">

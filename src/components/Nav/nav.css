@@ -191,3 +191,14 @@
     color: grey;
     top: -1px;
 }
+
+@media screen and (max-width: 1204px){
+    .nav-search{
+        margin-left: 1em;
+        width: 100%;
+    }
+    .nav-top .promo-img,
+    .nav-categories{
+        display: none;
+    }
+}
