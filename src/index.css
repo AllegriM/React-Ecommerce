@@ -17,6 +17,7 @@ body{
 
 :root {
   /* Colors */
+  --clr-blanco: #FFFFFF;
   --clr-amarillo: #FFF159;
   --clr-bg-gris: #EBEBEB;
   /******** Font ********/

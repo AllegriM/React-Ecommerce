@@ -5,15 +5,14 @@ import { BrowserRouter as Router, Switch, Link, Route, Routes } from "react-rout
 import './nav.css';
 import { SearchForm } from "../SearchForm/SearchForm";
 
-export default function Navbar(props) {
-    console.log(props)
+export default function Navbar() {
     return (
         <>
             <header className='nav-header'>
                 <div className='nav-content'>
                     <nav className='nav-top'>
                         <Link to='/'><img src={logo} alt='logo' height='34px' width='134px' /></Link>
-                        <SearchForm props={props} />
+                        <SearchForm />
                         <a href='#'><img src={promo} className='promo-img' alt="promo" height='39px' width='340px' /></a>
                     </nav>
                     <div className='nav-bot'>

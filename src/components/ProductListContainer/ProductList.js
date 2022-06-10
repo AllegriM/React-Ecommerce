@@ -4,7 +4,7 @@ import '../Main/main.css';
 import { ProductCard } from '../ProductCard/ProductCard';
 
 
-export default function ProductList(props) {
+export default function ProductList() {
     const [products, setProducts] = useState([])
 
     let {keyword} = useParams();
@@ -22,11 +22,11 @@ export default function ProductList(props) {
         <>
             <div className="cards-related">
                 <div className="cards-title">
-                    <p>Usted esta buscando:</p><h4 lassName="card-title"> {keyword}</h4>
+                    <p>Usted esta buscando:</p><h2>{keyword}</h2>
                 </div>
                 <div className="product-cards">
                     {products.map((product) =>
-                        <ProductCard data={product} />
+                        <ProductCard data={product} key={product.id}/>
                     )}
                 </div>
             </div>

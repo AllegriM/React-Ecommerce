@@ -9,6 +9,7 @@ import Home from "./components/Main/Home"
 import ProductDetailCard from './components/ProductDetailCard/ProductDetailCard'
 import ProductList from './components/ProductListContainer/ProductList';
 import { Cart } from "./components/Cart/Cart";
+import { PageNotFound } from "./components/PageNotFound/PageNotFound";
 
 
 
@@ -31,7 +32,7 @@ export default function App() {
       </Navbar>
       <section className='contenido'>
         <Routes>
-          {/* <Route path="*" element={<Navigate to='/error-page-not-found' />} /> */}
+          <Route path="*" element={<PageNotFound />} />
           <Route path='/' element={ <Home handleSuma={sumar} handleResta={restar} stock={stock} count={count} />} />
           <Route path='/products/:id' element={<ProductDetailCard />} />
           <Route path="/cart" element={<Cart />}/>

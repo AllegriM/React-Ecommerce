@@ -1,0 +1,54 @@
+.error-bg{
+    height: calc(100vh - 100px);
+    background-color: var(--clr-amarillo);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-number,
+.error-title,
+.error-desc{
+    color: black;
+    margin: 0;
+}
+
+
+.error-number{
+    font-weight: 800;
+    font-size: 150px;
+}
+
+.error-title{
+
+    font-weight: 500;
+    font-size: 50px;
+    line-height: 75px;
+}
+
+.error-desc{
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 60px;
+}
+
+.error-btn{
+    margin-top: 2em;
+    width: 319px;
+    height: 95px;
+    left: 550px;
+    top: 526px;
+    color: black;
+    font-size: 35px;
+    background: var(--clr-amarillo);
+    border-radius: 12px;
+    border: 2px solid black;
+    cursor: pointer;
+    transition: all .25s ease-in-out;
+}
+
+.error-btn:hover{
+    background-color: black;
+    color: var(--clr-amarillo);
+}

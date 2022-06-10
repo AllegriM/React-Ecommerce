@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-export const SearchForm = ( props ) => {
+export const SearchForm = (  ) => {
 
     const navigate = useNavigate()
 
@@ -12,7 +12,6 @@ export const SearchForm = ( props ) => {
         }
     }
 
-    console.log(props)
     return (
         <>
             <div className='nav-search' >

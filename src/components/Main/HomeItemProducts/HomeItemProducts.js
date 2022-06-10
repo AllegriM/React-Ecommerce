@@ -8,7 +8,7 @@ export const HomeItemProducts = () => {
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve(data)
-            }, 2000)
+            }, 500)
         })
     }
     const [productos, setProductos] = useState([]);

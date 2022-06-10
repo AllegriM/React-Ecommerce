@@ -6,7 +6,7 @@ import Card from '../Main/cards/Card'
 export const ProductCard = (props) => {
     return (
         <>
-            <Link to={`/products/${props.data.id}`} className="card" key={props.data.id}>
+            <Link to={`/products/${props.data.id}`} key={props.data.id} className="card">
                 <img className="card-img" src={props.data.thumbnail} alt="product descriptive img" />
                 <div className="card-info">
                     <span className="card-price">{`$${props.data.price}`}</span>
