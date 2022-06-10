@@ -1,24 +1,18 @@
+// React utilities
+import { Router, Switch, Link, Route, Routes, Navigate } from "react-router-dom"
+import { useState } from "react";
+
+// React Components
+import { SearchForm } from "./components/SearchForm/SearchForm";
 import Navbar from "./components/Nav/Navbar"
 import Home from "./components/Main/Home"
-import Product from './components/Product/Product'
-import { Router, Switch, Link, Route, Routes } from "react-router-dom"
-import { ProductList } from './components/ProductsList/ProductList';
-import { useState } from "react";
-import { SearchForm } from "./components/SearchForm/SearchForm";
+import ProductDetailCard from './components/ProductDetailCard/ProductDetailCard'
+import ProductList from './components/ProductListContainer/ProductList';
+import { Cart } from "./components/Cart/Cart";
+
 
 
 export default function App() {
-  // NavBar search
-  const [keyword, setKeyword] = useState('');
-
-  const handleSubmit = ( e ) => {
-    e.preventDefault()
-    setKeyword(keyword)
-  }
-
-  const handleChange = (e) => {
-    setKeyword(e.target.value)
-  }
 
   //CONTADOR
   const [count, setCount] = useState(0);
@@ -33,30 +27,18 @@ export default function App() {
   return (
     <div className="App">
       <Navbar>
-        <SearchForm 
-          handleSubmit={handleSubmit}
-          handleChange={handleChange}
-          keyword={keyword}
-        />
+        <SearchForm />
       </Navbar>
-      <div className='contenido'>
+      <section className='contenido'>
         <Routes>
-          <Route 
-            path='/' 
-            element={
-              <Home
-              handleSuma = {sumar}
-              handleResta = {restar}
-              stock = {stock}
-              count = {count}
-              />} 
-          />
-          <Route path='/Product' element={<Product />} />
+          {/* <Route path="*" element={<Navigate to='/error-page-not-found' />} /> */}
+          <Route path='/' element={ <Home handleSuma={sumar} handleResta={restar} stock={stock} count={count} />} />
+          <Route path='/products/:id' element={<ProductDetailCard />} />
+          <Route path="/cart" element={<Cart />}/>
+          <Route path="/search/:keyword" element={<ProductList />} />
         </Routes>
-        <ProductList
-          keyword={keyword}
-        />
-      </div>
+        
+      </section>
     </div>
   );
 }

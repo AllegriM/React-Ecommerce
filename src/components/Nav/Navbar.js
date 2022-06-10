@@ -5,15 +5,15 @@ import { BrowserRouter as Router, Switch, Link, Route, Routes } from "react-rout
 import './nav.css';
 import { SearchForm } from "../SearchForm/SearchForm";
 
-export default function Navbar() {
-
+export default function Navbar(props) {
+    console.log(props)
     return (
         <>
             <header className='nav-header'>
                 <div className='nav-content'>
                     <nav className='nav-top'>
                         <Link to='/'><img src={logo} alt='logo' height='34px' width='134px' /></Link>
-                        <SearchForm />
+                        <SearchForm props={props} />
                         <a href='#'><img src={promo} className='promo-img' alt="promo" height='39px' width='340px' /></a>
                     </nav>
                     <div className='nav-bot'>
@@ -38,7 +38,7 @@ export default function Navbar() {
                             <a href="#" className="user-data my-buys">Mis compras</a>
                             <a href="#" className="user-data my-favs">Favoritos</a>
                             <a href="#" className="user-data my-notis"></a>
-                            <a href="#" className="user-data my-cart"></a>
+                            <Link to={`/cart`} className="user-data my-cart"></Link>
                         </div>
                     </div>
                 </div>

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+import Card from '../Main/cards/Card'
 
 
 export const ProductCard = (props) => {
-    console.log(props)
     return (
         <>
-            <Link to={`/product/${props.data.title}/p/${props.data.id}`} className="card" key={props.data.id}>
+            <Link to={`/products/${props.data.id}`} className="card" key={props.data.id}>
                 <img className="card-img" src={props.data.thumbnail} alt="product descriptive img" />
                 <div className="card-info">
                     <span className="card-price">{`$${props.data.price}`}</span>

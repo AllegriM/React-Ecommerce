@@ -1,4 +1,4 @@
-import data from '../cards/data.json';
+import data from './data.json';
 import React, { useEffect, useState } from "react";
 import Card from '../cards/Card';
 
@@ -17,7 +17,6 @@ export const HomeItemProducts = () => {
             .then((resp) => setProductos(resp))
             .catch((error) => console.log(error))
     }, [])
-    console.log(productos)
     return (
         <>
             {productos.map( (product) => {

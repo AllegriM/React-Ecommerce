@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom';
 import '../Main/main.css';
-import { ProductCard } from './ProductCard';
+import { ProductCard } from '../ProductCard/ProductCard';
 
-export const ProductList = (props) => {
 
+export default function ProductList(props) {
     const [products, setProducts] = useState([])
+
+    let {keyword} = useParams();
 
     useEffect(() => {     
         const fetchData = async () => {
-            const resp = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${props.keyword}`)
+            const resp = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${keyword}`)
             const data = await resp.json()
             setProducts(data.results)
         }
         fetchData()
-    }, [props.keyword])
+    }, [keyword])
+
     return (
         <>
             <div className="cards-related">
                 <div className="cards-title">
-                    <h2 className="card-title">Basado en tu última visita</h2>
-                    <p className="text-blue">Ver historial</p>
+                    <p>Usted esta buscando:</p><h4 lassName="card-title"> {keyword}</h4>
                 </div>
                 <div className="product-cards">
                     {products.map((product) =>
