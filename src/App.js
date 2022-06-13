@@ -34,7 +34,7 @@ export default function App() {
         <Routes>
           <Route path="*" element={<PageNotFound />} />
           <Route path='/' element={ <Home handleSuma={sumar} handleResta={restar} stock={stock} count={count} />} />
-          <Route path='/products/:id' element={<ProductDetailCard />} />
+          <Route path='/products/:prodId' element={<ProductDetailCard />} />
           <Route path="/cart" element={<Cart />}/>
           <Route path="/search/:keyword" element={<ProductList />} />
         </Routes>

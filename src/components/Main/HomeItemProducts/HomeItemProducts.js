@@ -1,6 +1,6 @@
 import data from './data.json';
 import React, { useEffect, useState } from "react";
-import Card from '../cards/Card';
+import Card from '../../Card/Card';
 
 
 export const HomeItemProducts = () => {
@@ -22,7 +22,7 @@ export const HomeItemProducts = () => {
             {productos.map( (product) => {
                     return <Card
                         key={product.id}
-                        product={product}
+                        prod={product}
                     // {...product} me deja pasar todo
                     />
                 })

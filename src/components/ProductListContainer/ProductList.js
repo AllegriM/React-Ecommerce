@@ -25,8 +25,8 @@ export default function ProductList() {
                     <p>Usted esta buscando:</p><h2>{keyword}</h2>
                 </div>
                 <div className="product-cards">
-                    {products.map((product) =>
-                        <ProductCard data={product} key={product.id}/>
+                    {products.map((prod) =>
+                        <ProductCard data={prod} key={prod.id}/>
                     )}
                 </div>
             </div>

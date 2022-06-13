@@ -3,13 +3,13 @@ main{
 }
 
 .product-container{
+    padding: 2em 0;
     margin: 0 auto;
 }
 
 .product-card{
     border-radius: 5px;
     margin: 0 auto;
-    margin-top: 40px;
     background-color: white;
     min-width: 800px;
     max-width: 1184px;
@@ -32,17 +32,32 @@ main{
     gap: 10px;
 }   
 
-.product-all-imgs .product-img{
-    border-radius: 5px;
-    background-color: black;
-    cursor: pointer;
+.product-all-imgs .product-img-cont{
+    display: flex;
+    align-items: center;
     font-size: 12px;
-    height: 48px;
+    height: 46px;
+    width: 46px;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,.25);
+    border-radius: 6px;
     padding: 2px;
-    width: 48px;
+}
+
+.product-img-cont:hover{
+    outline: 2px solid #3483fa;
+}
+
+.product-img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    background-size: cover;
+    border-radius: 6px;
 }
 
 .product-big-img{
+    margin-top: 5em;
     padding: 1em;
     text-align: center;
     flex-grow: 2;

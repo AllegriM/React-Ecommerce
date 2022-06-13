@@ -98,6 +98,7 @@ main {
 }
 
 .card {
+    position: relative;
     height: 345px;
     width: 224px;
     white-space: normal;
@@ -167,5 +168,31 @@ main {
 
 .card:hover .card-extrainfo{
     display: block;
+}
+
+/* Fav heart card */
+
+.heartFav{
+    background-color: hsla(0,0%,100%,.7);
+    border: none;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 32px;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    width: 32px;
+    z-index: 2;
+}
+
+.heartFav svg {
+    margin-top: .3em;
+}
+
+.card:hover .heartFav{
+    opacity: 1;
 }
 
