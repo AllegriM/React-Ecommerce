@@ -24,7 +24,7 @@ export default function ProductList() {
                 <div className="cards-title">
                     <p>Usted esta buscando:</p><h2>{keyword}</h2>
                 </div>
-                <div className="product-cards">
+                <div className="product-cards search-products-list">
                     {products.map((prod) =>
                         <ProductCard data={prod} key={prod.id}/>
                     )}

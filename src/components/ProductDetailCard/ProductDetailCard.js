@@ -16,7 +16,6 @@ export default function ProductDetailCard() {
             setSingleProd(data)
         }
         fetchSingleData();
-        console.log(singleProd)
     }, [prodId])
 
     return (

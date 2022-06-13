@@ -25,11 +25,11 @@ main{
 
 .product-all-imgs{
     padding: 1em 0;
-    flex-grow: .5;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    margin-left: 1.5em;
 }   
 
 .product-all-imgs .product-img-cont{
@@ -44,7 +44,7 @@ main{
     padding: 2px;
 }
 
-.product-img-cont:hover{
+.active-blue{
     outline: 2px solid #3483fa;
 }
 
@@ -54,6 +54,10 @@ main{
     object-fit: cover;
     background-size: cover;
     border-radius: 6px;
+}
+
+.product-img-exceed{
+    opacity: 70%;
 }
 
 .product-big-img{

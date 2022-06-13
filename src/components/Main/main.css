@@ -15,9 +15,58 @@ main {
 }
 
 .img-slider {
+    height: 340px;
+    max-width: 1600px;
+    margin: 0 auto;
+    position: relative;
+    overflow-x: clip;
+    overflow: hidden;
+}
+
+.slide{
+    width: 100vw;
+}
+
+.slider-img{
+    position: relative;
+    width: 100%;
+}
+
+.arrowImgs{
+    position: absolute;
+    align-items: center;
+    top: 50%;
     display: flex;
     justify-content: center;
-    overflow-x: clip;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 1px 2px 0rgba(0,0,0,.12);
+    cursor: pointer;
+    height: 64px;
+    width: 32px;
+    opacity: 0;
+    padding: 0;
+    transform: translateY(-50%);
+}
+
+.img-slider:hover .arrowImgs{
+    opacity: 1;
+}
+
+.arrowNextImg{
+    right: 0;
+    border-top-left-radius: 64px;
+    border-bottom-left-radius: 64px;
+}
+
+.arrowNextImg svg{
+    transform: rotate(180deg);
+}
+
+.arrowPrevImg{
+    left: 0;
+    border-top-right-radius: 64px;
+    border-bottom-right-radius: 64px;
 }
 
 /********* Pay Methods ********/
@@ -97,6 +146,13 @@ main {
     grid-template-columns: repeat(5, 1fr);
 }
 
+.search-products-list{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 950px;
+    margin: 0 auto;
+}
+
 .card {
     position: relative;
     height: 345px;
@@ -132,6 +188,8 @@ main {
     height: 225px;
     object-fit: contain;
     border-bottom: 1px solid rgba(128, 128, 128, 0.24);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .card-info {
@@ -160,7 +218,7 @@ main {
 
 .card:hover{
     height: 350px;
-    max-height: 352px;
+    max-height: 100%;
     min-height: 330px;
     height: auto;
     box-shadow: 4px 4px 4px 4px rgb(0 0 0 / 10%);
