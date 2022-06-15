@@ -11,11 +11,10 @@ import ProductList from './components/ProductListContainer/ProductList';
 import { Cart } from "./components/Cart/Cart";
 import { PageNotFound } from "./components/PageNotFound/PageNotFound";
 
-
-
 export default function App() {
 
   //CONTADOR
+
   const [count, setCount] = useState(0);
   const stock = 5;
   const sumar = () => {

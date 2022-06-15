@@ -4,38 +4,44 @@ import Card from '../Card/Card'
 
 
 
-export const ProductCardDetail = ({data}) => {
+export const ProductCardDetail = ({ data }) => {
 
-    const [img, setImg]= useState(`${data.pictures[0].secure_url}`)
+    const [img, setImg] = useState(`${data.pictures[0].secure_url}`)
 
-    const selectImg = (e) =>{
+    const selectImg = (e) => {
         setImg(e.target.src)
     }
-        
+
+    let picturesQty = data.pictures.length;
+    const otherImgs = picturesQty - 7;
+
     return (
         <>
             <div className='product-container'>
                 <div className='product-card'>
                     <div className='product-info'>
                         <div className='product-all-imgs'>
-                            {data.pictures.map( img => {
-                                let bigGroup = data.pictures.length
-                                return bigGroup <= 7 ? (
-                                    <>
-                                        <div className='product-img-cont' key={img.id}>
-                                            <img className='product-img' onMouseOver={selectImg} onClick={selectImg} alt='' src={img.secure_url}/>
-                                        </div>
-                                    </>
+                            { picturesQty <= 7 ?
+                                data.pictures.map(img => {
+                                    return (
+                                        <>
+                                            <div className='product-img-cont' key={img.id}>
+                                                <img className='product-img' onMouseOver={selectImg} onClick={selectImg} alt='' src={img.secure_url} />
+                                            </div>
+                                        </>
                                     )
-                                    :
-                                    (
-                                    <>
-                                        <div className='product-img-cont' key={img.id}>
-                                            <img className='product-img' onMouseOver={selectImg} onClick={selectImg} alt='' src={img.secure_url}/>
-                                        </div>
-                                    </>
+                                })
+                                :
+                                data.pictures.slice(0, 8).map(img => {
+                                    return (
+                                        <>
+                                            <div className='product-img-cont prod-last-child' key={img.id}>
+                                                <img className='product-img' onMouseOver={selectImg} onClick={selectImg} alt='' src={img.secure_url} />
+                                                <span className='product-otherImgs'>{`+${otherImgs}`}</span>
+                                            </div>
+                                        </>
                                     )
-                            })
+                                })
                             }
                         </div>
                         <div className='product-big-img'>
@@ -78,7 +84,7 @@ export const ProductCardDetail = ({data}) => {
                         </div> */}
                         <div className='product-price-cuotas'>
                             <span className='product-price'>
-                                <span className='product-price-int'>{data.currency_id === "USD" ? `U$S ${(data.price).toLocaleString('es-AR')}` : `${(data.price).toLocaleString('es-AR')}`}</span>
+                                <span className='product-price-int'>{data.currency_id === "USD" ? `U$S ${(data.price).toLocaleString('es-AR')}` : `$ ${(data.price).toLocaleString('es-AR')}`}</span>
                                 <span className='product-price-float'>90</span>
                             </span>
                             <p className='product-price-subtitle'>

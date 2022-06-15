@@ -24,7 +24,7 @@ main{
 }
 
 .product-all-imgs{
-    padding: 1em 0;
+    padding-top: 5em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,6 +33,7 @@ main{
 }   
 
 .product-all-imgs .product-img-cont{
+    position: relative;
     display: flex;
     align-items: center;
     font-size: 12px;
@@ -44,7 +45,29 @@ main{
     padding: 2px;
 }
 
-.active-blue{
+.prod-last-child:last-child{
+    background-color: hsla(0,0%,100%,.6);
+    z-index: 2;
+}
+
+.product-otherImgs{
+    display: none;
+}
+
+.prod-last-child:last-child .product-otherImgs{
+    position: absolute;
+    display: block;
+    height: 100%;
+    background-color: hsla(0,0%,100%,.6);
+    left: 2px;
+    font-size: 2.3em;
+    color: #3483fa;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+}
+
+.product-img-cont:hover{
     outline: 2px solid #3483fa;
 }
 

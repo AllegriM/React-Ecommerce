@@ -13,7 +13,7 @@ export default function Card(props) {
             <div className="card-info">
                 <span className="card-price">{props.prod.currency_id === "USD" ? `U$S ${(props.prod.price).toLocaleString('es-AR')}` : `$ ${(props.prod.price).toLocaleString('es-AR')}`}</span>
                 <p className="card-desc">{props.prod.title}</p>
-                <p className="card-extrainfo">{props.prod.address.city_name} {props.prod.address.state_name}</p>
+                <p className="card-extrainfo">{props.prod.address.city_name} - {props.prod.address.state_name}</p>
             </div>
         </Link>
     </>

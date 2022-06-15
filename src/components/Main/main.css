@@ -146,6 +146,11 @@ main {
     grid-template-columns: repeat(5, 1fr);
 }
 
+.product-slider {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
 .search-products-list{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
