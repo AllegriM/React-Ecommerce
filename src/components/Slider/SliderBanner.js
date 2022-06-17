@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { sliderImages } from './sliderData'
+import React, { useState } from 'react'
 
-export const SliderBanner = () => {
-
+export const SliderBanner = ( slideEl ) => {
+    console.log(slideEl.children)
     const [current, setCurrent] = useState(0)
-    const length = sliderImages.length
+    const length = slideEl.elements.length
 
-    if (!Array.isArray(sliderImages) || length <= 0) {
+    if (!Array.isArray(slideEl.elements) || length <= 0) {
         return null
     }
 
@@ -21,10 +20,10 @@ export const SliderBanner = () => {
     return (
         <>
             <div className="img-slider">
-                {sliderImages.map( (slide, index) =>{
+                {slideEl.elements.map( (slide, index) =>{
                     return (
                         <div className={index === current ? 'slide-active' : 'slide'} key={index}>
-                            {index === current && <img key={index} alt="product img" className="slider-img" src={slide.image} />}
+                            {index === current && <img key={index} alt="product img" className="slider-img" src={slide.thumbnail} />}
                         </div>
                         )
                     })  

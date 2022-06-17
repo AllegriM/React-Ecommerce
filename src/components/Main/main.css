@@ -147,6 +147,7 @@ main {
 }
 
 .product-slider {
+    gap: 10px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
 }
@@ -156,11 +157,16 @@ main {
     grid-template-columns: repeat(4, 1fr);
     width: 950px;
     margin: 0 auto;
+    gap: 10px;
+}
+
+.card-container{
+    height: 365px;
 }
 
 .card {
     position: relative;
-    height: 345px;
+    height: 356px;
     width: 224px;
     white-space: normal;
     background-color: white;
@@ -198,7 +204,7 @@ main {
 }
 
 .card-info {
-    padding: 10px 15px;
+    padding: 3px 15px;
 }
 
 .card-price {

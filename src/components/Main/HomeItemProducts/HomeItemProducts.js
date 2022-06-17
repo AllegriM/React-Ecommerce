@@ -4,7 +4,6 @@ import Card from '../../Card/Card';
 
 
 export const HomeItemProducts =  (props) => {
-    console.log(props)
     const getFetch = () => {
         return new Promise((resolve) => {
             setTimeout(() => {
@@ -18,6 +17,7 @@ export const HomeItemProducts =  (props) => {
             .then((resp) => setProductos(resp))
             .catch((error) => console.log(error))
     }, [])
+    
     return (
         <>
             {props.data.map( (product) => {

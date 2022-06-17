@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { HomeItemProducts } from "../HomeItemProducts/HomeItemProducts"
 import fetchLastVisitData from "../../../helpers/getDiscountInfo";
+import { useParams } from "react-router-dom";
 
 export default function ProductSection () {
 
@@ -9,6 +10,7 @@ export default function ProductSection () {
     useEffect(() => {
         fetchLastVisitData(setImg)
     }, [])
+
     return (
         <div className="cards-related">
             <div className="cards-title">

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import getSellerProducts from '../../helpers/getSellerProducts';
 import { ProductCardDetail } from '../ProductCardDetail/ProductCardDetail';
 import './product.css'
 
 export default function ProductDetailCard() {
 
     const [singleProd, setSingleProd] = useState([])
+
 
     let {prodId} = useParams();
 
