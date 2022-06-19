@@ -1,12 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import CategoryPath from '../CategoryPath/CategoryPath'
 import { SellerItems } from '../SellerItems/SellerItems'
+import { ProductQuestions } from '../ProductQuestions/ProductQuestions'
+import { ReviewData } from '../ReviewData/ReviewData'
+
+
+
+export const Star = ({stars}) => {
+    console.log(stars)
+    return(
+        <svg xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" className="" aria-hidden="true" width="16.8" height="16" viewBox="0 0 10 10">
+            <path fill="#3483FA" fill-rule="evenodd" d="M5.056 8L1.931 9.648l.597-3.49L0 3.684l3.494-.509L5.056 0l1.562 3.176 3.494.51-2.528 2.471.597 3.491z"></path>
+        </svg>
+    )
+}
+
 
 export const ProductCardDetail = ({ data }) => {
 
-    //Img selector
-
+    //Img selectors
     const [img, setImg] = useState(`${data.pictures[0].secure_url}`)
 
     const prodId = useParams()
@@ -27,7 +40,7 @@ export const ProductCardDetail = ({ data }) => {
                 <div className='product-container'>
                     <div className='product-card'>
                         <div className='product-info'>
-                            <div className='images-container'>
+                            <div className='images-container product-section'>
                                 <div className='product-all-imgs'>
                                     {picturesQty <= 7 ?
                                         data.pictures.map(img => {
@@ -57,6 +70,8 @@ export const ProductCardDetail = ({ data }) => {
                                 </div>
                             </div>
                             <SellerItems prodId={prodId} />
+                            <ProductQuestions prodId={prodId} />
+                            <ReviewData prodId={prodId} prodTitle={data.title} />
                             {/* <ProdDescription prodID={prodId} /> */}
                         </div>
                         <div className='seller-info'>
