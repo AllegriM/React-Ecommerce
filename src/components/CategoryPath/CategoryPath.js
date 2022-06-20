@@ -18,9 +18,9 @@ export default function CategoryPath({ prodID }) {
                 {
                     categories.map((cat) => {
                         return (
-                            <>
-                                <p key={cat.id}>{cat.name}</p>
-                            </>
+                            <div className="cat-cont" key={cat.id}>
+                                <p className="prod-category">{cat.name}</p>
+                            </div>
                         )
                     })
                 }

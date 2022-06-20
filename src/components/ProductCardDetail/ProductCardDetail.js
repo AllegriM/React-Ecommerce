@@ -3,18 +3,7 @@ import { useParams } from 'react-router-dom'
 import CategoryPath from '../CategoryPath/CategoryPath'
 import { SellerItems } from '../SellerItems/SellerItems'
 import { ProductQuestions } from '../ProductQuestions/ProductQuestions'
-import { ReviewData } from '../ReviewData/ReviewData'
-
-
-
-export const Star = ({stars}) => {
-    console.log(stars)
-    return(
-        <svg xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" className="" aria-hidden="true" width="16.8" height="16" viewBox="0 0 10 10">
-            <path fill="#3483FA" fill-rule="evenodd" d="M5.056 8L1.931 9.648l.597-3.49L0 3.684l3.494-.509L5.056 0l1.562 3.176 3.494.51-2.528 2.471.597 3.491z"></path>
-        </svg>
-    )
-}
+import { ReviewData } from '../ReviewData/ReviewData';
 
 
 export const ProductCardDetail = ({ data }) => {
@@ -45,22 +34,22 @@ export const ProductCardDetail = ({ data }) => {
                                     {picturesQty <= 7 ?
                                         data.pictures.map(img => {
                                             return (
-                                                <>
-                                                    <div className='product-img-cont' key={img.id}>
+                                                <div key={img.id}>
+                                                    <div className='product-img-cont'>
                                                         <img className='product-img' onMouseOver={selectImg} onClick={selectImg} alt='' src={img.secure_url} />
                                                     </div>
-                                                </>
+                                                </div>
                                             )
                                         })
                                         :
                                         data.pictures.slice(0, 8).map(img => {
                                             return (
-                                                <>
-                                                    <div className='product-img-cont prod-last-child' key={img.id}>
+                                                <div className='prod-last-child' key={img.id}>
+                                                    <div className='product-img-cont'>
                                                         <img className='product-img' onMouseOver={selectImg} onClick={selectImg} alt='' src={img.secure_url} />
                                                         <span className='product-otherImgs'>{`+${otherImgs}`}</span>
                                                     </div>
-                                                </>
+                                                </div>
                                             )
                                         })
                                     }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 export const SliderBanner = ( slideEl ) => {
-    console.log(slideEl.children)
     const [current, setCurrent] = useState(0)
     const length = slideEl.elements.length
 

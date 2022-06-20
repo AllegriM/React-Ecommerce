@@ -27,8 +27,6 @@ export const SellerItems = ({ prodId }) => {
                         slidesPerGroup={3}
                         slidesPerView={3}
                         spaceBetween={30}
-                        onSwiper={(swiper) => console.log(swiper)}
-                        onSlideChange={() => console.log('slide change')}
                     >
                             {
                                 items.map((prod, index) => {
