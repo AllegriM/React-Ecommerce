@@ -6,6 +6,37 @@ import { ProductQuestions } from '../ProductQuestions/ProductQuestions'
 import { ReviewData } from '../ReviewData/ReviewData';
 
 
+
+
+export const SelectQuantity = ({ prodQuantity }) => {
+
+    const [quantity, setQuantity] = useState(1)
+
+    const onSelect = prodQuantity => {
+        setQuantity(prodQuantity)
+    }
+
+    let prodAmount = prodQuantity > 6 ? [1, 2, 3, 4, 5, 6] : [prodQuantity]
+
+    return (
+        <select className='select-quantity' onChange={(e) => onSelect(e.target.value)}>
+            {
+                prodAmount.map((val, index) => (
+                    <option className='quantity-option' key={index} value={val}>
+                        {
+                            val === 1 ? `${val} unidad` :
+                                        `${val} unidades`
+                        }
+                    </option>
+                ))
+            }
+        </select>
+    )
+}
+
+
+
+
 export const ProductCardDetail = ({ data }) => {
 
     //Img selectors
@@ -19,8 +50,6 @@ export const ProductCardDetail = ({ data }) => {
 
     let picturesQty = data.pictures.length;
     const otherImgs = picturesQty - 7;
-
-    // getDescriptionProduct()
 
     return (
         <>
@@ -141,10 +170,7 @@ export const ProductCardDetail = ({ data }) => {
                             <div>
                                 <span className="andes-button__content">
                                     <span className="">Cantidad:</span>
-                                    <span className="texto-negro-big">1 unidad</span>
-                                    <span className="open-flecha">
-                                        <svg xlink="http://www.w3.org/1999/xlink" className="ui-pdp-icon ui-pdp-icon--chevron ui-pdp-icon--chevron-down" viewBox="0 0 9 14" xmlns="http://www.w3.org/2000/svg" width="8" height="11"><defs><symbol id="chevron"><path fill="none" fillRule="evenodd" strokeWidth="1.5" d="M1 1.343L6.657 7 1 12.657"></path></symbol></defs><g stroke="#3483FA" fill="#000000" fillOpacity="0.25"><path fill="none" fillRule="evenodd" strokeWidth="1.5" d="M1 1.343L6.657 7 1 12.657"></path></g></svg>
-                                    </span>
+                                    <SelectQuantity prodQuantity={data.available_quantity} />
                                     <span className="texto-gris">({data.available_quantity} disponibles)</span>
                                 </span>
                             </div>
