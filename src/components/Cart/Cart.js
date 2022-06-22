@@ -1,11 +1,23 @@
-import { Box, Button, Center, Container, Flex, Image, Stack, Tab, TabList, Tabs, Text } from '@chakra-ui/react'
-import React from 'react'
+import { Box, Button, Center, Container, Flex, Image, Input, Stack, Tab, TabList, Tabs, Text } from '@chakra-ui/react'
+import React, { useState } from 'react'
 import theme from '../../theme'
 import { useCartContext } from '../Context/cartContext'
 
 export const Cart = () => {
     const { cart } = useCartContext()
+
+    const [quantity, setQuantity] = useState([cart.cantidadElegida])
     console.log(cart)
+
+    const addQuantity = () => {
+        setQuantity( (prevValue) => prevValue + 1)
+    }
+
+    const reduceQuantity = () => {
+        setQuantity( (prevValue) => prevValue - 1)
+    }
+
+    console.log(cart.cantidadElegida)
 
     return (
         <Container backgroundColor='#EBEBEB' h='100vh' maxW='100%'>
@@ -26,11 +38,21 @@ export const Cart = () => {
                         cart.map((item) => {
                             return (
                                 <Box mt='1em' key={item.id}>
-                                    <Flex align='end'>
-                                        <Image w='50px' h='50px' src={item.thumbnail}/>
-                                        <Text ms='.75em' fontSize='1.25rem'>{item.title}</Text>
-                                        <span>{item.cantidadElegida}</span>
+                                    <Flex align='center' justifyContent='space-around'>
+                                        <Flex align='center' justifySelf='self-start'>
+                                            <Image w='50px' h='50px' src={item.thumbnail}/>
+                                            <Text ms='.75em' fontSize='1.25rem'>{item.title}</Text>
+                                        </Flex>
+                                        <Box borderRadius='4px' w='auto' display='flex' border='1px solid #e6e6e6' alignItems='center'>
+                                            <Button color={theme.colors.blue} bg='transparent' border='none' onClick={reduceQuantity} >-</Button>
+                                            <Input px='0' w='40px' maxWidth='auto' textAlign='center' border='none' defaultValue={item.cantidadElegida} value={quantity} />
+                                            <Button color={theme.colors.blue} bg='transparent' border='none' onClick={addQuantity} >+</Button>
+                                        </Box>
+                                        <Box>
+                                            <Text>{(item.price) * quantity}</Text>
+                                        </Box>
                                     </Flex>
+                                    
                                 </Box>
                             )
                         })

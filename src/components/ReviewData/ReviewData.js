@@ -3,19 +3,24 @@ import getReviewData from "../../helpers/getReviewData";
 import { EmptyStar } from "../Star/EmptyStar";
 import { HalfStar } from "../Star/HalfStar";
 import { Star } from "../Star/Star";
-import { Box, Container, Progress, Stack } from '@chakra-ui/react'
+import { Box, Container, Progress, Stack, Text } from '@chakra-ui/react'
+import theme from "../../theme";
+import { StarsCollection } from "../StarsCollection/StarsCollection";
 
-export const ReviewData = ({ prodId, prodTitle }) => {
+export const ReviewData = ({ prodId, prodTitle, setProdReview} ) => {
 
     const [reviews, setReview] = useState([]);
-
-    useEffect(() => {
-        getReviewData(prodId, setReview)
-    }, [])
 
     // let total = reviews.paging.total
     let numberOfStars = (reviews.rating_average)
     let total = reviews.paging?.total
+
+    
+    useEffect( () => {
+        getReviewData(prodId, setReview)
+        setProdReview({numberOfStars: reviews?.rating_average, total: reviews.paging?.total})
+    }, [])
+    
 
     return (
         <>
@@ -24,95 +29,62 @@ export const ReviewData = ({ prodId, prodTitle }) => {
                     :
                     <div className="opinions-section">
                         <h2 className="opinion-title">Opiniones sobre {prodTitle}</h2>
-                        <div className='opinions-rating'>
+                        <Box className='opinions-rating' alignItems='center'>
                             <div className='general-opinion'>
                                 <p>{reviews.rating_average}</p>
-                                <div className='stars-container'>
-                                    {
-                                        <>
-                                            {
-                                                numberOfStars >= 1 ? <Star /> :
-                                                    numberOfStars = .5 ? <HalfStar /> : <EmptyStar />
-                                            }
-                                            {
-                                                numberOfStars >= 2 ? <Star /> :
-                                                    numberOfStars = 1.5 ? <HalfStar /> : <EmptyStar />
-                                            }
-                                            {
-                                                numberOfStars >= 3 ? <Star /> :
-                                                    numberOfStars = 2.5 ? <HalfStar /> : <EmptyStar />
-                                            }
-                                            {
-                                                numberOfStars >= 4 ? <Star /> :
-                                                    numberOfStars = 3.5 ? <HalfStar /> : <EmptyStar />
-                                            }
-                                            {
-                                                numberOfStars >= 5 ? <Star /> :
-                                                    numberOfStars = 4.5 ? <HalfStar /> : <EmptyStar />
-                                            }
-                                        </>
-                                    }
-                                </div>
+                                <StarsCollection starsAmount={numberOfStars} />
                                 <span>{reviews.paging?.total === undefined ? `` : `Promedio entre ${reviews.paging?.total} opiniones`}</span>
                             </div>
                             <div className='stars-opinion'>
-                                {
-                                    <>
-                                        <Box margin="0 auto" textAlign="center" width="100%"> 
-                                            <Stack alignItems="center" direction="row" marginBottom="4px">
-                                                <Box fontSize="md">
-                                                    5 estrellas
-                                                </Box>
-                                                <Progress bg="#3483FA" borderRadius={2} size="xs" width="50%" aria-valuemax={total} value={reviews.rating_levels?.five_star} />
-                                                <Box fontSize="md" paddingLeft="9px">
-                                                    {reviews.rating_levels?.five_star}
-                                                </Box>
-                                            </Stack>
-                                            <Stack alignItems="center" direction="row" marginBottom="4px">
-                                                <Box fontSize="md">
-                                                    4 estrellas
-                                                </Box>
-                                                <Progress bg="#3483FA" borderRadius={2} size="xs" width="50%" aria-valuemax={total} value={reviews.rating_levels?.four_star} />
-                                                <Box fontSize="md" paddingLeft="9px">
-                                                    {reviews.rating_levels?.four_star}
-                                                </Box>
-                                            </Stack>
-                                        
-                                            <Stack alignItems="center" direction="row" marginBottom="4px">
-                                                <Box fontSize="md">
-                                                    3 estrellas
-                                                </Box>
-                                                <Progress bg="#3483FA" borderRadius={2} size="xs" width="50%" aria-valuemax={total} value={reviews.rating_levels?.three_star} />
-                                                <Box fontSize="md" paddingLeft="9px">
-                                                    {reviews.rating_levels?.three_star}
-                                                </Box>
-                                            </Stack>
-                                        
-                                        
-                                            <Stack alignItems="center" direction="row" marginBottom="4px">
-                                                <Box fontSize="md">
-                                                    2 estrellas
-                                                </Box>
-                                                <Progress bg="#3483FA" borderRadius={2} size="xs" width="50%" aria-valuemax={total} value={reviews.rating_levels?.two_star} />
-                                                <Box fontSize="md" paddingLeft="9px">
-                                                    {reviews.rating_levels?.two_star}
-                                                </Box>
-                                            </Stack>
-                                        
-                                            <Stack alignItems="center" direction="row" marginBottom="4px">
-                                                <Box fontSize="md">
-                                                    1 estrella
-                                                </Box>
-                                                <Progress bg="#3483FA" borderRadius={2} size="xs" width="50%" aria-valuemax={total} value={reviews.rating_levels?.one_star} />
-                                                <Box fontSize="md" paddingLeft="9px">
-                                                    {reviews.rating_levels?.one_star}
-                                                </Box>
-                                            </Stack>
-                                        </Box>
-                                    </>
-                                }
+                                <Box margin="0 auto" textAlign="center" width="100%">
+                                    <Stack justifyContent='center' align='center' direction="row" marginBottom="4px">
+                                        <Text color='rgba(0,0,0,.55)' fontSize="md" m='0' w='75px'>
+                                            5 estrellas
+                                        </Text>
+                                        <Progress colorScheme={theme.components.Progress.baseStyle.filledTrack} borderRadius={2} size="xs" width="14rem" value={(100 * reviews.rating_levels?.five_star) / total} />
+                                        <Text color='rgba(0,0,0,.55)' fontSize="md" m='0' w='75px' paddingLeft="9px" textAlign='start'>
+                                            {reviews.rating_levels?.five_star}
+                                        </Text>
+                                    </Stack>
+                                    <Stack justifyContent='center' align='center' direction="row" marginBottom="4px">
+                                        <Text color='rgba(0,0,0,.55)' fontSize="md" m='0' w='75px'>
+                                            4 estrellas
+                                        </Text>
+                                        <Progress colorScheme={theme.colors.blue} borderRadius={2} size="xs" width="14rem" value={(100 * reviews.rating_levels?.four_star) / total} />
+                                        <Text color='rgba(0,0,0,.55)' fontSize="md" m='0' w='75px' paddingLeft="9px" textAlign='start'>
+                                            {reviews.rating_levels?.four_star}
+                                        </Text>
+                                    </Stack>
+                                    <Stack justifyContent='center' align='center' direction="row" marginBottom="4px">
+                                        <Text color='rgba(0,0,0,.55)' fontSize="md" m='0' w='75px'>
+                                            3 estrellas
+                                        </Text>
+                                        <Progress colorScheme={theme.colors.blue} borderRadius={2} size="xs" width="14rem" value={(100 * reviews.rating_levels?.three_star) / total} />
+                                        <Text color='rgba(0,0,0,.55)' fontSize="md" m='0' w='75px' paddingLeft="9px" textAlign='start'>
+                                            {reviews.rating_levels?.three_star}
+                                        </Text>
+                                    </Stack>
+                                    <Stack justifyContent='center' align='center' direction="row" marginBottom="4px">
+                                        <Text color='rgba(0,0,0,.55)' fontSize="md" m='0' w='75px'>
+                                            2 estrellas
+                                        </Text>
+                                        <Progress colorScheme={theme.colors.blue} borderRadius={2} size="xs" width="14rem" value={(100 * reviews.rating_levels?.two_star) / total} />
+                                        <Text color='rgba(0,0,0,.55)' fontSize="md" m='0' w='75px' paddingLeft="9px" textAlign='start'>
+                                            {reviews.rating_levels?.two_star}
+                                        </Text>
+                                    </Stack>
+                                    <Stack justifyContent='center' align='center' direction="row" marginBottom="4px">
+                                        <Text color='rgba(0,0,0,.55)' fontSize="md" m='0' w='75px' textAlign='start' ms='2px'>
+                                            1 estrella
+                                        </Text>
+                                        <Progress colorScheme={theme.colors.blue} borderRadius={2} size="xs" width="14rem" value={(100 * reviews.rating_levels?.one_star) / total} />
+                                        <Text color='rgba(0,0,0,.55)' fontSize="md" m='0' w='75px' paddingLeft="9px" textAlign='start'>
+                                            {reviews.rating_levels?.one_star}
+                                        </Text>
+                                    </Stack>
+                                </Box>
                             </div>
-                        </div>
+                        </Box>
                         <div className="opinions-written">
                             {
                                 reviews.reviews?.map((review) => {

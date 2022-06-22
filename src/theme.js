@@ -7,5 +7,14 @@ export default extendTheme({
         white: '#fff',
         blue: '#3483fa',
         grey: '#EBEBEB'
+    },
+    components: {
+        Progress: {
+            baseStyle: {
+                filledTrack: {
+                    bg: '#3483fa'
+                }
+            }
+        }
     }
 })

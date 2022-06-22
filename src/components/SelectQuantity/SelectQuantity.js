@@ -1,30 +1,45 @@
+import { Flex, Select } from "@chakra-ui/react"
 import { useState } from "react"
-import { AmountContextProvider } from "../Context/amountSelContext"
+import theme from "../../theme"
+import '../ProductDetailCard/product.css' 
 
 export const SelectQuantity = ({ prodQuantity, setProdAmount }) => {
-    
-    const [quantity, setQuantity] = useState(1)
 
+    const [quantity, setQuantity] = useState(1)
+        
     const onSelect = prodQuantity => {
         console.log(prodQuantity)
         setProdAmount(Number(prodQuantity))
         setQuantity(prodQuantity)
     }
 
-    let prodAmount = prodQuantity > 6 ? [1, 2, 3, 4, 5, 6] : [prodQuantity]
+    let totalAmount = [...Array(prodQuantity).keys()]
+    let prodAmount = totalAmount.map((prod) => prod + 1)
 
     return (
-        <select className='select-quantity' onChange={(e) => onSelect(e.target.value)}>
-            {
-                prodAmount.map((val, index) => (
-                    <option className='quantity-option' key={index} value={val}>
-                        {
-                            val === 1 ? `${val} unidad` :
-                                `${val} unidades`
-                        }
-                    </option>
-                ))
-            }
-        </select>
+        <Flex>
+            <Select iconColor={theme.colors.blue} border='none' bg='transparent' size='md' w='auto' className='dropdown' onChange={(e) => onSelect(e.target.value)}>
+                {
+                    prodAmount.length > 6 ?
+                    prodAmount.slice(0,6).map((val, index) => (
+                        <option className='dropdownItem' key={index} value={val}>
+                            {
+                                val === 1 ? `${val} unidad` :
+                                    `${val} unidades`
+                            }
+                        </option>
+                    ))
+                    :
+                    prodAmount.map((val, index) => (
+                        <option className='dropdownItem' key={index} value={val}>
+                            {
+                                val === 1 ? `${val} unidad` :
+                                    `${val} unidades`
+                            }
+                        </option>
+                    ))
+                }
+            </Select>
+        </Flex>
     )
 }

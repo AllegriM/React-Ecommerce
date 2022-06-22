@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import getSellerProducts from '../../helpers/getSellerProducts';
 import { AmountContextProvider } from '../Context/amountSelContext';
+import { ReviewContextProvider } from '../Context/reviewData';
 import { ProductCardDetail } from '../ProductCardDetail/ProductCardDetail';
 import './product.css'
 
 export default function ProductDetailCard() {
 
     const [singleProd, setSingleProd] = useState([])
-
 
     let {prodId} = useParams();
 
@@ -22,12 +21,15 @@ export default function ProductDetailCard() {
     }, [prodId])
 
     return (
-        <>
+        <> 
+            
             <AmountContextProvider>
-                {singleProd.map( (data => 
-                    <ProductCardDetail key={data.body.id} data={data.body} />
-                    ))
-                }
+                <ReviewContextProvider>
+                    {singleProd.map( (data => 
+                        <ProductCardDetail key={data.body.id} data={data.body} />
+                        ))
+                    }
+                </ReviewContextProvider>
             </AmountContextProvider>
         </>
     )
