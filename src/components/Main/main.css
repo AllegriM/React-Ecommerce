@@ -166,7 +166,7 @@ main {
 
 .card {
     position: relative;
-    height: 356px;
+    min-height: 356px;
     width: 224px;
     white-space: normal;
     background-color: white;
@@ -216,21 +216,19 @@ main {
     color: var(--clr-letra-gris);
     display: block;
     font-size: 14px;
+    margin-bottom: 0;
 }
 
 .card-extrainfo {
     font-size: var(--letra-chicaXL);
     color: #666;
-    margin-top: 12px;
+    margin-top: 6px;
     height: auto;
     overflow: hidden;
     display: none;
 }
 
 .card:hover{
-    height: 350px;
-    max-height: 100%;
-    min-height: 330px;
     height: auto;
     box-shadow: 4px 4px 4px 4px rgb(0 0 0 / 10%);
 }

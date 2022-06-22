@@ -470,7 +470,7 @@ ul {
 .seller-section {
     position: relative;
     margin-top: 2em;
-    height: 480px;
+    height: 495px;
 }
 
 .seller-section h3 {
@@ -576,7 +576,7 @@ ul {
 .swiper-wrapper {
     flex-direction: row;
     padding: 0 1.3em !important;
-    height: 390px !important;
+    height: 400px !important;
 }
 
 .swiper-button-next,

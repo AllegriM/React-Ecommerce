@@ -47,5 +47,6 @@ a{
 }
 
 .contenido{
+  padding-top: 1em;
   background-color: var(--clr-bg-gris);
 }

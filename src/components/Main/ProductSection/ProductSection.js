@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react"
 import { HomeItemProducts } from "../HomeItemProducts/HomeItemProducts"
-import fetchLastVisitData from "../../../helpers/getDiscountInfo";
-import { useParams } from "react-router-dom";
+import fetchLastVisitData from "../../../helpers/getHomeProd";
 
 export default function ProductSection () {
 
-    const [img, setImg] = useState([])
+    const [products, setProd] = useState([])
 
     useEffect(() => {
-        fetchLastVisitData(setImg)
+        fetchLastVisitData(setProd)
     }, [])
 
     return (
@@ -18,7 +17,7 @@ export default function ProductSection () {
                 <p className="text-blue">Ver historial</p>
             </div>
             <div className="product-slider">
-                <HomeItemProducts data={img} />
+                <HomeItemProducts data={products} />
             </div>
         </div>
     )
