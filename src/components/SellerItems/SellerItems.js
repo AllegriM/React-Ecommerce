@@ -16,30 +16,35 @@ export const SellerItems = ({ prodId }) => {
     const swiper = useSwiper()
 
     return (
-        <>  
-            <div className="seller-section product-section">
-                <h3 className="title-seller">Publicaciones del vendedor</h3>
-                <div className='prod-description'>
-                    <Swiper
-                        className="swiper-wrapper"
-                        modules={[Navigation]}
-                        navigation={true}
-                        slidesPerGroup={3}
-                        slidesPerView={3}
-                        spaceBetween={30}
-                    >
-                            {
-                                items.map((prod, index) => {
-                                    return (
-                                        <SwiperSlide key={index} style={{width: 224}}>
-                                            <ProductCard data={prod} key={prod.id} />
-                                        </SwiperSlide>
-                                    )
-                                })
-                            }
-                    </Swiper>
-                </div>
-            </div>
+        <>
+            {
+                items === [] ? console.log("No tiene productos")
+                    :
+                    <div className="seller-section product-section">
+                        <h3 className="title-seller">Publicaciones del vendedor</h3>
+                        <div className='prod-description'>
+                            <Swiper
+                                className="swiper-wrapper"
+                                modules={[Navigation]}
+                                navigation={true}
+                                slidesPerGroup={3}
+                                slidesPerView={3}
+                                spaceBetween={30}
+                            >
+                                {
+                                    items.slice(1, 21).map((prod, index) => {
+                                        return (
+                                            <SwiperSlide key={index} style={{ width: 224 }}>
+                                                <ProductCard data={prod} key={prod.id} />
+                                            </SwiperSlide>
+                                        )
+                                    })
+                                }
+                            </Swiper>
+                        </div>
+                    </div>
+            }
+
         </>
     )
 }

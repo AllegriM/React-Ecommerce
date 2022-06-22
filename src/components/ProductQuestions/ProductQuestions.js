@@ -10,7 +10,7 @@ export const ProductQuestions = ( {prodId} ) => {
             getQuestionsYAnswers(prodId, setQuestions)
         }, 1000);
     }, [])
-
+    
     return (
         <div className='productQuestions product-section'>
             <h3>Preguntas y respuestas</h3>
@@ -24,13 +24,13 @@ export const ProductQuestions = ( {prodId} ) => {
             </div>
             
             {   
-                questions.length === 0 ? 
+                questions?.length === undefined ? 
                 <p className='no-questions'>Nadie hizo preguntas todavía. ¡Hacé la primera!</p> 
                 :
-                questions.length > 10 && !undefined ? 
+                questions?.length > 10 && !undefined ? 
                 <div>
                     <h5>Ultimas realizadas</h5>
-                    {questions.slice(0,10).map( (el)=>{
+                    {questions?.slice(0,10).map( (el)=>{
                         return(
                             <div key={el.id}>   
                                 <p className='customer-question'>{el.text}</p>
@@ -49,7 +49,7 @@ export const ProductQuestions = ( {prodId} ) => {
                 :
                 <div>
                     <h5>Ultimas realizadas</h5>
-                    {questions.map( (el)=>{
+                    {questions?.map( (el)=>{
                         return(
                             <div key={el.id}>  
                                 <p className='customer-question'>{el.text}</p>

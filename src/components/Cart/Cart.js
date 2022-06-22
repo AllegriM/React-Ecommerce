@@ -1,9 +1,23 @@
 import React from 'react'
+import { useCartContext } from '../Context/cartContext'
 
 export const Cart = () => {
+    const { cart } = useCartContext()
+    console.log(cart)
+
     return (
-    <>
-        <h1>CART</h1>
-    </>
+        <>
+            {
+                cart.map((item) => {
+                    return (
+                        <div key={item.id}>
+                            <li>{item.title}</li>
+                            <img src={item.thumbnail} />
+                            <span>{item.cantidadElegida}</span>
+                        </div>
+                    )
+                })
+            }
+        </>
     )
 }

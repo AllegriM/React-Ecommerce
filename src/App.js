@@ -10,6 +10,7 @@ import ProductDetailCard from './components/ProductDetailCard/ProductDetailCard'
 import ProductList from './components/ProductListContainer/ProductList';
 import { Cart } from "./components/Cart/Cart";
 import { PageNotFound } from "./components/PageNotFound/PageNotFound";
+import { CartContextProvider } from "./components/Context/cartContext";
 
 export default function App() {
 
@@ -24,21 +25,26 @@ export default function App() {
     return count === 0 ? alert("Carrito vacio") : setCount(prevCount => prevCount - 1)
   }
 
+
   return (
-    <div className="App">
-      <Navbar>
-        <SearchForm />
-      </Navbar>
-      <section className='contenido'>
-        <Routes>
-          <Route path="*" element={<PageNotFound />} />
-          <Route path='/' element={ <Home handleSuma={sumar} handleResta={restar} stock={stock} count={count} />} />
-          <Route path='/products/:prodId' element={<ProductDetailCard />} />
-          <Route path="/cart" element={<Cart />}/>
-          <Route path="/search/:keyword" element={<ProductList />} />
-        </Routes>
-        
-      </section>
-    </div>
+    <CartContextProvider
+    // value={}
+    >
+      <div className="App">
+        <Navbar>
+          <SearchForm />
+        </Navbar>
+        <section className='contenido'>
+          <Routes>
+            <Route path="*" element={<PageNotFound />} />
+            <Route path='/' element={<Home handleSuma={sumar} handleResta={restar} stock={stock} count={count} />} />
+            <Route path='/products/:prodId' element={<ProductDetailCard />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/search/:keyword" element={<ProductList />} />
+          </Routes>
+
+        </section>
+      </div>
+    </CartContextProvider>
   );
 }

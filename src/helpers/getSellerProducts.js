@@ -12,7 +12,7 @@ export default function getSellerID ( {prodId}, setItems ){
 const getSellerItems = (sellerId, setItems) => {
     fetch(`https://api.mercadolibre.com/sites/MLA/search?seller_id=${sellerId}`)
         .then( ( resp ) => resp.json() )
-        .then( ( data ) =>  setItems(data.results.slice(1, 21)))
+        .then( ( data ) =>  setItems(data.results))
 }
 
 
