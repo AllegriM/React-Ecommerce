@@ -13,10 +13,11 @@ export const SellerItems = ({ prodId }) => {
         getSellerID(prodId, setItems)
     }, [])
 
+
     return (
         <>
             {
-                items === [] ? console.log("No tiene productos")
+                items.length === 0 ? null
                     :
                     <div className="seller-section product-section">
                         <h3 className="title-seller">Publicaciones del vendedor</h3>

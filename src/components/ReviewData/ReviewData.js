@@ -21,12 +21,13 @@ export const ReviewData = ({ prodId, prodTitle, setProdReview }) => {
             numberOfStars: reviews?.rating_average,
             total: reviews.paging?.total
         })
-    }, [reviews])
+    }, [])
+
 
     return (
         <>
             {
-                reviews === [] ? null
+                reviews.paging?.total === 0 ? null
                     :
                     <div className="opinions-section">
                         <h2 className="opinion-title">Opiniones sobre {prodTitle}</h2>

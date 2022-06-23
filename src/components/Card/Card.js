@@ -13,7 +13,7 @@ export default function Card(props) {
                 </button>
                 <div className="card-info">
                     <span className="card-price">{props.prod.currency_id === "USD" ? `U$S ${Math.round((props.prod.price)).toLocaleString('es-AR')}` : `$ ${Math.round((props.prod.price)).toLocaleString('es-AR')}`}</span>
-                    <p className="card-desc">{props.prod.title}</p>
+                    <p className="card-desc">{(props.prod.title.split(" ").length) >= 7? props.prod.title.split(" ").slice(0,7).join(" ") + "..." : props.prod.title}</p>
                     <p className="card-extrainfo">{props.prod.address.city_name} - {props.prod.address.state_name}</p>
                 </div>
             </div>
