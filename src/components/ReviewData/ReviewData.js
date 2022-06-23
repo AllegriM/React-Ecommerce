@@ -13,22 +13,20 @@ export const ReviewData = ({ prodId, prodTitle, setProdReview }) => {
 
     let numberOfStars = (reviews.rating_average)
     let total = reviews.paging?.total
+    
 
     useEffect(() => {
         getReviewData(prodId, setReview)
-        setTimeout(() => {
-            setProdReview({
-                numberOfStars: reviews?.rating_average,
-                total: reviews.paging?.total
-            });
-            console.log(reviews)
-        }, 2000)
-    }, [])
+        setProdReview({
+            numberOfStars: reviews?.rating_average,
+            total: reviews.paging?.total
+        })
+    }, [reviews])
 
     return (
         <>
             {
-                reviews.paging?.total === 0 ? null
+                reviews === [] ? null
                     :
                     <div className="opinions-section">
                         <h2 className="opinion-title">Opiniones sobre {prodTitle}</h2>
