@@ -6,7 +6,7 @@ import { useCartContext } from '../Context/cartContext'
 export const Cart = () => {
     const { cart } = useCartContext()
 
-    const [quantity, setQuantity] = useState([cart.cantidadElegida])
+    const [quantity, setQuantity] = useState()
     console.log(cart)
 
     const addQuantity = () => {
@@ -16,8 +16,6 @@ export const Cart = () => {
     const reduceQuantity = () => {
         setQuantity( (prevValue) => prevValue - 1)
     }
-
-    console.log(cart.cantidadElegida)
 
     return (
         <Container backgroundColor='#EBEBEB' h='100vh' maxW='100%'>
@@ -45,18 +43,18 @@ export const Cart = () => {
                                         </Flex>
                                         <Box borderRadius='4px' w='auto' display='flex' border='1px solid #e6e6e6' alignItems='center'>
                                             <Button color={theme.colors.blue} bg='transparent' border='none' onClick={reduceQuantity} >-</Button>
-                                            <Input px='0' w='40px' maxWidth='auto' textAlign='center' border='none' defaultValue={item.cantidadElegida} value={quantity} />
+                                            <Text w='40px' textAlign='center'>{item.cantidadElegida}</Text>
                                             <Button color={theme.colors.blue} bg='transparent' border='none' onClick={addQuantity} >+</Button>
                                         </Box>
                                         <Box>
-                                            <Text>{(item.price) * quantity}</Text>
+                                            <Text>{(item.price) * item.cantidadElegida}</Text>
                                         </Box>
                                     </Flex>
                                     
                                 </Box>
                             )
                         })
-                }
+                }   
             </Box>
         </Container>
 

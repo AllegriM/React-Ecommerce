@@ -21,8 +21,6 @@ export const ProductCardDetail = ({ data }) => {
 
     const { reviewData, setProdReview } = useContext(ReviewContext)
 
-    console.log(reviewData)
-
     const prodId = useParams()
 
     return (
@@ -109,7 +107,7 @@ export const ProductCardDetail = ({ data }) => {
                                     <button type="submit" className="btn-submit btn-azul" aria-disabled="false" formAction="https://www.mercadolibre.com.ar/gz/checkout/buy">
                                         <span className="andes-button__content">Comprar ahora</span>
                                     </button>
-                                    <CartButton prodQuantity={data.available_quantity} addItem={addToCart} cart={cart} item={data} prodAmount={amount} />
+                                    <CartButton prodQuantity={data.available_quantity} addToCart={addToCart} cart={cart} item={data} prodAmount={amount} />
                                     <div className="separation-Y">
                                         <div className="modalbox">
                                             <div className="align-all">

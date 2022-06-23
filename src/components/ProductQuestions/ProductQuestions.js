@@ -6,9 +6,7 @@ export const ProductQuestions = ( {prodId} ) => {
     const [questions, setQuestions] = useState([])
     
     useEffect(()=>{
-        setTimeout(() => {
-            getQuestionsYAnswers(prodId, setQuestions)
-        }, 1000);
+        getQuestionsYAnswers(prodId, setQuestions)
     }, [])
     
     return (

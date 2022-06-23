@@ -13,8 +13,6 @@ export const SellerItems = ({ prodId }) => {
         getSellerID(prodId, setItems)
     }, [])
 
-    const swiper = useSwiper()
-
     return (
         <>
             {

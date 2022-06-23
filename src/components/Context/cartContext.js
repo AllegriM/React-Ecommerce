@@ -1,7 +1,6 @@
 import { createContext, useContext, useState } from "react";
 
 export const CartContext = createContext([])
-
 export const useCartContext = () => useContext(CartContext)
 
 export const CartContextProvider = ({children}) =>{
@@ -13,9 +12,9 @@ export const CartContextProvider = ({children}) =>{
         setCart(item)
     }
 
-    const removeItem = (id) =>{
-        setCart()
-    }
+    // const removeItem = (id) =>{
+    //     setCart()
+    // }
 
     // const isInCart (id) => {
 

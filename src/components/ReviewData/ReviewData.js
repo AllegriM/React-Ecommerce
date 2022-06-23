@@ -3,24 +3,27 @@ import getReviewData from "../../helpers/getReviewData";
 import { EmptyStar } from "../Star/EmptyStar";
 import { HalfStar } from "../Star/HalfStar";
 import { Star } from "../Star/Star";
-import { Box, Container, Progress, Stack, Text } from '@chakra-ui/react'
+import { Box, Progress, Stack, Text } from '@chakra-ui/react'
 import theme from "../../theme";
 import { StarsCollection } from "../StarsCollection/StarsCollection";
 
-export const ReviewData = ({ prodId, prodTitle, setProdReview} ) => {
+export const ReviewData = ({ prodId, prodTitle, setProdReview }) => {
 
     const [reviews, setReview] = useState([]);
 
-    // let total = reviews.paging.total
     let numberOfStars = (reviews.rating_average)
     let total = reviews.paging?.total
 
-    
-    useEffect( () => {
+    useEffect(() => {
         getReviewData(prodId, setReview)
-        setProdReview({numberOfStars: reviews?.rating_average, total: reviews.paging?.total})
+        setTimeout(() => {
+            setProdReview({
+                numberOfStars: reviews?.rating_average,
+                total: reviews.paging?.total
+            });
+            console.log(reviews)
+        }, 2000)
     }, [])
-    
 
     return (
         <>
