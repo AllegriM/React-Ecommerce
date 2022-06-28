@@ -1,14 +1,11 @@
-import { createContext, useContext, useState } from "react";
-import { AmountContext } from "./amountSelContext";
+import { createContext , useState } from "react";
 
 export const ReviewContext = createContext([])
-
-export const useReviewContext = () => useContext(ReviewContext)
 
 export const ReviewContextProvider = ({children}) =>{
     // estados y funciones 
 
-    const [reviewData, setReviewData] = useState([])
+    const [prodReviews, setReviewData] = useState([])
 
     const setProdReview = (item) =>{
         setReviewData(item)
@@ -16,7 +13,7 @@ export const ReviewContextProvider = ({children}) =>{
 
     return(
         <ReviewContext.Provider value={{
-            reviewData,
+            prodReviews,
             setProdReview
         }}
         >

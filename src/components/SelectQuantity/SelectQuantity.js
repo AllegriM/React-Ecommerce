@@ -1,7 +1,7 @@
 import { Flex, Select } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 import theme from "../../theme"
-import '../ProductDetailCard/product.css'
+import '../ListProductDetailCard/product.css'
 
 export const SelectQuantity = ({ prodQuantity, setProdAmount }) => {
 

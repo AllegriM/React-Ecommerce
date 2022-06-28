@@ -5,12 +5,12 @@ import { SellerItems } from '../SellerItems/SellerItems'
 import { ProductQuestions } from '../ProductQuestions/ProductQuestions'
 import { ReviewData } from '../ReviewData/ReviewData';
 import { SelectQuantity } from '../SelectQuantity/SelectQuantity'
-import { CartContext } from '../Context/cartContext'
+import { CartContext } from '../../Context/cartContext'
 import { CartButton } from '../CartButton/CartButton'
-import { AmountContext } from '../Context/amountSelContext'
+import { AmountContext } from '../../Context/amountSelContext'
 import { Box } from '@chakra-ui/react'
 import { ImagesProdChanger } from '../ImagesProdChanger/ImagesProdChanger'
-import { ReviewContext } from '../Context/reviewData'
+import { ReviewContext } from '../../Context/reviewData'
 import { StarsCollection } from '../StarsCollection/StarsCollection'
 
 export const ProductCardDetail = ({ data }) => {
@@ -19,7 +19,7 @@ export const ProductCardDetail = ({ data }) => {
 
     const { cart, addToCart } = useContext(CartContext)
 
-    const { reviewData, setProdReview } = useContext(ReviewContext)
+    const { prodReviews, setProdReview } = useContext(ReviewContext)
 
     const prodId = useParams()
 
@@ -47,8 +47,8 @@ export const ProductCardDetail = ({ data }) => {
                                 </div>
                             </div>
                             <div className='product-review separation-Y'>
-                                <StarsCollection starsAmount={reviewData.numberOfStars}/>
-                                <p className='separation-left texto-gris'>{reviewData.total} opiniones</p>
+                                <StarsCollection starsAmount={prodReviews.numberOfStars}/>
+                                <p className='separation-left texto-gris'>{prodReviews.total} opiniones</p>
                             </div>
                             {/* <div className='product-distincion separation-Y'>
                                         <div className='distincion'>MÁS VENDIDO</div>

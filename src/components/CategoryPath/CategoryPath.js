@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import setCategoryPath from "../../helpers/getCategoryPath"
 import { Link } from "react-router-dom"
-import '../ProductDetailCard/product.css'
+import '../ListProductDetailCard/product.css'
 
 export default function CategoryPath({ prodID }) {
 

@@ -3,9 +3,11 @@ import { Button, Text } from "@chakra-ui/react"
 export const CartButton = ( {addToCart, cart, item, prodAmount} ) => {
 
     const addItem = () =>{
+        // if (item.prodAmount === []) {
+        //     addToCart([...cart, {...item, cantidadElegida: [1]}])
+        // }
         if (cart.some( (itemInCart)=>itemInCart.id === item.id) ) {
-            item.cantidadElegida += prodAmount
-            // Aumentar en x la cantidad de productos
+            alert("Ya esta en el carrito")
         }else{
             addToCart([...cart, {...item, cantidadElegida: prodAmount}])
         }

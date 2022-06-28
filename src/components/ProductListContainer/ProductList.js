@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import '../Main/main.css';
+import '../../pages/main.css';
 import { ProductCard } from '../ProductCard/ProductCard';
 
 

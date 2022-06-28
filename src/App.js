@@ -1,16 +1,17 @@
 // React utilities
-import { Router, Switch, Link, Route, Routes, Navigate } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 import { useState } from "react";
 
 // React Components
 import { SearchForm } from "./components/SearchForm/SearchForm";
 import Navbar from "./components/Nav/Navbar"
-import Home from "./components/Main/Home"
-import ProductDetailCard from './components/ProductDetailCard/ProductDetailCard'
+import Home from "./pages/Home"
+import ProductDetailCard from './components/ListProductDetailCard/ListProductDetailCard'
 import ProductList from './components/ProductListContainer/ProductList';
 import { Cart } from "./components/Cart/Cart";
 import { PageNotFound } from "./components/PageNotFound/PageNotFound";
-import { CartContextProvider } from "./components/Context/cartContext";
+import { CartContextProvider } from "./Context/cartContext";
+import { AmountContextProvider } from "./Context/amountSelContext";
 
 export default function App() {
 
@@ -27,24 +28,25 @@ export default function App() {
 
 
   return (
-    <CartContextProvider
-    // value={}
-    >
-      <div className="App">
-        <Navbar>
-          <SearchForm />
-        </Navbar>
-        <section className='contenido'>
-          <Routes>
-            <Route path="*" element={<PageNotFound />} />
-            <Route path='/' element={<Home handleSuma={sumar} handleResta={restar} stock={stock} count={count} />} />
-            <Route path='/products/:prodId' element={<ProductDetailCard />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/search/:keyword" element={<ProductList />} />
-          </Routes>
 
-        </section>
-      </div>
+    <CartContextProvider>
+      <AmountContextProvider>
+        <div className="App">
+          <Navbar>
+            <SearchForm />
+          </Navbar>
+          <section className='contenido'>
+            <Routes>
+              <Route path="*" element={<PageNotFound />} />
+              <Route path='/' element={<Home handleSuma={sumar} handleResta={restar} stock={stock} count={count} />} />
+              <Route path='/products/:prodId' element={<ProductDetailCard />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/search/:keyword" element={<ProductList />} />
+            </Routes>
+
+          </section>
+        </div>
+      </AmountContextProvider>
     </CartContextProvider>
   );
 }

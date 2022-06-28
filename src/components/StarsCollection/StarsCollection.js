@@ -11,23 +11,23 @@ export const StarsCollection = ( {starsAmount} ) => {
                 <>
                     {
                         starsAmount >= 1 ? <Star /> :
-                        starsAmount === .5 ? <HalfStar /> : <EmptyStar />
+                        starsAmount >= .5 ? <HalfStar /> : <EmptyStar />
                     }
                     {
                         starsAmount >= 2 ? <Star /> :
-                        starsAmount === 1.5 ? <HalfStar /> : <EmptyStar />
+                        starsAmount >= 1.5 ? <HalfStar /> : <EmptyStar />
                     }
                     {
                         starsAmount >= 3 ? <Star /> :
-                        starsAmount === 2.5 ? <HalfStar /> : <EmptyStar />
+                        starsAmount >= 2.5 ? <HalfStar /> : <EmptyStar />
                     }
                     {
                         starsAmount >= 4 ? <Star /> :
-                        starsAmount === 3.5 ? <HalfStar /> : <EmptyStar />
+                        starsAmount >= 3.5 ? <HalfStar /> : <EmptyStar />
                     }
                     {
                         starsAmount >= 5 ? <Star /> :
-                        starsAmount === 4.5 ? <HalfStar /> : <EmptyStar />
+                        starsAmount >= 4.5 ? <HalfStar /> : <EmptyStar />
                     }
                 </>
             }

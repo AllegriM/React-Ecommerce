@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import getReviewData from "../../helpers/getReviewData";
 import { EmptyStar } from "../Star/EmptyStar";
-import { HalfStar } from "../Star/HalfStar";
 import { Star } from "../Star/Star";
 import { Box, Progress, Stack, Text } from '@chakra-ui/react'
 import theme from "../../theme";

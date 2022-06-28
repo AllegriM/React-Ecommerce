@@ -16,30 +16,12 @@ export const CartContextProvider = ({ children }) => {
         setCart(cart.filter((item) => item.id !== id))
     }
 
-    // const addQuantity = (itemId) => {
-    //     cart.map((item) => {
-    //         if (item.id === itemId) {
-    //             return setCart(item.cantidadElegida + 1)
-    //         }
-    //     })
-    // }
-
-    // const reduceQuantity = (itemId) => {
-    //     cart.map((item) => {
-    //         if (item.id === itemId) {
-    //             return setCart(item.cantidadElegida - 1)
-    //         }
-    //     })
-    // }
-
-
     return (
         <CartContext.Provider value={{
             cart,
             addToCart,
             removeItem,
-            // addQuantity,
-            // reduceQuantity
+            setCart
         }}
         >
             {children}
