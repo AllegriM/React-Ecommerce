@@ -1,8 +1,8 @@
 
 import React from 'react'
-import { EmptyStar } from '../Star/EmptyStar'
-import { HalfStar } from '../Star/HalfStar'
-import { Star } from '../Star/Star'
+import { EmptyStar } from './EmptyStar'
+import { HalfStar } from './HalfStar'
+import { Star } from './Star'
 
 export const StarsCollection = ( {starsAmount} ) => {
     return (

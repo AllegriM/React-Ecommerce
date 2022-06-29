@@ -1,6 +1,6 @@
 import { Button, Text } from "@chakra-ui/react"
 
-export const CartButton = ( {addToCart, cart, item, prodAmount} ) => {
+export const AddCartButton = ( {addToCart, cart, item, prodAmount} ) => {
 
     const addItem = () =>{
         // if (item.prodAmount === []) {

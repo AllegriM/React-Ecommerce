@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 
 
 export default function Card( {prod} ) {
+
     return (
     <>
         <Link to={`/products/${prod.id}`} data-id={prod.id} className='card-container'>

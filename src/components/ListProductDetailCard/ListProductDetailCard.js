@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom';
 import { ReviewContextProvider } from '../../Context/reviewData';
-import { ProductCardDetail } from '../ProductCardDetail/ProductCardDetail';
+import { useSingleProdData } from '../../hooks/useSingleProdData';
+import { ProductCardDetail } from '../../pages/DetailCard/ProductDetailCard';
 import './product.css'
 
 export default function ProductDetailCard() {
 
-    const [singleProd, setSingleProd] = useState([])
-
     let { prodId } = useParams();
 
-    useEffect(() => {
-        const fetchSingleData = async () => {
-            const resp = await fetch(`https://api.mercadolibre.com//items?ids=${prodId}`)
-            const data = await resp.json()
-            setSingleProd(data)
-        }
-        fetchSingleData();
-    }, [prodId])
+    // Using a custom hook
+    const singleProd = useSingleProdData( { prodId } )
 
     return (
         <>

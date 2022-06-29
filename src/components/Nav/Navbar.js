@@ -1,9 +1,9 @@
-import { React, useState } from "react";
+import { React } from "react";
 import logo from '../../imgs/logo__large_plus.png'
 import promo from '../../imgs/nav-promo-lvl6.webp'
 import { BrowserRouter as Router, Switch, Link, Route, Routes } from "react-router-dom"
 import './nav.css';
-import { SearchForm } from "../SearchForm/SearchForm";
+import { SearchForm } from "./SearchForm";
 
 export default function Navbar() {
     return (

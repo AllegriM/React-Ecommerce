@@ -3,9 +3,8 @@ import { useState } from "react";
 export const ImagesProdChanger = ( { data } ) => {
 
     //Img 
-    console.log(data)
 
-    const [img, setImg] = useState(`${data?.pictures[0].secure_url}`)
+    const [img, setImg] = useState(`${data.pictures[0]?.secure_url}`)
 
     const selectImg = (e) => {
         setImg(e.target.src)

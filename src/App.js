@@ -1,13 +1,13 @@
 // React utilities
 import { Route, Routes } from "react-router-dom"
 // React Components
-import { SearchForm } from "./components/SearchForm/SearchForm";
+import { SearchForm } from "./components/Nav/SearchForm";
 import Navbar from "./components/Nav/Navbar"
-import Home from "./pages/Home"
+import Home from "./pages/Home/Home"
 import ProductDetailCard from './components/ListProductDetailCard/ListProductDetailCard'
 import ProductList from './components/ProductListContainer/ProductList';
-import { Cart } from "./components/Cart/Cart";
-import { PageNotFound } from "./components/PageNotFound/PageNotFound";
+import { Cart } from "./pages/Cart/Cart";
+import { PageNotFound } from "./pages/Error/PageNotFound";
 import { CartContextProvider } from "./Context/cartContext";
 import { AmountContextProvider } from "./Context/amountSelContext";
 

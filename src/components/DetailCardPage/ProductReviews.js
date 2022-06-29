@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import getReviewData from "../../helpers/getReviewData";
-import { EmptyStar } from "../Star/EmptyStar";
-import { Star } from "../Star/Star";
-import { Box, Progress, Stack, Text } from '@chakra-ui/react'
+import { EmptyStar } from "../Stars/EmptyStar";
+import { Star } from "../Stars/Star";
+import { Box, Flex, Progress, Stack, Text } from '@chakra-ui/react'
 import theme from "../../theme";
-import { StarsCollection } from "../StarsCollection/StarsCollection";
+import { StarsCollection } from "../Stars/StarsCollection";
+import { UpThumb } from '../RateThumbs/UpThumb'
+import { DownThumb } from '../RateThumbs/DownThumb'
 
 export const ReviewData = ({ prodId, prodTitle, setProdReview }) => {
 
@@ -34,7 +36,7 @@ export const ReviewData = ({ prodId, prodTitle, setProdReview }) => {
                             <div className='general-opinion'>
                                 <p>{reviews.rating_average}</p>
                                 <StarsCollection starsAmount={numberOfStars} />
-                                <span>{reviews.paging?.total === undefined ? `` : `Promedio entre ${reviews.paging?.total} opiniones`}</span>
+                                <span>{reviews.paging?.total === undefined ? null : `Promedio entre ${reviews.paging?.total} opiniones`}</span>
                             </div>
                             <div className='stars-opinion'>
                                 <Box margin="0 auto" textAlign="center" width="100%">
@@ -110,6 +112,10 @@ export const ReviewData = ({ prodId, prodTitle, setProdReview }) => {
                                             </div>
                                             <h3>{review.title}</h3>
                                             <p>{review.content}<span>{review.date_created.slice(0, 10)}</span></p>
+                                            <Flex mt='.55em'>
+                                                <UpThumb likes={review.likes} />
+                                                <DownThumb dislikes={review.dislikes} />
+                                            </Flex>
                                         </div>
                                     )
                                 })

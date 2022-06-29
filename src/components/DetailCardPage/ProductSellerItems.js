@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import getSellerID from "../../helpers/getSellerProducts"
-import { ProductCard } from '../ProductCard/ProductCard'
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
+import Card from "../Card/Card";
 
 export const SellerItems = ({ prodId }) => {
     const [items, setItems] = useState([])
@@ -34,7 +34,7 @@ export const SellerItems = ({ prodId }) => {
                                     items.slice(1, 21).map((prod, index) => {
                                         return (
                                             <SwiperSlide key={index} style={{ width: 224 }}>
-                                                <ProductCard data={prod} key={prod.id} />
+                                                <Card prod={prod} key={prod.id} />
                                             </SwiperSlide>
                                         )
                                     })

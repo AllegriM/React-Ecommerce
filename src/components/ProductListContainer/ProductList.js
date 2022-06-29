@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import '../../pages/main.css';
-import { ProductCard } from '../ProductCard/ProductCard';
+import './productlist.css';
+import Card from '../Card/Card'
 
 
 export default function ProductList() {
+    
     const [products, setProducts] = useState([])
+
+    console.log(products)
 
     let {keyword} = useParams();
 
@@ -26,7 +29,7 @@ export default function ProductList() {
                 </div>
                 <div className="product-cards search-products-list">
                     {products.map((prod) =>
-                        <ProductCard data={prod} key={prod.id}/>
+                        <Card prod={prod} key={prod.id} />
                     )}
                 </div>
             </div>

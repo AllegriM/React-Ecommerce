@@ -4,7 +4,6 @@ import './error.css'
 
 export const PageNotFound = () => {
 
-
     return (
         <>
             <section className='error-bg'>

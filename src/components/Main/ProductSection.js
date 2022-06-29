@@ -1,4 +1,4 @@
-import { HomeItemProducts } from "../HomeItemProducts/HomeItemProducts"
+import Card from "../Card/Card"
 
 export default function ProductSection ( { title, products } ) {
 
@@ -9,7 +9,9 @@ export default function ProductSection ( { title, products } ) {
                 <p className="text-blue">Ver historial</p>
             </div>
             <div className="product-slider">
-                <HomeItemProducts data={products} />
+                {
+                    products.map((prod) => (<Card prod={prod} key={prod.id} />))
+                }
             </div>
         </div>
     )

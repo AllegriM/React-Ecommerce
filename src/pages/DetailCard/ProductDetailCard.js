@@ -1,17 +1,17 @@
 import React, { useContext } from 'react'
 import { useParams } from 'react-router-dom'
-import CategoryPath from '../CategoryPath/CategoryPath'
-import { SellerItems } from '../SellerItems/SellerItems'
-import { ProductQuestions } from '../ProductQuestions/ProductQuestions'
-import { ReviewData } from '../ReviewData/ReviewData';
-import { SelectQuantity } from '../SelectQuantity/SelectQuantity'
+import CategoryPath from '../../components/DetailCardPage/ProductCategoryTree'
+import { SellerItems } from '../../components/DetailCardPage/ProductSellerItems'
+import { ProductQuestions } from '../../components/DetailCardPage/ProductQuestions'
+import { ReviewData } from '../../components/DetailCardPage/ProductReviews';
+import { SelectQuantity } from '../../components/DetailCardPage/ProdQuantitySelection'
 import { CartContext } from '../../Context/cartContext'
-import { CartButton } from '../CartButton/CartButton'
+import { AddCartButton } from '../../components/DetailCardPage/ProductCartBtn'
 import { AmountContext } from '../../Context/amountSelContext'
 import { Box } from '@chakra-ui/react'
-import { ImagesProdChanger } from '../ImagesProdChanger/ImagesProdChanger'
+import { ImagesProdChanger } from '../../components/DetailCardPage/ProductImages'
 import { ReviewContext } from '../../Context/reviewData'
-import { StarsCollection } from '../StarsCollection/StarsCollection'
+import { StarsCollection } from '../../components/Stars/StarsCollection'
 
 export const ProductCardDetail = ({ data }) => {
 
@@ -107,7 +107,7 @@ export const ProductCardDetail = ({ data }) => {
                                     <button type="submit" className="btn-submit btn-azul" aria-disabled="false" formAction="https://www.mercadolibre.com.ar/gz/checkout/buy">
                                         <span className="andes-button__content">Comprar ahora</span>
                                     </button>
-                                    <CartButton prodQuantity={data.available_quantity} addToCart={addToCart} cart={cart} item={data} prodAmount={amount} />
+                                    <AddCartButton prodQuantity={data.available_quantity} addToCart={addToCart} cart={cart} item={data} prodAmount={amount} />
                                     <div className="separation-Y">
                                         <div className="modalbox">
                                             <div className="align-all">
