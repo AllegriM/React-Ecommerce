@@ -73,7 +73,7 @@ export const ProductCardDetail = ({ data }) => {
                                     <p className='product-shipping-arrive m0'>
                                         <span className='texto-verde'>Llega mañana</span>
                                         <span className='product-price-subtitle separation-left'>
-                                            <span className='product-due-qty'>{data.shipping.free_shipping === false ? "por $603" : "gratis"} </span>
+                                            <span className='product-due-qty'>{data.shipping?.free_shipping === false ? "por $603" : "gratis"} </span>
                                             {/* <span className='product-due-float'>49</span> */}
                                         </span>
                                     </p>

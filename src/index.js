@@ -5,17 +5,19 @@ import App from './App.js';
 import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './theme';
+import { getFirestoreApp } from './firebase/config';
 
+getFirestoreApp()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
       <ChakraProvider resetCSS={false} theme={theme}>
         <App />
       </ChakraProvider>  
     </BrowserRouter>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

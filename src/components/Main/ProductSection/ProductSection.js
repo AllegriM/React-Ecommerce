@@ -1,19 +1,11 @@
-import { useEffect, useState } from "react"
 import { HomeItemProducts } from "../HomeItemProducts/HomeItemProducts"
-import fetchLastVisitData from "../../../helpers/getHomeProd";
 
-export default function ProductSection () {
-
-    const [products, setProd] = useState([])
-
-    useEffect(() => {
-        fetchLastVisitData(setProd)
-    }, [])
+export default function ProductSection ( { title, products } ) {
 
     return (
         <div className="cards-related">
             <div className="cards-title">
-                <h2 className="card-title">Basado en tu última visita</h2>
+                <h2 className="card-title">{title}</h2>
                 <p className="text-blue">Ver historial</p>
             </div>
             <div className="product-slider">
