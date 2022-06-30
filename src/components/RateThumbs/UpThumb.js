@@ -3,9 +3,6 @@ import { useState } from "react";
 
 export const UpThumb = ( {likes} ) => {
 
-    // const {Interactions, click, Vote} = useThumbRate({likes})
-
-
     const [Interactions, setInteractions] = useState(likes)
 
     const [click, setClick] = useState(false)

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import getSellerID from "../../helpers/getSellerProducts"
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";

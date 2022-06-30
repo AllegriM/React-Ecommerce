@@ -11,13 +11,13 @@ getFirestoreApp()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
+  <React.StrictMode>
     <BrowserRouter>
       <ChakraProvider resetCSS={false} theme={theme}>
         <App />
       </ChakraProvider>  
     </BrowserRouter>
-  // </React.StrictMode>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

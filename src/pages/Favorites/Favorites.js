@@ -1,6 +1,6 @@
-import { Text, Box, Flex, Container, Button, Image, Checkbox, background } from '@chakra-ui/react'
+import { Text, Box, Flex, Container, Button, Image, Checkbox } from '@chakra-ui/react'
 import { Link } from "react-router-dom"
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { FavContext } from '../../Context/favContext'
 import theme from '../../theme'
 
@@ -9,7 +9,7 @@ export const Favorites = () => {
 
     const { favs, removeFav } = useContext(FavContext)
 
-    const [selected, setSelected] = useState(false);
+    // const [selected, setSelected] = useState(false);
 
     const [checkedItems, setCheckedItems] = useState([false, false])
 
@@ -23,13 +23,13 @@ export const Favorites = () => {
         removeFav(itemId)
     }
 
-    const selectOption = () =>{
-        if (selected === false) {
-            setSelected(true);
-        }else{
-            setSelected(false)
-        }
-    }
+    // const selectOption = () =>{
+    //     if (selected === false) {
+    //         setSelected(true);
+    //     }else{
+    //         setSelected(false)
+    //     }
+    // }
 
     return (
         <Container backgroundColor='#EBEBEB' h='100vh' maxW='90%'>
