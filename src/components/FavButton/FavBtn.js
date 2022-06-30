@@ -1,12 +1,21 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { FavContext } from "../../Context/favContext"
 
-export const FavButton = () => {
+export const FavButton = ( {prod} ) => {
 
     const [Fav, setFav] = useState(false)
 
+    const { favs, addFav, removeFav } = useContext(FavContext)
+
     const favItem = (e) => {
         e.preventDefault()
-        Fav ? setFav(false) : setFav(true)
+        if (Fav === false){
+            setFav(true)
+            addFav([...favs, {...prod}])
+        }else{
+            setFav(false)
+            removeFav(prod.id)
+        } 
     }
 
     return (

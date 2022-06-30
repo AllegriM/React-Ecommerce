@@ -1,64 +1,105 @@
-import { Text, Box, Flex, Container, Button, Image, Checkbox } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { Text, Box, Flex, Container, Button, Image, Checkbox, background } from '@chakra-ui/react'
+import { Link } from "react-router-dom"
+import { useContext, useEffect, useState } from 'react'
+import { FavContext } from '../../Context/favContext'
+import theme from '../../theme'
 
 
 export const Favorites = () => {
 
-    const [FavItems, setFavItems] = useState([])
+    const { favs, removeFav } = useContext(FavContext)
 
+    const [selected, setSelected] = useState(false);
+
+    const [checkedItems, setCheckedItems] = useState([false, false])
+
+    const allChecked = checkedItems.every(Boolean)
+    const isIndeterminate = checkedItems.some(Boolean) && !allChecked
+
+    console.log(checkedItems)
+
+    const removeFromFav = (e) => {
+        let itemId = e.target.getAttribute('data-id', '')
+        removeFav(itemId)
+    }
+
+    const selectOption = () =>{
+        if (selected === false) {
+            setSelected(true);
+        }else{
+            setSelected(false)
+        }
+    }
 
     return (
         <Container backgroundColor='#EBEBEB' h='100vh' maxW='90%'>
-            <Box mx='auto' boxShadow='0 1px 2px 0 rgb(0 0 0 / 30%)' borderRadius='1px' flex backgroundColor='#FFFFFF' w='90%' maxW='70rem' mt='8em'>
+            <Text mx='3em' fontSize='24px' fontWeight='600' w='90%' maxW='70rem'>Favoritos</Text>
+            <Box mx='auto' boxShadow='0 1px 2px 0 rgb(0 0 0 / 30%)' borderRadius='1px' flex backgroundColor='#FFFFFF' w='90%' maxW='70rem' mt='2em'>
                 <Flex justify='space-between' padding='0.75rem 1rem' alignItems='center'>
-                    <Flex gap='1em'>
-                        <Checkbox size='sm'></Checkbox>
+                    <Flex gap='1em'  alignItems='center'>
+                        <Checkbox 
+                            borderRadius=".125rem" 
+                            h='16px' 
+                            checked={allChecked}
+                            isIndeterminate={isIndeterminate}
+                            onChange={(e) => setCheckedItems([e.target.checked, e.target.checked])}
+                            size='sm'
+                        />
                         <Text my='0' color='rgba(0,0,0,.25)' fontSize='14px'>Eliminar favoritos seleccionados</Text>
                     </Flex>
                     <Box>
-                        <Text my='0' color='rgba(0,0,0,.9)' fontSize='14px'>Favoritos 0 - 0 de 0</Text>
+                        <Text my='0' color='rgba(0,0,0,.9)' fontSize='14px'>Favoritos {favs.length === 0 ? 0 : 1} - {favs.length !== 0 ? favs.length : 0} de {favs.length !== 0 ? favs.length : 0}</Text>
                     </Box>
                 </Flex>
                 <Box borderTop='1px solid rgba(0,0,0,.1)' borderBottom='1px solid rgba(0,0,0,.1)'>
                     {
-                        FavItems.length === 0 ?
+                        favs.length === 0 ?
                             <Box mt='5em' textAlign='center'>
                                 <Text m='0' fontSize='32px' color='#666' fontWeight='100'>Tu carrito está vacío</Text>
                                 <Text m='0' fontSize='18px' color='#999' fontWeight='100'>¿No sabés qué comprar? ¡Miles de productos te esperan!</Text>
                             </Box>
                             :
-                            FavItems.map(() => {
+                            favs.map((item, index) => {
                                 return (
-                                    <Box mt='1.5em'>
-                                        <Flex align='center'>
-                                            <Flex className='cart-title' align='center' justifySelf='flex-start' w='730px'>
-                                                <Image w='50px' h='50px' />
-                                                <Box>
-                                                    <Text ms='.75em' my='0' fontSize='1.25rem'></Text>
-                                                    <Text fontSize='14px' cursor='pointer' ms='1em' mb='.5em' >Eliminar</Text>
-                                                </Box>
+                                    <Link to={`/products/${item.id}`} key={item.id} zIndex='1'>
+                                        <Flex mt='1.5em' px='1rem' alignItems='center'>
+                                            <Checkbox 
+                                            size='sm'
+                                            borderRadius=".125rem" 
+                                            h='16px' 
+                                            checked={checkedItems[index]}
+                                            onChange={(e) => setCheckedItems([e.target.checked, checkedItems[index]])}
+                                            />
+                                            <Flex alignItems='center'>
+                                                <Flex className='cart-title' alignItems='center' justifySelf='flex-start' w='730px'>
+                                                    <Image p='24px' w='160px' h='160px' src={item.thumbnail} />
+                                                    <Box>
+                                                        <Text ms='.75em' my='0' fontSize='20px' color='rgba(0, 0, 0, 0.9)' >{item.title}</Text>
+                                                        <Text ml='0.5em' my='.5em' fontSize='26px' color='rgba(0, 0, 0, 0.9)'>${item.price.toLocaleString('es-AR')}</Text>
+                                                        <Button fontWeight='100' type='button' border='none' bg='transparent' _hover={{ bg: 'transparent' }} zIndex='10' color={theme.colors.blue} onClick={removeFromFav} fontSize='14px' cursor='pointer' mb='.5em' data-id={item.id} >Eliminar</Button>
+                                                    </Box>
+                                                </Flex>
                                             </Flex>
-                                            <Box className='cart-quantity' borderRadius='4px' w='auto' display='flex' border='1px solid #e6e6e6' alignItems='center'>
-                                                <Button bg='transparent' border='none' >-</Button>
-                                                <Text w='40px' textAlign='center'></Text>
-                                                <Button bg='transparent' border='none'>+</Button>
-                                            </Box>
-                                            <Box className='cart-price' w='120px'>
-                                                <Text fontSize='26px'>$</Text>
-                                            </Box>
                                         </Flex>
-                                    </Box>
+                                    </Link>
                                 )
                             })
                     }
                 </Box>
                 <Flex justify='space-between' padding='0.75rem 1rem' alignItems='center'>
-                    <Flex gap='1em'>
-                        <Checkbox size='sm'></Checkbox>
+                    <Flex gap='1em'  alignItems='center'>
+                        <Checkbox 
+                            borderRadius=".125rem" 
+                            h='16px' 
+                            onChange={(e) => setCheckedItems([e.target.checked, e.target.checked])}
+                            checked={allChecked} 
+                            isIndeterminate={isIndeterminate}
+                            size='sm' 
+                        />                        
                         <Text my='0' color='rgba(0,0,0,.25)' fontSize='14px'>Eliminar favoritos seleccionados</Text>
                     </Flex>
                     <Box>
-                        <Text my='0' color='rgba(0,0,0,.9)' fontSize='14px'>Favoritos 0 - 0 de 0</Text>
+                        <Text my='0' color='rgba(0,0,0,.9)' fontSize='14px'>Favoritos {favs.length === 0 ? 0 : 1} - {favs.length !== 0 ? favs.length : 0} de {favs.length !== 0 ? favs.length : 0}</Text>
                     </Box>
                 </Flex>
             </Box>

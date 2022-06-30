@@ -11,28 +11,32 @@ import { PageNotFound } from "./pages/Error/PageNotFound";
 import { CartContextProvider } from "./Context/cartContext";
 import { AmountContextProvider } from "./Context/amountSelContext";
 import { Favorites } from "./pages/Favorites/Favorites";
+import { FavContextProvider } from "./Context/favContext";
 
 export default function App() {
 
   return (
     <CartContextProvider>
       <AmountContextProvider>
-        <div className="App">
-          <Navbar>
-            <SearchForm />
-          </Navbar>
-          <section className='contenido'>
-            <Routes>
-              <Route path='*' element={<PageNotFound />} />
-              <Route path='/' element={<Home />} />
-              <Route path='/products/:prodId' element={<ProductDetailCard />} />
-              <Route path='/cart' element={<Cart />} />
-              <Route path='/search/:keyword' element={<ProductList />} />
-              <Route path='/favorites' element={<Favorites />} />
-            </Routes>
+        <FavContextProvider>
+          <div className="App">
+            <Navbar>
+              <SearchForm />
+            </Navbar>
+            
+            <section className='contenido'>
+              <Routes>
+                <Route path='*' element={<PageNotFound />} />
+                <Route path='/' element={<Home />} />
+                <Route path='/products/:prodId' element={<ProductDetailCard />} />
+                <Route path='/cart' element={<Cart />} />
+                <Route path='/search/:keyword' element={<ProductList />} />
+                <Route path='/favorites' element={<Favorites />} />
+              </Routes>
 
-          </section>
-        </div>
+            </section>
+          </div>
+        </FavContextProvider>
       </AmountContextProvider>
     </CartContextProvider>
   );

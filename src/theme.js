@@ -1,6 +1,7 @@
 import { extendTheme } from "@chakra-ui/react"
 
 export default extendTheme({
+    "blue.500" : '#3483fa',
     colors: {
         transparent: 'transparent',
         black: '#000',

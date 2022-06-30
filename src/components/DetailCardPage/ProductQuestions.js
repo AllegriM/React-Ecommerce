@@ -14,12 +14,14 @@ export const ProductQuestions = ({ prodId }) => {
         getQuestionsYAnswers(prodId, setQuestions)
     }, [prodId])
 
+    console.log(questions)
+
     return (
         <>
             <div className='productQuestions product-section'>
                 <h3>Preguntas y respuestas</h3>
 
-                <AskForm handleChange={setNewQuestion} questions={questions} newQuestion={newQuestion}/>
+                <AskForm handleChange={setNewQuestion} questions={questions} newQuestion={newQuestion} setQuestions={setQuestions}/>
                 {
                     questions?.length === undefined ?
                         <p className='no-questions'>Nadie hizo preguntas todavía. ¡Hacé la primera!</p>

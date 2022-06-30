@@ -1,4 +1,4 @@
-export const AskForm = ( {handleChange, questions, newQuestion} ) => {
+export const AskForm = ( {handleChange, questions, newQuestion, setQuestions} ) => {
 
     let randomNumber = ( Math.random() * (10 - 1 + 1)) + 1 
     
@@ -9,7 +9,7 @@ export const AskForm = ( {handleChange, questions, newQuestion} ) => {
             text: newQuestion,
             id: randomNumber,
         }
-        questions.unshift(newQuestion)
+        setQuestions([newQuestion, ...questions])
     }
 
     const writeQuestion = (e) =>{
