@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/React-MELI/static/css/main.7202a656.css",
+    "main.js": "/React-MELI/static/js/main.ce4d60a9.js",
+    "static/media/nav-promo-lvl6.webp": "/React-MELI/static/media/nav-promo-lvl6.00cde4ce28416a7c520a.webp",
+    "index.html": "/React-MELI/index.html",
+    "main.7202a656.css.map": "/React-MELI/static/css/main.7202a656.css.map",
+    "main.ce4d60a9.js.map": "/React-MELI/static/js/main.ce4d60a9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7202a656.css",
+    "static/js/main.ce4d60a9.js"
+  ]
+}
