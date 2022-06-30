@@ -12,7 +12,7 @@ export const ProductQuestions = ({ prodId }) => {
 
     useEffect(() => {
         getQuestionsYAnswers(prodId, setQuestions)
-    }, [newQuestion])
+    }, [prodId])
 
     return (
         <>

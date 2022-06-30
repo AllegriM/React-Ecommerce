@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import './productlist.css';
-import Card from '../Card/Card'
+import Card from '../../components/Card/Card'
 
 
 export default function ProductList() {
     
     const [products, setProducts] = useState([])
-
-    console.log(products)
 
     let {keyword} = useParams();
 

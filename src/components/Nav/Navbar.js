@@ -4,6 +4,8 @@ import promo from '../../imgs/nav-promo-lvl6.webp'
 import { BrowserRouter as Router, Switch, Link, Route, Routes } from "react-router-dom"
 import './nav.css';
 import { SearchForm } from "./SearchForm";
+import { Text } from '@chakra-ui/react'
+
 
 export default function Navbar() {
     return (
@@ -13,11 +15,11 @@ export default function Navbar() {
                     <nav className='nav-top'>
                         <Link to='/'><img src={logo} alt='logo' height='34px' width='134px' /></Link>
                         <SearchForm />
-                        <a href='#'><img src={promo} className='promo-img' alt="promo" height='39px' width='340px' /></a>
+                        <Text my='0' cursor='pointer' href='#'><img src={promo} className='promo-img' alt="promo" height='39px' width='340px' /></Text>
                     </nav>
                     <div className='nav-bot'>
                         <div className="nav-ubi">
-                            <a href="#" className="ubi-logo"></a>
+                            <Text my='0' cursor='pointer' href="#" className="ubi-logo"></Text>
                             <span className="ubi-user">Enviar a Marco</span>
                             <span className="ubi-place">Av.Cent 948</span>
                         </div>
@@ -33,10 +35,10 @@ export default function Navbar() {
                             </ul>
                         </div>
                         <div className="nav-user">
-                            <a href="#" className="user-data my-user">Marco</a>
-                            <a href="#" className="user-data my-buys">Mis compras</a>
-                            <a href="#" className="user-data my-favs">Favoritos</a>
-                            <a href="#" className="user-data my-notis"></a>
+                            <Text my='0' cursor='pointer' href="#" className="user-data my-user">Marco</Text>
+                            <Text my='0' cursor='pointer' href="#" className="user-data my-buys">Mis compras</Text>
+                            <Link to={`/favorites`} href="#" className="user-data my-favs">Favoritos</Link>
+                            <Text my='0' cursor='pointer' href="#" className="user-data my-notis"></Text>
                             <Link to={`/cart`} className="user-data my-cart"></Link>
                         </div>
                     </div>

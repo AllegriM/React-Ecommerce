@@ -27,7 +27,9 @@
 }
 
 .card-container{
-    height: 365px;
+    height: 365px;    
+    z-index: 1;
+    /* pointer-events: none; */
 }
 
 .card {
@@ -41,6 +43,7 @@
     box-shadow: 0 1px 1px 1px rgb(0 0 0 / 10%);
     transition: all 0.1s ease-in-out;
     margin-bottom: 1em;
+    z-index: 2;
 }
 
 .cards-title {
@@ -101,4 +104,29 @@
 
 .card:hover .card-extrainfo{
     display: block;
+}
+
+/* Fav heart card */
+
+.heartFav{
+    background-color: hsla(0,0%,100%,.7);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 32px;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    width: 32px;
+    z-index: 50;
+}
+
+.heartFav svg {
+    margin-top: .3em;
+}
+
+.card:hover .heartFav{
+    opacity: 1;
 }
