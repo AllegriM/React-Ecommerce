@@ -12,6 +12,7 @@ import { Box } from '@chakra-ui/react'
 import { ImagesProdChanger } from '../../components/DetailCardPage/ProductImages'
 import { ReviewContext } from '../../Context/reviewData'
 import { StarsCollection } from '../../components/Stars/StarsCollection'
+import { FavButton } from '../../components/FavButton/FavBtn'
 
 export const ProductCardDetail = ({ data }) => {
 
@@ -19,7 +20,7 @@ export const ProductCardDetail = ({ data }) => {
 
     const { cart, addToCart } = useContext(CartContext)
 
-    const { prodReviews, setProdReview } = useContext(ReviewContext)
+    const { prodReviews } = useContext(ReviewContext)
 
     const prodId = useParams()
 
@@ -33,7 +34,7 @@ export const ProductCardDetail = ({ data }) => {
                             <ImagesProdChanger data={data} />
                             <SellerItems prodId={prodId} />
                             <ProductQuestions prodId={prodId} />
-                            <ReviewData prodId={prodId} prodTitle={data.title} setProdReview={setProdReview} />
+                            <ReviewData prodId={prodId} prodTitle={data.title} />
                             {/* <ProdDescription prodID={prodId} /> */}
                         </div>
                         <div className='seller-info'>
@@ -41,9 +42,7 @@ export const ProductCardDetail = ({ data }) => {
                                 <p className='product-qty-sell texto-gris'>{data.condition === "new" ? "Nuevo" : "Usado"} | {data.sold_quantity === undefined ? 0 : data.sold_quantity} vendidos</p>
                                 <div className='product-title-fav '>
                                     <h1 className='product-title'>{data.title}</h1>
-                                    <button className='heart-fav'>
-                                        <svg xlink="http://www.w3.org/1999/xlink" className="ui-pdp-icon ui-pdp-icon--bookmark ui-pdp-bookmark__icon-bookmark" xmlns="http://www.w3.org/2000/svg" width="22" height="20" viewBox="0 0 22 20"><defs><symbol id="bookmark"><path stroke="#3483FA" d="M10.977 2.705C11.93 1.618 13.162 1 14.895 1c3.333 0 5.607 2.152 5.607 6.274 0 .08-.002.16-.005.24-.107 2.596-1.876 5.253-4.737 7.892a33.77 33.77 0 0 1-3.165 2.57 32.447 32.447 0 0 1-1.45.983l-.394.243-.394-.243-.009-.005-.021-.014-.08-.05a32.447 32.447 0 0 1-1.34-.914 33.77 33.77 0 0 1-3.165-2.57c-2.86-2.639-4.63-5.296-4.737-7.892A5.839 5.839 0 0 1 1 7.274C1 3.152 3.274 1 6.607 1c1.733 0 2.966.618 3.918 1.705.056.064.137.165.226.282.09-.117.17-.218.226-.282z"></path></symbol></defs><g strokeWidth="1.5px" fillRule="evenodd" stroke="#3483FA" fill="none"><g stroke="#3483FA" fill="none" strokeWidth="1.5px"><path stroke="#3483FA" d="M10.977 2.705C11.93 1.618 13.162 1 14.895 1c3.333 0 5.607 2.152 5.607 6.274 0 .08-.002.16-.005.24-.107 2.596-1.876 5.253-4.737 7.892a33.77 33.77 0 0 1-3.165 2.57 32.447 32.447 0 0 1-1.45.983l-.394.243-.394-.243-.009-.005-.021-.014-.08-.05a32.447 32.447 0 0 1-1.34-.914 33.77 33.77 0 0 1-3.165-2.57c-2.86-2.639-4.63-5.296-4.737-7.892A5.839 5.839 0 0 1 1 7.274C1 3.152 3.274 1 6.607 1c1.733 0 2.966.618 3.918 1.705.056.064.137.165.226.282.09-.117.17-.218.226-.282z"></path></g></g></svg>
-                                    </button>
+                                    <FavButton prod={data} style={{opacity: 1}} />
                                 </div>
                             </div>
                             <div className='product-review separation-Y'>
@@ -57,7 +56,7 @@ export const ProductCardDetail = ({ data }) => {
                             <Box className='product-price-cuotas' mt='1em'>
                                 <span className='product-price'>
                                     <span className='product-price-int'>{data.currency_id === "USD" ? `U$S ${Math.round((data.price)).toLocaleString('es-AR')}` : `$ ${Math.round((data.price)).toLocaleString('es-AR')}`}</span>
-                                    <span className='product-price-float'>90</span>
+                                    {/* <span className='product-price-float'>90</span> */}
                                 </span>
                                 <p className='product-price-subtitle'>
                                     <span className='product-due-qty'>en 12x {Math.round((data.price / 12)).toLocaleString('es-AR')}</span>

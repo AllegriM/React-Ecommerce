@@ -11,7 +11,7 @@ export const SellerItems = ({ prodId }) => {
 
     useEffect(() => {
         getSellerID(prodId, setItems)
-    }, [])
+    }, [prodId])
 
     return (
         <>

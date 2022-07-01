@@ -385,7 +385,6 @@ ul {
     margin-left: -0.5em;
     position: absolute;
     top: -0.45em;
-    -webkit-transform: rotate(225deg);
     transform: rotate(225deg);
     width: 1em;
 }
@@ -652,7 +651,7 @@ ul {
     margin-top: 8px;
     color: rgba(0, 0, 0, .55);
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .stars-container {

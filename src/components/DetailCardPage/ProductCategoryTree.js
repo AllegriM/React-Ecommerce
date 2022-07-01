@@ -9,7 +9,7 @@ export default function CategoryPath({ prodID }) {
 
     useEffect(() => {
         setCategoryPath(prodID, setCategory)
-    }, [])
+    }, [prodID])
 
     return (
         <div className="category-path">

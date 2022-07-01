@@ -9,7 +9,7 @@ export const SelectQuantity = ({ prodQuantity, setProdAmount }) => {
 
     useEffect(()=>{
         setProdAmount(Number(quantity))
-    }, [quantity])
+    }, [quantity, setProdAmount])
 
     let totalAmount = [...Array(prodQuantity).keys()]
     let prodAmount = totalAmount.map((prod) => prod + 1)

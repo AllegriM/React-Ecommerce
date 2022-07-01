@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import getReviewData from "../../helpers/getReviewData";
 import { EmptyStar } from "../Stars/EmptyStar";
 import { Star } from "../Stars/Star";
@@ -7,8 +7,11 @@ import theme from "../../theme";
 import { StarsCollection } from "../Stars/StarsCollection";
 import { UpThumb } from '../RateThumbs/UpThumb'
 import { DownThumb } from '../RateThumbs/DownThumb'
+import { ReviewContext } from "../../Context/reviewData";
 
-export const ReviewData = ({ prodId, prodTitle, setProdReview }) => {
+export const ReviewData = ({ prodId, prodTitle }) => {
+    
+    const { setProdReview } = useContext(ReviewContext)
 
     const [reviews, setReview] = useState([]);
 
@@ -17,12 +20,11 @@ export const ReviewData = ({ prodId, prodTitle, setProdReview }) => {
     
 
     useEffect(() => {
-        getReviewData(prodId, setReview)
-        setProdReview({
-            numberOfStars: reviews?.rating_average,
-            total: reviews.paging?.total
+        getReviewData(prodId).then(data => {
+            setReview(data)
+            setProdReview({numberOfStars: (data.rating_average), total: data.paging.total})
         })
-    }, [])
+    }, [prodId]) 
 
 
     return (

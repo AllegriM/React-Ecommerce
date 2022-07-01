@@ -8,7 +8,7 @@ export const ReviewContextProvider = ({children}) =>{
     const [prodReviews, setReviewData] = useState([])
 
     const setProdReview = (item) =>{
-        setReviewData(item)
+        return setReviewData(item)
     }
 
     return(
