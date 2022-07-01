@@ -8,4 +8,6 @@ export default function getQuestionsYAnswers ( {prodId}, setQuestions ){
                 setQuestions(data.questions)
             }
         })
+        .catch((error)=> {console.log(error)})
+
 }
