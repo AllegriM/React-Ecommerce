@@ -13,6 +13,9 @@ import { AmountContextProvider } from "./Context/amountSelContext";
 import { Favorites } from "./pages/Favorites/Favorites";
 import { FavContextProvider } from "./Context/favContext";
 
+// "homepage": "https://github.com/AllegriM/React-MELI",
+
+
 export default function App() {
 
   return (
@@ -26,8 +29,8 @@ export default function App() {
             
             <section className='contenido'>
               <Routes>
-                <Route path='/' element={<PageNotFound />} />
-                <Route path='*' element={<Home />} />
+                <Route path='/' element={<Home />} />
+                <Route path='*' element={<PageNotFound />} />
                 <Route path='/products/:prodId' element={<ProductDetailCard />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/search/:keyword' element={<ProductList />} />
