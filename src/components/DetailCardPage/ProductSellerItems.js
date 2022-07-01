@@ -13,7 +13,6 @@ export const SellerItems = ({ prodId }) => {
         getSellerID(prodId, setItems)
     }, [])
 
-
     return (
         <>
             {

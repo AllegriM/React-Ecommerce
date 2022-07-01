@@ -14,7 +14,6 @@ export const ProductQuestions = ({ prodId }) => {
         getQuestionsYAnswers(prodId, setQuestions)
     }, [prodId])
 
-    console.log(questions)
 
     return (
         <>

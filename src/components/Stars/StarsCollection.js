@@ -1,5 +1,4 @@
 
-import React from 'react'
 import { EmptyStar } from './EmptyStar'
 import { HalfStar } from './HalfStar'
 import { Star } from './Star'

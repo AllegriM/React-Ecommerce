@@ -1,10 +1,7 @@
-import React from 'react';
 import { Link } from "react-router-dom"
 import { FavButton } from '../FavButton/FavBtn';
 
-
 export default function Card({ prod }) {
-
     return (
         <>
             <Link to={`/products/${prod.id}`} data-id={prod.id} className='card-container'>
