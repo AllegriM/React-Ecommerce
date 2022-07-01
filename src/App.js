@@ -26,8 +26,8 @@ export default function App() {
             
             <section className='contenido'>
               <Routes>
-                <Route path='*' element={<PageNotFound />} />
-                <Route path='/' element={<Home />} />
+                <Route path='/' element={<PageNotFound />} />
+                <Route path='*' element={<Home />} />
                 <Route path='/products/:prodId' element={<ProductDetailCard />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/search/:keyword' element={<ProductList />} />
