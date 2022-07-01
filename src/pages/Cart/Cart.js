@@ -1,5 +1,5 @@
 import { Box, Button, Container, Flex, Image, Tab, TabList, Tabs, Text } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import theme from '../../theme'
 import { useCartContext } from '../../Context/cartContext'
 import './cart.css'

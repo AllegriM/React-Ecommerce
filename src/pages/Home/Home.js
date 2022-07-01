@@ -1,4 +1,3 @@
-import React from "react";
 import './home.css';
 import { PayMethod } from "../../components/Main/PayMethod";
 import ProductSection from "../../components/Main/ProductSection";

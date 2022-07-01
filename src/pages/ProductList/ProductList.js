@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import './productlist.css';
 import Card from '../../components/Card/Card'
 
-
 export default function ProductList() {
     
     const [products, setProducts] = useState([])
