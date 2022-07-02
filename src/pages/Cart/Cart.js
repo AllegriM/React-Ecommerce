@@ -15,6 +15,8 @@ export const Cart = () => {
 
     const [loader, setLoader] = useState(false)
 
+    const [orderId, setOrderId] = useState("")
+
     const removeItemCart = (e) => {
         let id = e.target.getAttribute('data-id')
         removeItem(id)
@@ -27,7 +29,7 @@ export const Cart = () => {
         if (isInCart) {
             const cart_products = cart.filter(prod => prod !== itemSelected)
             if (itemSelected.cantidadElegida === itemSelected.available_quantity) {
-                return
+                return 
             }else{
                 setCart([...cart_products, {...itemSelected, cantidadElegida: itemSelected.cantidadElegida + 1 }])
             }
@@ -57,7 +59,7 @@ export const Cart = () => {
     const buyCartItems = () =>{
         setLoader(true)
         sendOrder(cart)
-            .then(resp => console.log(resp.id))
+            .then(resp => setOrderId(resp.id))
         setTimeout(() => {
             setCart([])
             setLoader(false)
@@ -133,6 +135,7 @@ export const Cart = () => {
                         :
                         null
                 }
+                <Text>Esta es tu id de compra compa{orderId}</Text>
             </Box>
         </Container>
 

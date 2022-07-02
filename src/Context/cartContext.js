@@ -8,17 +8,21 @@ export const CartContextProvider = ({ children }) => {
 
     const [cart, setCart] = useState([])
 
+    const localStorageCart = JSON.parse(localStorage.getItem('cart')) 
+
 
     const addToCart = (item) => {
         setCart(item)
-        // localStorage.setItem("cart", JSON.stringify(item));
+        // Add item to LocalStorage
+        localStorage.setItem("cart", JSON.stringify(item));
     }
 
     const removeItem = (id) => {
         setCart(cart.filter( (item) => item.id !== id))
-        // localStorageCart.filter( (item) => item.id !== id) 
-        // let indexOfItem = localStorageCart.findIndex(item => item.id === id)
-        // localStorageCart.splice(indexOfItem, 1)
+        // Remove item from LocalStorage
+        let newCart = localStorageCart.filter( (item) => item.id !== id)
+        localStorage.removeItem("cart")
+        localStorage.setItem("cart", JSON.stringify(newCart))
     }
 
 

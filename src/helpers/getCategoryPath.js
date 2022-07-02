@@ -13,7 +13,7 @@ const getCategoryPath = (category, setCategory) => {
     fetch(`https://api.mercadolibre.com/categories/${category}`)
         .then( ( resp ) => resp.json() )
         .then( ( data ) =>  setCategory(data.path_from_root))
-        .catch((error)=> {console.log(error)})
+        .catch( (error) => {console.log(error)})
 
 }
 

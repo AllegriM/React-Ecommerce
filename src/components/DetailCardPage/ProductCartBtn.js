@@ -14,7 +14,7 @@ export const AddCartButton = ( {addToCart, cart, item, prodAmount} ) => {
     
     return (
         <Button type="submit" className="btn-submit btn-azulaseo" aria-disabled="false" h='48px' onClick={addItem}>
-            <Text className="andes-button__content">Agregar al carrito</Text>
+            <Text>Agregar al carrito</Text>
         </Button>
     )
 }

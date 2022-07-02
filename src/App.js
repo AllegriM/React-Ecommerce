@@ -12,6 +12,7 @@ import { CartContextProvider } from "./Context/cartContext";
 import { AmountContextProvider } from "./Context/amountSelContext";
 import { Favorites } from "./pages/Favorites/Favorites";
 import { FavContextProvider } from "./Context/favContext";
+import { LogIn } from "./pages/LogIn/LogIn";
 
 // "homepage": "https://github.com/AllegriM/React-MELI",
 
@@ -29,6 +30,7 @@ export default function App() {
             
             <section className='contenido'>
               <Routes>
+                <Route path='/LogIn' element={<LogIn />} />
                 <Route path='/' element={<Home />} />
                 <Route path='*' element={<PageNotFound />} />
                 <Route path='/products/:prodId' element={<ProductDetailCard />} />
