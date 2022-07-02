@@ -3,11 +3,15 @@ import { useState } from 'react'
 import theme from '../../theme'
 import { useCartContext } from '../../Context/cartContext'
 import './cart.css'
+import { sendOrder } from '../../helpers/createFbOrder'
 
 export const Cart = () => {
     const { cart, removeItem, setCart } = useCartContext()
     
-    const [activeBtn, setActiveBtn] = useState(false)
+    // const localStorageCart = JSON.parse(localStorage.getItem('cart')) 
+    // console.log(localStorageCart)   
+
+    // const [activeBtn, setActiveBtn] = useState(false)
 
     const [loader, setLoader] = useState(false)
 
@@ -22,28 +26,38 @@ export const Cart = () => {
         const isInCart = cart.some( (prod)=> prod.id === id)
         if (isInCart) {
             const cart_products = cart.filter(prod => prod !== itemSelected)
-            setCart([...cart_products, {...itemSelected, cantidadElegida: itemSelected.cantidadElegida + 1 }])
+            if (itemSelected.cantidadElegida === itemSelected.available_quantity) {
+                return
+            }else{
+                setCart([...cart_products, {...itemSelected, cantidadElegida: itemSelected.cantidadElegida + 1 }])
+            }
         }
-        if (itemSelected.cantidadElegida !== 2){
-            setActiveBtn(false)
-        }
+        // if (itemSelected.cantidadElegida !== 2){
+        //     setActiveBtn(false)
+        // }
     }
 
     const decreaseItem = (e) => {
         let id = e.target.getAttribute('data-id')
         let itemSelected = cart.find((item) =>  item.id === id )
+        if(itemSelected.cantidadElegida === 1){
+            //     setActiveBtn(true)
+            return
+        }
         const isInCart = cart.some( (prod)=> prod.id === id)
         if (isInCart) {
             const cart_products = cart.filter(prod => prod !== itemSelected)
             setCart([...cart_products, {...itemSelected, cantidadElegida: itemSelected.cantidadElegida - 1 }])
         }
-        if (itemSelected.cantidadElegida === 2){
-            setActiveBtn(true)
-        }
+        // if (itemSelected.cantidadElegida === 2){
+        //     setActiveBtn(true)
+        // }
     }
 
     const buyCartItems = () =>{
         setLoader(true)
+        sendOrder(cart)
+            .then(resp => console.log(resp.id))
         setTimeout(() => {
             setCart([])
             setLoader(false)
@@ -81,7 +95,7 @@ export const Cart = () => {
                                             </Box>
                                         </Flex>
                                         <Box className='cart-quantity' borderRadius='4px' w='auto' display='flex' border='1px solid #e6e6e6' alignItems='center'>
-                                            <Button color={theme.colors.blue} bg='transparent' border='none' onClick={decreaseItem} disabled={activeBtn} data-id={item.id}>-</Button>
+                                            <Button color={theme.colors.blue} bg='transparent' border='none' onClick={decreaseItem}  data-id={item.id}>-</Button> {/* disabled={activeBtn} */}
                                             <Text w='40px' textAlign='center'>{item.cantidadElegida}</Text>
                                             <Button color={theme.colors.blue} bg='transparent' border='none' onClick={increaseItem} data-id={item.id}>+</Button>
                                         </Box>

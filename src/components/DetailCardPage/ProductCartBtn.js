@@ -1,13 +1,12 @@
 import { Button, Text } from "@chakra-ui/react"
 
 export const AddCartButton = ( {addToCart, cart, item, prodAmount} ) => {
+    
+    let isInCart = cart.some( itemInCart => itemInCart.id === item.id)
 
     const addItem = () =>{
-        // if (item.prodAmount === []) {
-        //     addToCart([...cart, {...item, cantidadElegida: [1]}])
-        // }
-        if (cart.some( (itemInCart)=>itemInCart.id === item.id) ) {
-            alert("Ya esta en el carrito")
+        if (isInCart) {
+            cart.find( itemInCart => itemInCart.id === item.id).cantidadElegida += prodAmount;
         }else{
             addToCart([...cart, {...item, cantidadElegida: prodAmount}])
         }
