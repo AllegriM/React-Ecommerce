@@ -1,18 +1,19 @@
 .form-input {
-    border-color:'1px solid grey'  !important;
+    align-items: flex-end !important;
+    border-color:grey !important;
     box-shadow: none !important;
     border: 'none' !important;
-    font-size: 1.25rem;
+    font-size: 1.25rem !important;
     color: "grey";
 }
 .btn-azul {
-    background-color: #3483fa;
-    border-color: transparent;
-    color: #fff;
+    background-color: #3483fa !important;
+    border-color: transparent !important;
+    color: #fff !important;
 }
 .btn-azul:hover {
     background-color: #2968c8;
-    border-color: transparent;
-    color: #fff;
-    transition: background-color .2s ease-in;
+    border-color: transparent !important;
+    color: #fff !important;
+    transition: background-color .2s ease-in !important;
 }
