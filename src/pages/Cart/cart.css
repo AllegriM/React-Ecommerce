@@ -1,15 +1,17 @@
 .cart-price{
     margin-right: auto !important;
-    flex-grow: 0;
+    flex-grow: 0 !important;
 }
 
 .cart-title{
     width: 730px !important;
     margin-right: auto !important;
-    flex-grow: 2;
+    flex-grow: 2 !important;
 }
 
 .cart-quantity{
-    margin-right: 4em !important;
-    flex-grow: 0;
+    text-align: end !important;
+    width: 120px !important;
+    height: 40px !important;
+    flex-grow: 0 !important;
 }

@@ -1,11 +1,11 @@
-import { Box, Button, FormControl, FormLabel, Input, Text } from "@chakra-ui/react";
+import { Box, Button, FormControl, FormErrorMessage, FormLabel, Input, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { useAuth } from "../Context/authContext";
 import theme from "../theme";
 
 export const LogInForm = ( {setAccountCreated} ) => {
 
-    const { logIn }= useAuth()
+    const { logIn, emailError, passwordError }= useAuth()
 
     const [logInemail, setLogInEmail] = useState("");
     const [logInpassword, setLogInPassword] = useState("");
@@ -21,6 +21,9 @@ export const LogInForm = ( {setAccountCreated} ) => {
         logIn(logInemail, logInpassword)
     }
 
+    const wrongEmail = emailError ? <FormErrorMessage>Minimum eight characters, at least one upper case letter and one number</FormErrorMessage> : null
+    const wrongPassword = passwordError ? <FormErrorMessage>Your Email is invalid</FormErrorMessage> : null
+
     return (
         <>
             <Box>
@@ -34,7 +37,7 @@ export const LogInForm = ( {setAccountCreated} ) => {
                         onChange={handleEmail}
                         border="1px solid grey"
                         _focus={{ border: `2px solid ${theme.colors.blue}` }}
-                        // isInvalid={emailError}
+                        isInvalid={emailError}
                         borderRadius='.375rem'
                         placeholder=" "
                         maxW='260px'
@@ -42,12 +45,7 @@ export const LogInForm = ( {setAccountCreated} ) => {
                     />
                     {/* It is important that the Label comes after the Control due to css selectors */}
                     <FormLabel htmlFor='email'>Email</FormLabel>
-                    {/* {
-                        emailError ?
-                            <FormErrorMessage>Your Email is invalid</FormErrorMessage>
-                            :
-                            null
-                    } */}
+                    {wrongPassword}
 
                 </FormControl>
 
@@ -58,7 +56,7 @@ export const LogInForm = ( {setAccountCreated} ) => {
                         onChange={handlePassword}
                         border="1px solid grey"
                         _focus={{ border: `2px solid ${theme.colors.blue}` }}
-                        // isInvalid={passwordError}
+                        isInvalid={passwordError}
                         borderRadius='.375rem'
                         placeholder=" "
                         maxW='260px'
@@ -66,14 +64,7 @@ export const LogInForm = ( {setAccountCreated} ) => {
                     />
                     {/* It is important that the Label comes after the Control due to css selectors */}
                     <FormLabel htmlFor='password'>Clave</FormLabel>
-                    {/* {
-                        passwordError ?
-
-                            <FormErrorMessage>Minimum eight characters, at least one upper case letter and one number</FormErrorMessage>
-                            :
-                            null
-                    } */}
-
+                    {wrongEmail}
                 </FormControl>
             </Box>
             <Box mt='1.5em' textAlign='center'>

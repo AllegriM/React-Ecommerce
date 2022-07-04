@@ -7,11 +7,6 @@ import { sendOrder } from '../../helpers/createFbOrder'
 
 export const Cart = () => {
     const { cart, removeItem, setCart } = useCartContext()
-    
-    // const localStorageCart = JSON.parse(localStorage.getItem('cart')) 
-    // console.log(localStorageCart)   
-
-    // const [activeBtn, setActiveBtn] = useState(false)
 
     const [loader, setLoader] = useState(false)
 
@@ -24,42 +19,35 @@ export const Cart = () => {
 
     const increaseItem = (e) => {
         let id = e.target.getAttribute('data-id')
-        let itemSelected = cart.find((item) =>  item.id === id )
-        const isInCart = cart.some( (prod)=> prod.id === id)
+        let itemSelected = cart.find(item => item.id === id)
+        const isInCart = cart.some(prod => prod.id === id)
         if (isInCart) {
             const cart_products = cart.filter(prod => prod !== itemSelected)
             if (itemSelected.cantidadElegida === itemSelected.available_quantity) {
-                return 
-            }else{
-                setCart([...cart_products, {...itemSelected, cantidadElegida: itemSelected.cantidadElegida + 1 }])
+                return
+            } else {
+                setCart([...cart_products, { ...itemSelected, cantidadElegida: itemSelected.cantidadElegida + 1 }])
             }
         }
-        // if (itemSelected.cantidadElegida !== 2){
-        //     setActiveBtn(false)
-        // }
     }
 
     const decreaseItem = (e) => {
         let id = e.target.getAttribute('data-id')
-        let itemSelected = cart.find((item) =>  item.id === id )
-        if(itemSelected.cantidadElegida === 1){
-            //     setActiveBtn(true)
-            return
+        let itemSelected = cart.find((item) => item.id === id)
+        if (itemSelected.cantidadElegida === 1) {
+                return
         }
-        const isInCart = cart.some( (prod)=> prod.id === id)
+        const isInCart = cart.some((prod) => prod.id === id)
         if (isInCart) {
             const cart_products = cart.filter(prod => prod !== itemSelected)
-            setCart([...cart_products, {...itemSelected, cantidadElegida: itemSelected.cantidadElegida - 1 }])
+            setCart([...cart_products, { ...itemSelected, cantidadElegida: itemSelected.cantidadElegida - 1 }])
         }
-        // if (itemSelected.cantidadElegida === 2){
-        //     setActiveBtn(true)
-        // }
     }
 
-    const buyCartItems = () =>{
+    const buyCartItems = () => {
         setLoader(true)
         sendOrder(cart)
-            // .then(resp => setOrderId(resp.id))
+        // .then(resp => setOrderId(resp.id))
         setTimeout(() => {
             setCart([])
             setLoader(false)
@@ -68,6 +56,9 @@ export const Cart = () => {
 
     let total = 0
     cart.forEach((item) => (total += Math.round((item.cantidadElegida * item.price))))
+
+    const noStock = <Text m='0' fontSize='14px' color='#ff5a5f' fontWeight='300'>No hay stock disponible</Text>
+
 
     return (
         <Container backgroundColor='#EBEBEB' h='100vh' maxW='90%'>
@@ -88,7 +79,7 @@ export const Cart = () => {
                         cart.map((item) => {
                             return (
                                 <Box mt='1.5em' key={item.id}>
-                                    <Flex align='center'>
+                                    <Flex align='center' gap='30px'>
                                         <Flex className='cart-title' align='center' justifySelf='flex-start' w='730px'>
                                             <Image w='50px' h='50px' src={item.thumbnail} />
                                             <Box>
@@ -96,13 +87,16 @@ export const Cart = () => {
                                                 <Text fontSize='14px' cursor='pointer' color={theme.colors.blue} ms='1em' mb='.5em' onClick={removeItemCart} data-id={item.id}>Eliminar</Text>
                                             </Box>
                                         </Flex>
-                                        <Box className='cart-quantity' borderRadius='4px' w='auto' display='flex' border='1px solid #e6e6e6' alignItems='center'>
-                                            <Button color={theme.colors.blue} bg='transparent' border='none' onClick={decreaseItem}  data-id={item.id}>-</Button> {/* disabled={activeBtn} */}
-                                            <Text w='40px' textAlign='center'>{item.cantidadElegida}</Text>
-                                            <Button color={theme.colors.blue} bg='transparent' border='none' onClick={increaseItem} data-id={item.id}>+</Button>
+                                        <Box display='flex' flexDirection='column' w='auto' alignItems='flex-end'>    
+                                            <Box className='cart-quantity' borderRadius='4px' border='1px solid #e6e6e6' display='flex' alignItems='center'  justifyContent='center'>
+                                                <Button color={theme.colors.blue} bg='transparent' border='none' onClick={decreaseItem} data-id={item.id}>-</Button>
+                                                <Text w='40px' textAlign='center'>{item.cantidadElegida}</Text>
+                                                <Button color={theme.colors.blue} bg='transparent' border='none' onClick={increaseItem} data-id={item.id}>+</Button>
+                                            </Box>
+                                            <Text textAlign='center'  m='0' fontSize='14px' color='#999'>{item.available_quantity !== item.cantidadElegida ? `${item.available_quantity} disponibles` : noStock }</Text>
                                         </Box>
                                         <Box className='cart-price' w='120px'>
-                                            <Text fontSize='26px'>${Math.round((item.price) * item.cantidadElegida).toLocaleString("es", "Ar")}</Text>
+                                            <Text textAlign='center' fontSize='26px'>${Math.round((item.price) * item.cantidadElegida).toLocaleString("es", "Ar")}</Text>
                                         </Box>
                                     </Flex>
                                 </Box>
@@ -117,19 +111,19 @@ export const Cart = () => {
                                 <Text fontSize='26px'>Total</Text>
                                 <Text fontSize='28px' ml='2em'>${total.toLocaleString("es", "AR")}</Text>
                             </Box>
-                            <Button 
+                            <Button
                                 isLoading={loader}
                                 marginBottom='26px'
-                                cursor='pointer' 
-                                w='200px' 
-                                h='48px' 
-                                border='none' bg={theme.colors.blue} 
+                                cursor='pointer'
+                                w='200px'
+                                h='48px'
+                                border='none' bg={theme.colors.blue}
                                 color='white'
-                                fontWeight='100'  
-                                _hover= {{bg: 'rgba(52,131,250,.8)'}}
+                                fontWeight='100'
+                                _hover={{ bg: 'rgba(52,131,250,.8)' }}
                                 onClick={buyCartItems}
-                                >
-                                    Comprar
+                            >
+                                Comprar
                             </Button>
                         </Flex>
                         :

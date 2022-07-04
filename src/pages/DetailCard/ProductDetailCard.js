@@ -42,7 +42,7 @@ export const ProductCardDetail = ({ data }) => {
                                 <p className='product-qty-sell texto-gris'>{data.condition === "new" ? "Nuevo" : "Usado"} | {data.sold_quantity === undefined ? 0 : data.sold_quantity} vendidos</p>
                                 <div className='product-title-fav '>
                                     <h1 className='product-title'>{data.title}</h1>
-                                    <FavButton prod={data} style={{opacity: 1}} />
+                                    <FavButton prod={data} />
                                 </div>
                             </div>
                             <div className='product-review separation-Y'>

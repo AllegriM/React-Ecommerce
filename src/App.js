@@ -45,7 +45,7 @@ export default function App() {
                 :
                 <section className='contenido'>
                   <Routes>
-                    <Route exact path='/' element={<LogIn />} />
+                    <Route index path='/' element={<LogIn />} />
                     <Route path='*' element={<PageNotFound />} />
                   </Routes>
                 </section>

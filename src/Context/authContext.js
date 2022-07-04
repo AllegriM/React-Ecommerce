@@ -20,10 +20,14 @@ export const AuthContextProvider = ({ children }) => {
 
     const [log, setLog] = useState(false)
 
+    const [emailError, setEmailError] = useState(false)
+
+    const [passwordError, setPasswordError] = useState(false)
+
     const signUp = async(email, password, firstName) => {
         try{
             await createUserWithEmailAndPassword(auth, email, password)
-            // await navigate('/')
+            // await navigate('./')
             .catch(
                 (err) => console.log(err)
             );
@@ -40,15 +44,17 @@ export const AuthContextProvider = ({ children }) => {
     const logIn = async(email, password) => {
         try {
             await signInWithEmailAndPassword(auth, email, password)
+            await navigate('/home')
             setLog(true)
-            navigate('/home')
         }
         catch (error){
-            console.log(error)
+            console.log(error.code)
+            if (error.message.includes("invalid-email") ) return setEmailError(true)
+            if (error.message.includes("wrong-password") ) return setPasswordError(true)
         }
     }
 
-    const logOut = () => signOut(auth)
+    const logOut = async() => await signOut(auth)
 
     useEffect(() => {
         onAuthStateChanged( auth, currentUser => setUser(currentUser) )
@@ -62,6 +68,8 @@ export const AuthContextProvider = ({ children }) => {
                 user,
                 loading,
                 log,
+                emailError,
+                passwordError,
                 signUp,
                 logOut,
                 logIn

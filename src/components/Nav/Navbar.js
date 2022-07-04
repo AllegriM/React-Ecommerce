@@ -3,23 +3,35 @@ import promo from '../../imgs/nav-promo-lvl6.webp'
 import { Link, useNavigate } from "react-router-dom"
 import './nav.css';
 import { SearchForm } from "./SearchForm";
-import { Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList, Text } from '@chakra-ui/react'
+import { Box, Img, Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList, Text } from '@chakra-ui/react'
 import { useAuth } from '../../Context/authContext';
 import { useCartContext } from '../../Context/cartContext';
+import theme from '../../theme';
+import { useContext } from 'react';
+import { FavContext } from '../../Context/favContext';
 
 
 export default function Navbar() {
     const { user, logOut } = useAuth()
 
-    const {cart} = useCartContext()
+    const { cart } = useCartContext()
+
+    const { favs, removeFav } = useContext(FavContext)
+
+    console.log(favs)
 
     const cartIcon = cart.length === 0 ? "my-cart" : "full-cart"
 
     const navigate = useNavigate()
 
-    const handleLogOut = async() => {
+    const handleLogOut = async () => {
         await logOut()
         navigate('/')
+    }
+
+    const deleteFav = (e) => {
+        let itemId = e.target.getAttribute('data-id', '')
+        removeFav(itemId)
     }
 
     return (
@@ -57,11 +69,56 @@ export default function Navbar() {
                                         <MenuItem cursor='pointer' border='none' bg='none'>Preguntas</MenuItem>
                                     </MenuGroup>
                                     <MenuDivider />
-                                        <MenuItem onClick={handleLogOut} cursor='pointer' border='none' bg='none'>Salir</MenuItem>
+                                    <MenuItem onClick={handleLogOut} cursor='pointer' border='none' bg='none'>Salir</MenuItem>
                                 </MenuList>
                             </Menu>
                             <Text my='0' cursor='pointer' href="#" className="user-data my-buys">Mis compras</Text>
-                            <Link to={`/favorites`} href="#" className="user-data my-favs">Favoritos</Link>
+                            <Menu>
+                                <MenuButton cursor='pointer' border='none' bg='none' className="user-data my-favs">Favoritos</MenuButton>
+                                <MenuList >
+                                    <MenuGroup title='Favoritos' my='0'>
+                                        <MenuDivider />
+                                        {
+                                            favs.length !== 0 ?
+                                                favs.map(favItem => {
+                                                    return (
+                                                        <>
+                                                            <MenuItem key={favItem.id} cursor='pointer' border='none' bg='none' w='450px' _hover={{ bg: 'transparent' }}>
+                                                                <Img src={favItem.thumbnail} w='55px' h='55px' p='15px' flexShrink='0' />
+                                                                <Box>
+                                                                    <Text m='0' fontSize='14px' color='rgba(0, 0, 0, 0.9)' >{favItem.title}</Text>
+                                                                    <Text ml='0.5em' my='.5em' fontSize='26px' color='rgba(0, 0, 0, 0.9)'>${favItem.price.toLocaleString('es-AR')}</Text>
+                                                                    <Text fontWeight='100' type='button' border='none' bg='transparent' _hover={{ bg: 'transparent' }} zIndex='10' color={theme.colors.blue} onClick={deleteFav} fontSize='14px' cursor='pointer' mb='.5em' data-id={favItem.id} >Eliminar</Text>
+                                                                </Box>
+                                                            </MenuItem>
+                                                            <MenuDivider />
+
+                                                        </>
+                                                    )
+                                                })
+                                                :
+                                                <>
+                                                    <MenuItem cursor='pointer' border='none' bg='#EBEBEB' w='350px' h='150px' padding='50px' _hover={{ bg: '#EBEBEB' }}>
+                                                        <Text fontSize='12px' textAlign='center'>
+                                                            Agregá acá los productos que te gustaron para poder verlos más tarde.
+                                                        </Text>
+                                                    </MenuItem>
+                                                </>
+                                        }
+                                        {
+                                            favs.length !== 0 ? 
+                                        <MenuItem cursor='pointer' border='none' bg='none' justifyContent='center' _hover={{ bg: 'transparent' }} >
+                                            <Link to='/favorites' color={theme.colors.blue} >
+                                                Ver todos los favoritos
+                                            </Link>
+                                        </MenuItem>
+                                        : 
+                                        null
+                                        }
+                                    </MenuGroup>
+                                </MenuList>
+                            </Menu>
+                            {/* <Link to={`/favorites`} href="#" className="user-data my-favs">Favoritos</Link> */}
                             <Text my='0' cursor='pointer' href="#" className="user-data my-notis"></Text>
                             <Link to={`/cart`} className={`user-data ${cartIcon}`}>
                                 <Text className='cart-items'>{cart.length}</Text>
