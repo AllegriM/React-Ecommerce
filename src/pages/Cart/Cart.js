@@ -15,7 +15,7 @@ export const Cart = () => {
 
     const [loader, setLoader] = useState(false)
 
-    const [orderId, setOrderId] = useState("")
+    // const [orderId, setOrderId] = useState("")
 
     const removeItemCart = (e) => {
         let id = e.target.getAttribute('data-id')
@@ -59,7 +59,7 @@ export const Cart = () => {
     const buyCartItems = () =>{
         setLoader(true)
         sendOrder(cart)
-            .then(resp => setOrderId(resp.id))
+            // .then(resp => setOrderId(resp.id))
         setTimeout(() => {
             setCart([])
             setLoader(false)
@@ -135,7 +135,7 @@ export const Cart = () => {
                         :
                         null
                 }
-                <Text>Esta es tu id de compra compa{orderId}</Text>
+                {/* <Text>Esta es tu id de compra compa{orderId}</Text> */}
             </Box>
         </Container>
 

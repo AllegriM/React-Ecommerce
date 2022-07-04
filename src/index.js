@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './theme';
 import { getFirestoreApp } from './firebase/config';
+import { AuthContextProvider } from './Context/authContext';
 
 getFirestoreApp()
 
@@ -14,7 +15,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ChakraProvider resetCSS={false} theme={theme}>
+      <AuthContextProvider>
         <App />
+      </AuthContextProvider>
       </ChakraProvider>  
     </BrowserRouter>
   </React.StrictMode>
