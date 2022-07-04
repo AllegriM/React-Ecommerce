@@ -4,6 +4,7 @@ import { useAuth } from "../Context/authContext";
 import theme from "../theme";
 
 export const LogInForm = ( {setAccountCreated} ) => {
+
     const { logIn }= useAuth()
 
     const [logInemail, setLogInEmail] = useState("");
@@ -82,7 +83,7 @@ export const LogInForm = ( {setAccountCreated} ) => {
                 <Button onClick={() => Navigate("/home")} className="btn-submit btn-azulaseo" aria-disabled="false" h='48px' w='250px'>Ingresar como invitado</Button>
             </Box> */}
             <Box mt='1em' textAlign='center'>
-                <Button onClick={() => setAccountCreated(false)} type="submit" className="btn-submit btn-azulaseo" aria-disabled="false" h='48px' w='250px'>Crear cuenta</Button>
+                <Button onClick={() => setAccountCreated(true)} type="submit" className="btn-submit btn-azulaseo" aria-disabled="false" h='48px' w='250px'>Crear cuenta</Button>
             </Box>
         </>
     )

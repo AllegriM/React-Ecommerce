@@ -13,7 +13,7 @@ import { AmountContextProvider } from "./Context/amountSelContext";
 import { Favorites } from "./pages/Favorites/Favorites";
 import { FavContextProvider } from "./Context/favContext";
 import { LogIn } from "./pages/LogIn/LogIn";
-import { ProtectedRoutes } from "./components/ProtectedRoutes";
+// import { ProtectedRoutes } from "./components/ProtectedRoutes";
 import { useAuth } from "./Context/authContext";
 
 // "homepage": "https://github.com/AllegriM/React-MELI",
@@ -21,8 +21,7 @@ import { useAuth } from "./Context/authContext";
 
 export default function App() {
 
-  const { log } = useAuth()
-  console.log( log )
+  const { user, log } = useAuth()
 
   return (
     <CartContextProvider>
@@ -30,27 +29,24 @@ export default function App() {
         <FavContextProvider>
           <div className="App">
             {
-              log ?
+              user !== null && log ?
                 <section className='contenido'>
                   <Navbar>
                     <SearchForm />
                   </Navbar>
                   <Routes>
-                    <Route element={<ProtectedRoutes />}>
-                      <Route path='/home' element={<Home />} />
-                      <Route path='/products/:prodId' element={<ProductDetailCard />} />
-                      <Route path='/cart' element={<Cart />} />
-                      <Route path='/search/:keyword' element={<ProductList />} />
-                      <Route path='/favorites' element={<Favorites />} />
-                      <Route path='/' element={<LogIn />} />
-                    </Route>
+                    <Route index path='/home' element={<Home />} />
+                    <Route path='/products/:prodId' element={<ProductDetailCard />} />
+                    <Route path='/cart' element={<Cart />} />
+                    <Route path='/search/:keyword' element={<ProductList />} />
+                    <Route path='/favorites' element={<Favorites />} />
                   </Routes>
                 </section>
                 :
                 <section className='contenido'>
                   <Routes>
                     <Route exact path='/' element={<LogIn />} />
-                    <Route exact path='*' element={<PageNotFound />} />
+                    <Route path='*' element={<PageNotFound />} />
                   </Routes>
                 </section>
             }

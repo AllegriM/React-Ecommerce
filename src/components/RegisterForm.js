@@ -32,7 +32,8 @@ export const RegisterForm = ( {setAccountCreated} ) => {
         if (!isError) { 
             // createAccount({ firstName, lastName, email, password });     
             signUp(email, password, firstName, lastName); 
-            setAccountCreated(true) }
+            setAccountCreated(false) 
+        }
     }
 
     const handleName = (e) => {
@@ -162,7 +163,7 @@ export const RegisterForm = ( {setAccountCreated} ) => {
                 <Button onClick={createUserBtn} type="submit" className="btn-submit btn-azul" aria-disabled="false" h='48px' w='250px'>Crear cuenta</Button>
             </Box>
             <Box mt='1em' textAlign='center'>
-                <Button onClick={() => setAccountCreated(true)} type="submit" className="btn-submit btn-azulaseo" aria-disabled="false" h='48px' w='250px'>Iniciar sesion</Button>
+                <Button onClick={() => setAccountCreated(false)} type="submit" className="btn-submit btn-azulaseo" aria-disabled="false" h='48px' w='250px'>Iniciar sesion</Button>
             </Box>
         </Box>
     )

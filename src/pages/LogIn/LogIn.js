@@ -16,13 +16,14 @@ export const LogIn = () => {
                 <Box textAlign='center' top='10%' left='30%' position='absolute' margin='0 auto' boxShadow='0 1px 2px 0 rgb(0 0 0 / 30%)' borderRadius='6px' flex backgroundColor='#FFFFFF' minH='34rem' w='300px' maxW='424px' padding='32px 64px'>
                 {
                     accountCreated ?
-                        <LogInForm
-                            setAccountCreated={setAccountCreated}
-                        />
-                        :
                         <RegisterForm
                             setAccountCreated={setAccountCreated}
                         />
+                        :
+                        <LogInForm
+                            setAccountCreated={setAccountCreated}
+                        />
+                        
                 }
             </Box>
             </Box>

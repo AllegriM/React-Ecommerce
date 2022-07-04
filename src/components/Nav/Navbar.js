@@ -1,14 +1,26 @@
 import logo from '../../imgs/logo__large_plus.png'
 import promo from '../../imgs/nav-promo-lvl6.webp'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import './nav.css';
 import { SearchForm } from "./SearchForm";
-import { Text } from '@chakra-ui/react'
+import { Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList, Text } from '@chakra-ui/react'
 import { useAuth } from '../../Context/authContext';
+import { useCartContext } from '../../Context/cartContext';
 
 
 export default function Navbar() {
-    const { user } = useAuth()
+    const { user, logOut } = useAuth()
+
+    const {cart} = useCartContext()
+
+    const cartIcon = cart.length === 0 ? "my-cart" : "full-cart"
+
+    const navigate = useNavigate()
+
+    const handleLogOut = async() => {
+        await logOut()
+        navigate('/')
+    }
 
     return (
         <>
@@ -37,11 +49,23 @@ export default function Navbar() {
                             </ul>
                         </div>
                         <div className="nav-user">
-                            <Text my='0' cursor='pointer' href="#" className="user-data my-user">{user?.displayName}</Text>
+                            <Menu my='0' cursor='pointer' href="#">
+                                <MenuButton cursor='pointer' border='none' bg='none' className="user-data my-user">{user?.displayName}</MenuButton>
+                                <MenuList>
+                                    <MenuGroup>
+                                        <MenuItem cursor='pointer' border='none' bg='none'>Compras</MenuItem>
+                                        <MenuItem cursor='pointer' border='none' bg='none'>Preguntas</MenuItem>
+                                    </MenuGroup>
+                                    <MenuDivider />
+                                        <MenuItem onClick={handleLogOut} cursor='pointer' border='none' bg='none'>Salir</MenuItem>
+                                </MenuList>
+                            </Menu>
                             <Text my='0' cursor='pointer' href="#" className="user-data my-buys">Mis compras</Text>
                             <Link to={`/favorites`} href="#" className="user-data my-favs">Favoritos</Link>
                             <Text my='0' cursor='pointer' href="#" className="user-data my-notis"></Text>
-                            <Link to={`/cart`} className="user-data my-cart"></Link>
+                            <Link to={`/cart`} className={`user-data ${cartIcon}`}>
+                                <Text className='cart-items'>{cart.length}</Text>
+                            </Link>
                         </div>
                     </div>
                 </div>
