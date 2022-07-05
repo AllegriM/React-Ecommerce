@@ -1,11 +1,13 @@
 import { Box, Button, FormControl, FormErrorMessage, FormLabel, Input, Text } from "@chakra-ui/react";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/authContext";
 import theme from "../theme";
 
 export const LogInForm = ( {setAccountCreated} ) => {
 
     const { logIn, emailError, passwordError }= useAuth()
+    const navigate = useNavigate()
 
     const [logInemail, setLogInEmail] = useState("");
     const [logInpassword, setLogInPassword] = useState("");
@@ -17,8 +19,9 @@ export const LogInForm = ( {setAccountCreated} ) => {
         setLogInPassword(e.target.value)
     }
 
-    const verifyLogIn = () => {
-        logIn(logInemail, logInpassword)
+    const verifyLogIn = async() => {
+        await logIn(logInemail, logInpassword)
+        navigate('/home')
     }
 
     const wrongEmail = emailError ? <FormErrorMessage>Minimum eight characters, at least one upper case letter and one number</FormErrorMessage> : null
@@ -46,7 +49,6 @@ export const LogInForm = ( {setAccountCreated} ) => {
                     {/* It is important that the Label comes after the Control due to css selectors */}
                     <FormLabel htmlFor='email'>Email</FormLabel>
                     {wrongPassword}
-
                 </FormControl>
 
                 <FormControl variant="floating" id="password" mt='2em'>
@@ -67,6 +69,9 @@ export const LogInForm = ( {setAccountCreated} ) => {
                     {wrongEmail}
                 </FormControl>
             </Box>
+            <Link to='/forgot-password'>
+                <Text textAlign='center' color={theme.colors.blue}>¿Olvidaste tu contraseña?</Text>
+            </Link>
             <Box mt='1.5em' textAlign='center'>
                 <Button onClick={verifyLogIn} type="submit" className="btn-submit btn-azul" aria-disabled="false" h='48px' w='250px'>Ingresar</Button>
             </Box>

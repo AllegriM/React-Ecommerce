@@ -1,11 +1,14 @@
 import { Box, Button, FormControl, FormErrorMessage, FormLabel, Input, Text } from "@chakra-ui/react"
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/authContext";
 import theme from "../theme";
 
 export const RegisterForm = ( {setAccountCreated} ) => {
 
     const  { signUp } = useAuth();
+    const navigate = useNavigate()
+
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -23,16 +26,16 @@ export const RegisterForm = ( {setAccountCreated} ) => {
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
 
-    const createUserBtn = () => {   
+    const createUserBtn = async() => {   
         let isError = false
         if (!namesReg.test(firstName)) { setNameError(true); isError = true }
         if (!namesReg.test(lastName)) { setLastError(true); isError = true }
         if (!emailReg.test(email)) { setEmailError(true); isError = true }
         if (!passwordReg.test(password)) { setPasswordError(true); isError = true }
         if (!isError) { 
-            // createAccount({ firstName, lastName, email, password });     
-            signUp(email, password, firstName, lastName); 
-            setAccountCreated(false) 
+            await setAccountCreated(false) 
+            await signUp(email, password, firstName, lastName); 
+            navigate("/")
         }
     }
 

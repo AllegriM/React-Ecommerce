@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react"
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth'
 import { auth } from "../firebase/config"
-import { useNavigate } from 'react-router-dom'
 
 export const AuthContext = createContext([])
 
@@ -12,11 +11,9 @@ export const useAuth = () => {
 }
 export const AuthContextProvider = ({ children }) => {
 
-    const navigate = useNavigate()
-
     const [user, setUser] = useState(null)
 
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const [log, setLog] = useState(false)
 
@@ -24,14 +21,18 @@ export const AuthContextProvider = ({ children }) => {
 
     const [passwordError, setPasswordError] = useState(false)
 
-    const signUp = async(email, password, firstName, lastName) => {
+    const [errorMessage, setErrorMessage] = useState("")
+
+    const [message, setMessage] = useState("")
+
+
+    const signUp = async(email, password, firstName) => {
         try{
             await createUserWithEmailAndPassword(auth, email, password)
-            // await navigate('./')
             .catch(
                 (err) => console.log(err)
             );
-            await updateProfile(auth.currentUser, { displayName: `${firstName} ${lastName}` } )
+            await updateProfile(auth.currentUser, { displayName: `${firstName}` } )
             .catch(
                 (err) => console.log(err)
             );
@@ -44,7 +45,6 @@ export const AuthContextProvider = ({ children }) => {
     const logIn = async(email, password) => {
         try {
             await signInWithEmailAndPassword(auth, email, password)
-            await navigate('/home')
             setLog(true)
         }
         catch (error){
@@ -54,6 +54,19 @@ export const AuthContextProvider = ({ children }) => {
         }
     }
 
+    const resetPassword = async(email) => {
+        await sendPasswordResetEmail(auth, email)
+            .then(()=>{
+                setMessage("Revise su correo electronico para resetear su contraseña")
+                return
+            })
+            .catch((error) => {
+                console.log(error)
+                setErrorMessage("La direccion de correo electronico no parece ser valida")
+                return
+            });
+    }    
+
     const logOut = async() => await signOut(auth)
 
     useEffect(() => {
@@ -61,7 +74,6 @@ export const AuthContextProvider = ({ children }) => {
         setLoading(false)
     }, [])
     
-
     return (
         <AuthContext.Provider
             value={{
@@ -70,12 +82,15 @@ export const AuthContextProvider = ({ children }) => {
                 log,
                 emailError,
                 passwordError,
+                errorMessage,
+                message,
                 signUp,
                 logOut,
-                logIn
+                logIn,
+                resetPassword
             }}
         >
-            {children}
+            {!loading && children}
         </AuthContext.Provider>
     )
 

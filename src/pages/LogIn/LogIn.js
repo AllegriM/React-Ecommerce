@@ -24,7 +24,6 @@ export const LogIn = () => {
                         <LogInForm
                             setAccountCreated={setAccountCreated}
                         />
-                        
                 }
             </Box>
         </Container>

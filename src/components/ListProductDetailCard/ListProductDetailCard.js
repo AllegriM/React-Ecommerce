@@ -2,6 +2,8 @@ import { useParams } from 'react-router-dom';
 import { ReviewContextProvider } from '../../Context/reviewData';
 import { useSingleProdData } from '../../hooks/useSingleProdData';
 import { ProductCardDetail } from '../../pages/DetailCard/ProductDetailCard';
+import { SearchForm } from "../../components/Nav/SearchForm";
+import Navbar from "../../components/Nav/Navbar"
 import './product.css'
 
 export default function ProductDetailCard() {
@@ -13,6 +15,9 @@ export default function ProductDetailCard() {
 
     return (
         <>
+            <Navbar>
+                <SearchForm />
+            </Navbar>
             <ReviewContextProvider>
                 {singleProd.map((data =>
                     <ProductCardDetail key={data.body.id} data={data.body} />
