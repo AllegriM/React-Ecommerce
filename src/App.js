@@ -15,6 +15,7 @@ import { FavContextProvider } from "./Context/favContext";
 import { LogIn } from "./pages/LogIn/LogIn";
 // import { ProtectedRoutes } from "./components/ProtectedRoutes";
 import { useAuth } from "./Context/authContext";
+import { PurchaseOrder } from "./pages/Purchase/PurchaseOrder";
 
 // "homepage": "https://github.com/AllegriM/React-MELI",
 
@@ -40,6 +41,7 @@ export default function App() {
                     <Route path='/cart' element={<Cart />} />
                     <Route path='/search/:keyword' element={<ProductList />} />
                     <Route path='/favorites' element={<Favorites />} />
+                    <Route path='/order-purchased' element={<PurchaseOrder/>}/>
                   </Routes>
                 </section>
                 :

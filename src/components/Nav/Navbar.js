@@ -18,7 +18,12 @@ export default function Navbar() {
 
     const { favs, removeFav } = useContext(FavContext)
 
-    console.log(favs)
+    let totalCartItems = 0
+    const cartItemQuantity = cart.forEach(item => {
+        totalCartItems += item.cantidadElegida
+    })
+
+    console.log(cartItemQuantity)
 
     const cartIcon = cart.length === 0 ? "my-cart" : "full-cart"
 
@@ -82,18 +87,15 @@ export default function Navbar() {
                                             favs.length !== 0 ?
                                                 favs.map(favItem => {
                                                     return (
-                                                        <>
-                                                            <MenuItem key={favItem.id} cursor='pointer' border='none' bg='none' w='450px' _hover={{ bg: 'transparent' }}>
-                                                                <Img src={favItem.thumbnail} w='55px' h='55px' p='15px' flexShrink='0' />
-                                                                <Box>
-                                                                    <Text m='0' fontSize='14px' color='rgba(0, 0, 0, 0.9)' >{favItem.title}</Text>
-                                                                    <Text ml='0.5em' my='.5em' fontSize='26px' color='rgba(0, 0, 0, 0.9)'>${favItem.price.toLocaleString('es-AR')}</Text>
-                                                                    <Text fontWeight='100' type='button' border='none' bg='transparent' _hover={{ bg: 'transparent' }} zIndex='10' color={theme.colors.blue} onClick={deleteFav} fontSize='14px' cursor='pointer' mb='.5em' data-id={favItem.id} >Eliminar</Text>
-                                                                </Box>
-                                                            </MenuItem>
+                                                        <MenuItem key={favItem.id} cursor='pointer' border='none' bg='none' w='450px' _hover={{ bg: 'transparent' }}>
+                                                            <Img src={favItem.thumbnail} w='55px' h='55px' p='15px' flexShrink='0' />
+                                                            <Box>
+                                                                <Text m='0' fontSize='14px' color='rgba(0, 0, 0, 0.9)' >{favItem.title}</Text>
+                                                                <Text ml='0.5em' my='.5em' fontSize='26px' color='rgba(0, 0, 0, 0.9)'>${favItem.price.toLocaleString('es-AR')}</Text>
+                                                                <Text fontWeight='100' type='button' border='none' bg='transparent' _hover={{ bg: 'transparent' }} zIndex='10' color={theme.colors.blue} onClick={deleteFav} fontSize='14px' cursor='pointer' mb='.5em' data-id={favItem.id} >Eliminar</Text>
+                                                            </Box>
                                                             <MenuDivider />
-
-                                                        </>
+                                                        </MenuItem>
                                                     )
                                                 })
                                                 :
@@ -106,14 +108,14 @@ export default function Navbar() {
                                                 </>
                                         }
                                         {
-                                            favs.length !== 0 ? 
-                                        <MenuItem cursor='pointer' border='none' bg='none' justifyContent='center' _hover={{ bg: 'transparent' }} >
-                                            <Link to='/favorites' color={theme.colors.blue} >
-                                                Ver todos los favoritos
-                                            </Link>
-                                        </MenuItem>
-                                        : 
-                                        null
+                                            favs.length !== 0 ?
+                                                <MenuItem cursor='pointer' border='none' bg='none' justifyContent='center' _hover={{ bg: 'transparent' }} >
+                                                    <Link to='/favorites' color={theme.colors.blue} >
+                                                        Ver todos los favoritos
+                                                    </Link>
+                                                </MenuItem>
+                                                :
+                                                null
                                         }
                                     </MenuGroup>
                                 </MenuList>
@@ -121,7 +123,7 @@ export default function Navbar() {
                             {/* <Link to={`/favorites`} href="#" className="user-data my-favs">Favoritos</Link> */}
                             <Text my='0' cursor='pointer' href="#" className="user-data my-notis"></Text>
                             <Link to={`/cart`} className={`user-data ${cartIcon}`}>
-                                <Text className='cart-items'>{cart.length}</Text>
+                                <Text className='cart-items'>{totalCartItems}</Text>
                             </Link>
                         </div>
                     </div>

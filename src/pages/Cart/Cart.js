@@ -4,18 +4,23 @@ import theme from '../../theme'
 import { useCartContext } from '../../Context/cartContext'
 import './cart.css'
 import { sendOrder } from '../../helpers/createFbOrder'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../Context/authContext'
 
 export const Cart = () => {
-    const { cart, removeItem, setCart } = useCartContext()
+
+    const { cart, removeItem, setCart, setOrderId } = useCartContext()
+    
+    const { user } = useAuth()    
 
     const [loader, setLoader] = useState(false)
-
-    // const [orderId, setOrderId] = useState("")
 
     const removeItemCart = (e) => {
         let id = e.target.getAttribute('data-id')
         removeItem(id)
     }
+
+    const navigate = useNavigate()
 
     const increaseItem = (e) => {
         let id = e.target.getAttribute('data-id')
@@ -44,14 +49,15 @@ export const Cart = () => {
         }
     }
 
-    const buyCartItems = () => {
-        setLoader(true)
-        sendOrder(cart)
-        // .then(resp => setOrderId(resp.id))
+    const buyCartItems = async() => {
+        await setLoader(true)
+        await sendOrder(cart, user)
+            .then(resp => setOrderId(resp.id))
         setTimeout(() => {
             setCart([])
             setLoader(false)
         }, 1500)
+        navigate('/order-purchased')
     }
 
     let total = 0

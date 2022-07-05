@@ -1,12 +1,12 @@
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 
+export const sendOrder = ( cart, user ) => {
 
-export const sendOrder = ( cart ) => {
     let total = 0
     cart.forEach((item) => (total += Math.round((item.cantidadElegida * item.price))))
     const order = {}
-        order.buyer = { name: "Marco", phone: "11111", email: "aaaa@aaaa.com" }
+        order.buyer = { name: user.displayName, phone: "11111", email: user.email }
         order.items = 
             cart.map(item => {
             const id = item.id
@@ -20,5 +20,6 @@ export const sendOrder = ( cart ) => {
         const db = getFirestore()
         const ordersCollection = collection(db, "orders")
         return addDoc(ordersCollection, order)
+        
 }
 

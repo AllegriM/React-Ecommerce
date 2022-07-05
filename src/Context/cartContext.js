@@ -6,6 +6,8 @@ export const useCartContext = () => useContext(CartContext)
 export const CartContextProvider = ({ children }) => {
     // estados y funciones 
 
+    const [orderId, setOrderId] = useState("")
+
     const [cart, setCart] = useState([])
 
     const localStorageCart = JSON.parse(localStorage.getItem('cart')) 
@@ -29,9 +31,11 @@ export const CartContextProvider = ({ children }) => {
     return (
         <CartContext.Provider value={{
             cart,
+            orderId,
             addToCart,
             removeItem,
-            setCart
+            setCart,
+            setOrderId
         }}
         >
             {children}
