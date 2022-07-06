@@ -10,7 +10,7 @@ export const LogIn = () => {
     const [accountCreated, setAccountCreated] = useState(false)
 
     return (
-        <Container backgroundColor='#EBEBEB' h='100vh' w='100%' maxW='100%' p='0' position='relative' display='flex' justifyContent='center'>
+        <Container backgroundColor='#EBEBEB' h='100%' minH='100vh' w='100%' maxW='100%' p='0' position='relative' display='flex' justifyContent='center'>
             <Box backgroundColor='#FFF059' h='250px' w='100%'>
                 <Img src={logo} ml='1em' mt='1em' />
             </Box>

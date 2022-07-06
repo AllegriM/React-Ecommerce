@@ -5,7 +5,7 @@ export const FavContext = createContext([])
 export const FavContextProvider = ({ children }) => {
 
     const [favs, SetFavs] = useState([])
-
+    
     const addFav = (item) => {
         SetFavs(item)
     }

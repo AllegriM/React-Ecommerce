@@ -11,7 +11,11 @@ export const FavButton = ( {prod} ) => {
         e.preventDefault()
         if (Fav === false){
             setFav(true)
-            addFav([...favs, {...prod}])
+            if(favs.some(item => item.id === prod.id)){
+                return
+            }else{
+                addFav([...favs, {...prod}])
+            }
         }else{
             setFav(false)
             removeFav(prod.id)

@@ -28,10 +28,10 @@ export const RegisterForm = ( {setAccountCreated} ) => {
 
     const createUserBtn = async() => {   
         let isError = false
-        if (!namesReg.test(firstName)) { setNameError(true); isError = true }
-        if (!namesReg.test(lastName)) { setLastError(true); isError = true }
-        if (!emailReg.test(email)) { setEmailError(true); isError = true }
-        if (!passwordReg.test(password)) { setPasswordError(true); isError = true }
+        if (!namesReg.test(firstName)) { setNameError(true); isError = true } else {setNameError(false)}
+        if (!namesReg.test(lastName)) { setLastError(true); isError = true } else {setLastError(false)}
+        if (!emailReg.test(email)) { setEmailError(true); isError = true } else {setEmailError(false)}
+        if (!passwordReg.test(password)) { setPasswordError(true); isError = true } else {setPasswordError(false)}
         if (!isError) { 
             await setAccountCreated(false) 
             await signUp(email, password, firstName, lastName); 
@@ -41,16 +41,20 @@ export const RegisterForm = ( {setAccountCreated} ) => {
 
     const handleName = (e) => {
         setFirstName(e.target.value)
+        setNameError(false)
     }
 
     const handleLastName = (e) => {
         setLastName(e.target.value)
+        setLastError(false)
     }
     const handleEmail = (e) => {
         setEmail(e.target.value)
+        setEmailError(false)
     }
     const handlePassword = (e) => {
         setPassword(e.target.value)
+        setPasswordError(false)
     }
 
     return (
@@ -78,7 +82,7 @@ export const RegisterForm = ( {setAccountCreated} ) => {
                     {
                         nameError ?
 
-                            <FormErrorMessage>Your First name is invalid</FormErrorMessage>
+                            <FormErrorMessage>Asegurate de que no contenga numeros ni caracteres especiales.</FormErrorMessage>
                             :
                             null
                     }
@@ -102,7 +106,7 @@ export const RegisterForm = ( {setAccountCreated} ) => {
                     <FormLabel htmlFor='last-name'>Apellido</FormLabel>
                     {
                         lastNameError ?
-                            <FormErrorMessage>Your Last Name is invalid</FormErrorMessage>
+                            <FormErrorMessage>Asegurate de que no contenga numeros ni caracteres especiales.</FormErrorMessage>
                             :
                             null
                     }
@@ -128,7 +132,7 @@ export const RegisterForm = ( {setAccountCreated} ) => {
                     <FormLabel htmlFor='email'>Email</FormLabel>
                     {
                         emailError ?
-                            <FormErrorMessage>Your Email is invalid</FormErrorMessage>
+                            <FormErrorMessage>{`Email invalido. Asegurate que contenga "@" y finalice con ".com"`}</FormErrorMessage>
                             :
                             null
                     }
@@ -155,7 +159,7 @@ export const RegisterForm = ( {setAccountCreated} ) => {
                     {
                         passwordError ?
 
-                            <FormErrorMessage>Minimum eight characters, at least one upper case letter and one number</FormErrorMessage>
+                            <FormErrorMessage>Minimo ocho caracteres, una letra mayúscula y un numero.</FormErrorMessage>
                             :
                             null
                     }

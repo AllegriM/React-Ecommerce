@@ -19,7 +19,7 @@ export default function Navbar() {
     const { favs, removeFav } = useContext(FavContext)
 
     let totalCartItems = 0
-    cart.forEach(item => totalCartItems += item.cantidadElegida)
+    cart?.forEach(item => totalCartItems += item.cantidadElegida)
 
     const cartIcon = cart.length === 0 ? "my-cart" : "full-cart"
 
@@ -49,7 +49,7 @@ export default function Navbar() {
                     <div className="nav-ubi">
                         <Text my='0' cursor='pointer' href="#" className="ubi-logo"></Text>
                         <span className="ubi-user">Enviar a {user?.displayName}</span>
-                        <span className="ubi-place">Av.Cent 948</span>
+                        <span className="ubi-place">Av.Casero 14</span>
                     </div>
                     <div className="nav-categories">
                         <ul className='nav-items'>

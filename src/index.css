@@ -43,6 +43,8 @@ a{
 }
 
 .App{
+  min-height: 100vh;
+  height: 100%;
   background-color: var(--clr-bg-gris);
 }
 
@@ -51,5 +53,7 @@ a{
 }
 
 .contenido{
+  min-height: 100vh;
+  height: 100%;
   background-color: var(--clr-bg-gris);
 }
