@@ -4,9 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/authContext";
 import theme from "../theme";
 
-export const LogInForm = ( {setAccountCreated} ) => {
+export const LogInForm = ({ setAccountCreated }) => {
+    
+    // Firebase login functionality
 
-    const { logIn, emailError, passwordError }= useAuth()
+    const { logIn, emailError, passwordError } = useAuth()
     const navigate = useNavigate()
 
     const [logInemail, setLogInEmail] = useState("");
@@ -19,13 +21,24 @@ export const LogInForm = ( {setAccountCreated} ) => {
         setLogInPassword(e.target.value)
     }
 
-    const verifyLogIn = async() => {
+    const verifyLogIn = async (e) => {
+        e.preventDefault()
         await logIn(logInemail, logInpassword)
         navigate('/home')
     }
 
-    const wrongEmail = emailError ? <FormErrorMessage>Minimum eight characters, at least one upper case letter and one number</FormErrorMessage> : null
-    const wrongPassword = passwordError ? <FormErrorMessage>Your Email is invalid</FormErrorMessage> : null
+    // Guest user
+
+    const guestUser = {
+        user: "guest@gmail.com",
+        password: "Guest1234"
+    }
+    
+    // Send guestUser as params to pre-created firebase guest user acc
+    const enterAsGuest = async() =>{
+        await logIn(guestUser.user, guestUser.password)
+        navigate('/home')
+    }
 
     return (
         <>
@@ -35,6 +48,7 @@ export const LogInForm = ( {setAccountCreated} ) => {
             <Box mt='2em'>
                 <FormControl variant="floating" id="email" mt='2em' width='100%'>
                     <Input
+                        required
                         value={logInemail}
                         type="email"
                         onChange={handleEmail}
@@ -48,11 +62,12 @@ export const LogInForm = ( {setAccountCreated} ) => {
                     />
                     {/* It is important that the Label comes after the Control due to css selectors */}
                     <FormLabel htmlFor='email'>Email</FormLabel>
-                    {wrongPassword}
+                    <FormErrorMessage>{emailError ? "Ese email no existe, o no es valido." : null}</FormErrorMessage>
                 </FormControl>
 
                 <FormControl variant="floating" id="password" mt='2em'>
                     <Input
+                        required
                         value={logInpassword}
                         type='password'
                         onChange={handlePassword}
@@ -66,7 +81,8 @@ export const LogInForm = ( {setAccountCreated} ) => {
                     />
                     {/* It is important that the Label comes after the Control due to css selectors */}
                     <FormLabel htmlFor='password'>Clave</FormLabel>
-                    {wrongEmail}
+                    <FormErrorMessage>{passwordError ? "Esa contraseña no existe, o no es valida" : null}</FormErrorMessage>
+
                 </FormControl>
             </Box>
             <Link to='/forgot-password'>
@@ -75,11 +91,11 @@ export const LogInForm = ( {setAccountCreated} ) => {
             <Box mt='1.5em' textAlign='center'>
                 <Button onClick={verifyLogIn} type="submit" className="btn-submit btn-azul" aria-disabled="false" h='48px' w='250px'>Ingresar</Button>
             </Box>
-            {/* <Box mt='1em' textAlign='center'>
-                <Button onClick={() => Navigate("/home")} className="btn-submit btn-azulaseo" aria-disabled="false" h='48px' w='250px'>Ingresar como invitado</Button>
-            </Box> */}
             <Box mt='1em' textAlign='center'>
-                <Button onClick={() => setAccountCreated(true)} type="submit" className="btn-submit btn-azulaseo" aria-disabled="false" h='48px' w='250px'>Crear cuenta</Button>
+                <Button onClick={() => setAccountCreated(true)} type="submit" className="btn-submit btn-azul" aria-disabled="false" h='48px' w='250px'>Crear cuenta</Button>
+            </Box>
+            <Box mt='1em' textAlign='center'>
+                <Button onClick={() => enterAsGuest("/home")} className="btn-submit btn-azulaseo" aria-disabled="false" h='48px' w='250px'>Ingresar como invitado</Button>
             </Box>
         </>
     )

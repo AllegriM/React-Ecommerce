@@ -48,6 +48,7 @@ export const AuthContextProvider = ({ children }) => {
             setLog(true)
         }
         catch (error){
+            setLog(false)
             console.log(error.code)
             if (error.message.includes("invalid-email") ) return setEmailError(true)
             if (error.message.includes("wrong-password") ) return setPasswordError(true)
