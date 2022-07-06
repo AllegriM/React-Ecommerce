@@ -66,10 +66,6 @@ export default function Navbar() {
                         <Menu my='0' cursor='pointer' href="#">
                             <MenuButton cursor='pointer' border='none' bg='none' className="user-data my-user">{user?.displayName}</MenuButton>
                             <MenuList>
-                                <MenuGroup>
-                                    <MenuItem cursor='pointer' border='none' bg='none'>Compras</MenuItem>
-                                    <MenuItem cursor='pointer' border='none' bg='none'>Preguntas</MenuItem>
-                                </MenuGroup>
                                 <MenuDivider />
                                 <MenuItem onClick={handleLogOut} cursor='pointer' border='none' bg='none'>Salir</MenuItem>
                             </MenuList>
