@@ -18,7 +18,7 @@ Online DEMO: https://react-meli-allegrim.vercel.app/
 
 ## Tech
 
-Dillinger uses a number of open source projects to work properly:
+This are some of the techs used in this project 
 
 - [ReactJS] - JavaScript library used for building user interfaces specifically for single-page applications
 - [CSS3] -Styling and formatting of web page
@@ -26,6 +26,7 @@ Dillinger uses a number of open source projects to work properly:
 - [Firebase] - Google-backend application development software
 - [NodeJS] - JavaScript runtime built on Chrome's V8 JavaScript engine
 - [Eslint] - Tool to identify and report on patterns found in ECMAScript/JavaScript code, with the goal of making code more consistent and avoiding bugs
+- [react-router-dom] - Add route functionalities to the project 
 
 ## Functionalities
 
