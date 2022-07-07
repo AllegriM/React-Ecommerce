@@ -1,6 +1,4 @@
 // Get products of the seller
-
-
 export default function getSellerID ( {prodId}, setItems ){
     fetch(`https://api.mercadolibre.com/items/${prodId}`)
         .then( ( resp ) => resp.json() )

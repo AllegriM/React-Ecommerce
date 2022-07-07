@@ -12,7 +12,7 @@ export default function ForgotPassword() {
     const [ loading, setLoading ] = useState(false)
     const [ email, resetEmail] = useState("");
 
-
+    // Executes a restore email function on useAuth Context
     const submitEmail = async (e) => {
         e.preventDefault()
         try{
@@ -24,7 +24,8 @@ export default function ForgotPassword() {
         }
         setLoading(false)
     }
-
+    
+    // handle email data to passit to above function
     const handleEmail = (e) => {
         resetEmail(e.target.value)
     }

@@ -5,6 +5,7 @@ import '../ListProductDetailCard/product.css'
 
 export default function CategoryPath({ prodID }) {
 
+    // Set the category tree above product card detail
     const [categories, setCategory] = useState([])
 
     useEffect(() => {

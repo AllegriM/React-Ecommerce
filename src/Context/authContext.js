@@ -11,6 +11,8 @@ export const useAuth = () => {
 }
 export const AuthContextProvider = ({ children }) => {
 
+    // States
+
     const [user, setUser] = useState(null)
 
     const [loading, setLoading] = useState(true)
@@ -26,6 +28,7 @@ export const AuthContextProvider = ({ children }) => {
     const [message, setMessage] = useState("")
 
 
+    // Sign up firebase function
     const signUp = async(email, password, firstName) => {
         try{
             await createUserWithEmailAndPassword(auth, email, password)
@@ -42,6 +45,7 @@ export const AuthContextProvider = ({ children }) => {
         }
     }
 
+    // Log in firebase function
     const logIn = async(email, password) => {
         try {
             await signInWithEmailAndPassword(auth, email, password)
@@ -55,6 +59,7 @@ export const AuthContextProvider = ({ children }) => {
         }
     }
 
+    // Reset password firebase function
     const resetPassword = async(email) => {
         await sendPasswordResetEmail(auth, email)
             .then(()=>{
@@ -68,8 +73,10 @@ export const AuthContextProvider = ({ children }) => {
             });
     }    
 
+    // Log out firebase function
     const logOut = async() => await signOut(auth)
 
+    // Check when first render if there is a user logged
     useEffect(() => {
         onAuthStateChanged( auth, currentUser => setUser(currentUser) )
         setLoading(false)

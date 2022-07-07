@@ -5,7 +5,12 @@ import '../ListProductDetailCard/product.css'
 
 export const SelectQuantity = ({ prodQuantity, setProdAmount }) => {
 
+    // Select amount items and save them into qunatity state
+
     const [quantity, setQuantity] = useState(1)
+
+
+    // Pass quantity to function in context
 
     useEffect(()=>{
         setProdAmount(Number(quantity))

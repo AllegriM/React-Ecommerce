@@ -2,6 +2,7 @@ import Card from "../Card/Card"
 
 export default function ProductSection ( { title, products } ) {
 
+    // Sections at home page where 5 items are displayed
     return (
         <div className="cards-related">
             <div className="cards-title">

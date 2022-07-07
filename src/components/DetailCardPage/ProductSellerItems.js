@@ -7,6 +7,7 @@ import { Navigation } from "swiper";
 import Card from "../Card/Card";
 
 export const SellerItems = ({ prodId }) => {
+    // Setting more seller items based on the prodID you are searching
     const [items, setItems] = useState([])
 
     useEffect(() => {

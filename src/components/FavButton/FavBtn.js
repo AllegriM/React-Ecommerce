@@ -7,6 +7,7 @@ export const FavButton = ( {prod} ) => {
 
     const { favs, addFav, removeFav } = useContext(FavContext)
 
+    // Add Fav within the card of the product and set the value to the context
     const favItem = (e) => {
         e.preventDefault()
         if (Fav === false){

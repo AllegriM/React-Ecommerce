@@ -6,6 +6,7 @@ import { AskForm } from '../AskForm/AskForm';
 
 export const ProductQuestions = ({ prodId }) => {
 
+    // Add questions
     const [questions, setQuestions] = useState([])
 
     const [newQuestion, setNewQuestion] = useState("")

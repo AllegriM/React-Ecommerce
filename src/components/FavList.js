@@ -7,6 +7,7 @@ export const FavList = ( ) => {
 
     const { favs, removeFav } = useContext(FavContext)
     
+    // passing item id to removeFav function from FavContext
     const removeFavItemList = (e) =>{
         const itemId = e.target.getAttribute("data-id")
         removeFav(itemId)

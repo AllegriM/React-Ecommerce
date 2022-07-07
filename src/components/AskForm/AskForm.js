@@ -2,6 +2,8 @@ export const AskForm = ( {handleChange, questions, newQuestion, setQuestions} ) 
 
     let randomNumber = ( Math.random() * (10 - 1 + 1)) + 1 
     
+    // Creation of a new question
+    
     const makeQuestion = (e) =>{
         e.preventDefault()
         newQuestion = 

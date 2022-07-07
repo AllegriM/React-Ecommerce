@@ -14,6 +14,7 @@ export const LogInForm = ({ setAccountCreated }) => {
     const [logInemail, setLogInEmail] = useState("");
     const [logInpassword, setLogInPassword] = useState("");
 
+    // handlers for input info
     const handleEmail = (e) => {
         setLogInEmail(e.target.value)
     }
@@ -21,6 +22,7 @@ export const LogInForm = ({ setAccountCreated }) => {
         setLogInPassword(e.target.value)
     }
 
+    // function passed email & password from above states to execute on context
     const verifyLogIn = async (e) => {
         e.preventDefault()
         await logIn(logInemail, logInpassword)

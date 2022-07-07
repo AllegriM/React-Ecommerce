@@ -12,24 +12,29 @@ import { FavContext } from '../../Context/favContext';
 
 
 export default function Navbar() {
+
     const { user, logOut } = useAuth()
 
     const { cart } = useCartContext()
 
     const { favs, removeFav } = useContext(FavContext)
 
+    // Items in cart render
     let totalCartItems = 0
     cart?.forEach(item => totalCartItems += item.cantidadElegida)
 
+    // change cart icon depending on amount
     const cartIcon = cart.length === 0 ? "my-cart" : "full-cart"
 
     const navigate = useNavigate()
 
+    // When clicked log out execute this
     const handleLogOut = async () => {
         await logOut()
         navigate('/')
     }
 
+    // Delete fav in favorite menu option
     const deleteFav = (e) => {
         let itemId = e.target.getAttribute('data-id', '')
         removeFav(itemId)
@@ -113,7 +118,6 @@ export default function Navbar() {
                                 </MenuGroup>
                             </MenuList>
                         </Menu>
-                        {/* <Link to={`/favorites`} href="#" className="user-data my-favs">Favoritos</Link> */}
                         <Text my='0' cursor='pointer' href="#" className="user-data my-notis"></Text>
                         <Link to={`/cart`} className={`user-data ${cartIcon}`}>
                             <Text className='cart-items'>{totalCartItems}</Text>

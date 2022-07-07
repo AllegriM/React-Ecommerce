@@ -3,7 +3,7 @@ import { createContext , useState } from "react";
 export const ReviewContext = createContext([])
 
 export const ReviewContextProvider = ({children}) =>{
-    // estados y funciones 
+    // State & Functions
 
     const [prodReviews, setReviewData] = useState([])
 

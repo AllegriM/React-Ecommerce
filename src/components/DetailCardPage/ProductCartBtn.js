@@ -4,6 +4,8 @@ export const AddCartButton = ( {addToCart, cart, item, prodAmount} ) => {
     
     let isInCart = cart.some( itemInCart => itemInCart.id === item.id)
 
+    // Add items depending if is in cart or sum more quantity
+
     const addItem = () =>{
         if (isInCart) {
             cart.find( itemInCart => itemInCart.id === item.id).cantidadElegida += prodAmount;

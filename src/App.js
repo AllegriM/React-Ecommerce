@@ -11,14 +11,10 @@ import { AmountContextProvider } from "./Context/amountSelContext";
 import { Favorites } from "./pages/Favorites/Favorites";
 import { FavContextProvider } from "./Context/favContext";
 import { LogIn } from "./pages/LogIn/LogIn";
-// import { ProtectedRoutes } from "./components/ProtectedRoutes";
 import { PurchaseOrder } from "./pages/Purchase/PurchaseOrder";
 import { RegisterForm } from "./components/RegisterForm";
 import PrivateRoutes from "./components/ProtectedRoutes";
 import ForgotPassword from "./components/ForgotPassword";
-
-// "homepage": "https://github.com/AllegriM/React-MELI",
-
 
 export default function App() {
 

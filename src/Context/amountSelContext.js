@@ -3,7 +3,8 @@ import { createContext, useState } from "react";
 export const AmountContext = createContext([])
 
 export const AmountContextProvider = ({children}) =>{
-    // estados y funciones 
+
+    // States and functions
 
     const [amount, setAmount] = useState([])
 

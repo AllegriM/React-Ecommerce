@@ -4,6 +4,7 @@ export const SearchForm = (  ) => {
 
     const navigate = useNavigate()
 
+    // Submit the word written on Input and navigate to result
     const handleSubmit = (e) => {
         e.preventDefault()
         const keyword = e.target.elements.keyword.value.trim()

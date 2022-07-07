@@ -1,6 +1,6 @@
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 
-
+// Send order to Firebase 
 export const sendOrder = ( cart, user ) => {
 
     let total = 0

@@ -25,11 +25,13 @@ export const CartList = () => {
     // Red message when quantity is the max
     const noStock = <Text as="span" m='0' fontSize='14px' color='#ff5a5f' fontWeight='300'>Cantidad maxima</Text>
 
+    // Pass id to context REMOVE ITEM function
     const removeItemCart = (e) => {
         let id = e.target.getAttribute('data-id')
         removeItem(id)
     }
 
+    // Pass id to context INCREASE ITEM function
     const increaseItem = (e) => {
         let id = e.target.getAttribute('data-id')
         let itemSelected = cart.find(item => item.id === id)
@@ -44,6 +46,7 @@ export const CartList = () => {
         }
     }
 
+    // Pass id to context DECREASE ITEM function
     const decreaseItem = (e) => {
         let id = e.target.getAttribute('data-id')
         let itemSelected = cart.find((item) => item.id === id)
@@ -57,7 +60,7 @@ export const CartList = () => {
         }
     }
     
-
+    // functions excuted when clicking buy cart
     const buyCartItems = async () => {
         await setLoader(true)
         await sendOrder(cart, user)

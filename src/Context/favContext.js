@@ -6,10 +6,12 @@ export const FavContextProvider = ({ children }) => {
 
     const [favs, SetFavs] = useState([])
     
+    // Add fav to favs state
     const addFav = (item) => {
         SetFavs(item)
     }
 
+    // Remove fav to favs state
     const removeFav = (id) => {
         SetFavs(favs.filter((item) => item.id !== id))
     }

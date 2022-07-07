@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
 export const SliderBanner = ( slideEl ) => {
+
+    // Image functionality to make the slide
     const [current, setCurrent] = useState(0)
     const length = slideEl.elements.length
 

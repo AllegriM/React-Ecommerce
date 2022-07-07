@@ -6,8 +6,8 @@ export const useFireBaseProds = () => {
 
     useEffect(()=>{
         const db = getFirestore()
-        // Recibe tres parametros (database, nombre coleccion, id) si es UN solo item
-        //Recibe 2 parametros (database, nombre coleccion) si son MUCHOS items
+        // Receive 3 parameters (database, name collection, id) if is only 1  item
+        //Receives 2 parameters (database, name collection) if there are more than 1 item
         const queryCollection = collection(db, 'items')
         getDocs(queryCollection) //Esto es una promesa
             .then((data) => setProdDB(data.docs.map( item => ( {id: item.id, ...item.data()} ) ) ) )

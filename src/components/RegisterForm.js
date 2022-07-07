@@ -4,41 +4,46 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/authContext";
 import theme from "../theme";
 
-export const RegisterForm = ( {setAccountCreated} ) => {
+export const RegisterForm = ({ setAccountCreated }) => {
 
-    const  { signUp } = useAuth();
+    const { signUp } = useAuth();
     const navigate = useNavigate()
 
-
+    // States storing register data
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    // States storing errors in register fields
+    const [nameError, setNameError] = useState(false);
+    const [lastNameError, setLastError] = useState(false);
+    const [emailError, setEmailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+
+    // Register input regex to prevent errors when registering 
     let namesReg = /^(?!\s)([a-z ,.'-]+)$/i
     // eslint-disable-next-line no-useless-escape
     let emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g
     //Minimum eight characters, at least one CAP letter  and one number:
     let passwordReg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/g
 
-    const [nameError, setNameError] = useState(false);
-    const [lastNameError, setLastError] = useState(false);
-    const [emailError, setEmailError] = useState(false);
-    const [passwordError, setPasswordError] = useState(false);
 
-    const createUserBtn = async() => {   
+    // General verification of regexs on each input when pressing register button
+    const createUserBtn = async () => {
         let isError = false
-        if (!namesReg.test(firstName)) { setNameError(true); isError = true } else {setNameError(false)}
-        if (!namesReg.test(lastName)) { setLastError(true); isError = true } else {setLastError(false)}
-        if (!emailReg.test(email)) { setEmailError(true); isError = true } else {setEmailError(false)}
-        if (!passwordReg.test(password)) { setPasswordError(true); isError = true } else {setPasswordError(false)}
-        if (!isError) { 
-            await setAccountCreated(false) 
-            await signUp(email, password, firstName, lastName); 
+        if (!namesReg.test(firstName)) { setNameError(true); isError = true } else { setNameError(false) }
+        if (!namesReg.test(lastName)) { setLastError(true); isError = true } else { setLastError(false) }
+        if (!emailReg.test(email)) { setEmailError(true); isError = true } else { setEmailError(false) }
+        if (!passwordReg.test(password)) { setPasswordError(true); isError = true } else { setPasswordError(false) }
+        if (!isError) {
+            await setAccountCreated(false)
+            await signUp(email, password, firstName, lastName);
             navigate("/")
         }
     }
 
+    // Input handlers 
     const handleName = (e) => {
         setFirstName(e.target.value)
         setNameError(false)
@@ -102,7 +107,6 @@ export const RegisterForm = ( {setAccountCreated} ) => {
                         placeholder=" "
                         w='auto'
                     />
-                    {/* It is important that the Label comes after the Control due to css selectors */}
                     <FormLabel htmlFor='last-name'>Apellido</FormLabel>
                     {
                         lastNameError ?
@@ -128,7 +132,6 @@ export const RegisterForm = ( {setAccountCreated} ) => {
                         placeholder=" "
                         w='auto'
                     />
-                    {/* It is important that the Label comes after the Control due to css selectors */}
                     <FormLabel htmlFor='email'>Email</FormLabel>
                     {
                         emailError ?
@@ -154,7 +157,6 @@ export const RegisterForm = ( {setAccountCreated} ) => {
                         placeholder=" "
                         w='auto'
                     />
-                    {/* It is important that the Label comes after the Control due to css selectors */}
                     <FormLabel htmlFor='password'>Clave</FormLabel>
                     {
                         passwordError ?

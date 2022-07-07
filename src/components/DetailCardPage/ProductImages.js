@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export const ImagesProdChanger = ( { data } ) => {
 
-    //Img 
+    //Set and new image on the product card to visualize better
 
     const [img, setImg] = useState(`${data.pictures[0]?.secure_url}`)
 

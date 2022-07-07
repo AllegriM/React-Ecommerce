@@ -2,6 +2,7 @@ import { Container } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import './error.css'
 
+// Error page when URL doesn't matc
 export const PageNotFound = ( ) => {
 
 
