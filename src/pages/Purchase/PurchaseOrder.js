@@ -1,8 +1,8 @@
-import { Box, Button, Container, Image, Text, ListItem, UnorderedList, CircularProgress, Img } from "@chakra-ui/react"
+import { Box, Button, Container, Image, Text, ListItem, UnorderedList, CircularProgress } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useCartContext } from "../../Context/cartContext"
-import logo from '../../imgs/logo__large_plus.png'
+// import logo from '../../imgs/logo__large_plus.png'
 import orderIcon from '../../imgs/order-purchased.png'
 import { getOrder } from '../../helpers/getFbOrder'
 
@@ -43,7 +43,7 @@ export const PurchaseOrder = () => {
 
             <Container bg='#EBEBEB' minH='100vh' h='100%' w='100%' maxW='100%' p='0' position='relative'>
                 <Box bg='#FFF059' h='60px' w='100%'>
-                    <Img    src={logo} ml='1em' mt='1em' />
+                    {/* <Img    src={logo} ml='1em' mt='1em' /> */}
                 </Box>
                 <Box bg='#26B46A' h='50%' w='100%' display='flex' pt='5em' flexDirection='column' alignItems='center' position='relative' pb='2em'>
                     <Image src={orderIcon} />

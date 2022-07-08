@@ -1,4 +1,4 @@
-import logo from '../../imgs/logo__large_plus.png'
+// import logo from '../../imgs/logo__large_plus.png'
 import promo from '../../imgs/nav-promo-lvl6.webp'
 import { Link, useNavigate } from "react-router-dom"
 import './nav.css';
@@ -46,7 +46,7 @@ export default function Navbar() {
         <header className='nav-header'>
             <div className='nav-content'>
                 <nav className='nav-top'>
-                    <Link to='/home'><img src={logo} alt='logo' height='34px' width='134px' /></Link>
+                    {/* <Link to='/home'><img src={logo} alt='logo' height='34px' width='134px' /></Link> */}
                     <SearchForm />
                     <Text my='0' cursor='pointer' href='#'><img src={promo} className='promo-img' alt="promo" height='39px' width='340px' /></Text>
                 </nav>
