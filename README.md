@@ -1,4 +1,4 @@
-# Mercadolibre - Copy - 
+# Ecommerce company - Copy - 
 ## A famous Argentinian e-commerce company
 
 This project was made as a first approach to React JS, is an educational web page.
