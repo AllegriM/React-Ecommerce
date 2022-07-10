@@ -11,23 +11,23 @@ export const useAuth = () => {
 }
 export const AuthContextProvider = ({ children }) => {
 
+    const isLogged = JSON.parse(localStorage.getItem("log"));
+    const userLogged = JSON.parse(localStorage.getItem("userLog"))
     // States
-
     const [user, setUser] = useState(null)
-
+    
     const [loading, setLoading] = useState(true)
-
-    const [log, setLog] = useState(false)
-
+    
+    const [log, setLog] = useState(isLogged)
+    
     const [emailError, setEmailError] = useState(false)
-
+    
     const [passwordError, setPasswordError] = useState(false)
-
+    
     const [errorMessage, setErrorMessage] = useState("")
-
+    
     const [message, setMessage] = useState("")
-
-
+    
     // Sign up firebase function
     const signUp = async(email, password, firstName) => {
         try{
@@ -49,10 +49,11 @@ export const AuthContextProvider = ({ children }) => {
     const logIn = async(email, password) => {
         try {
             await signInWithEmailAndPassword(auth, email, password)
-            setLog(true)
+            localStorage.setItem("userLog",JSON.stringify(user))
+            JSON.stringify(localStorage.setItem("log", true))
+            setLog(isLogged)
         }
         catch (error){
-            setLog(false)
             console.log(error.code)
             if (error.message.includes("invalid-email") ) return setEmailError(true)
             if (error.message.includes("wrong-password") ) return setPasswordError(true)
@@ -74,7 +75,12 @@ export const AuthContextProvider = ({ children }) => {
     }    
 
     // Log out firebase function
-    const logOut = async() => await signOut(auth)
+    const logOut = async() => {
+        await signOut(auth);
+        localStorage.setItem("userLog", JSON.stringify(null))
+        JSON.stringify(localStorage.setItem("log", false))
+        setLog(isLogged)
+    }
 
     // Check when first render if there is a user logged
     useEffect(() => {
@@ -92,6 +98,7 @@ export const AuthContextProvider = ({ children }) => {
                 passwordError,
                 errorMessage,
                 message,
+                userLogged,
                 signUp,
                 logOut,
                 logIn,

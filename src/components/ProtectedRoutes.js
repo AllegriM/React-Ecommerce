@@ -3,9 +3,10 @@ import { useAuth } from "../Context/authContext";
 
 // Routes that are going to be unreachable without login in
 const PrivateRoutes = () => {
-    const { user } = useAuth()
+    const { userLog, log } = useAuth()
+
     return (
-        user !== null ? <Outlet /> : <Navigate to='/'/> 
+        userLog !== null & log === true ? <Outlet /> : <Navigate to='/'/> 
     )
 }
 export default PrivateRoutes
