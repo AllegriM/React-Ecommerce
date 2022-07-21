@@ -1,23 +1,15 @@
-import { Box, Button, Flex, Image, Text } from '@chakra-ui/react'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../Context/authContext'
+import { Box, Button, Flex, Image, Stack, Text, useDisclosure } from '@chakra-ui/react'
 import { useCartContext } from '../Context/cartContext'
-import { sendOrder } from '../helpers/createFbOrder'
 import theme from '../theme'
-
-
+import { FaTrashAlt } from 'react-icons/fa'
+import BuyInfoModal from './BuyInfoModal'
 
 export const CartList = () => {
 
-    const { cart, removeItem, setCart, setOrderId } = useCartContext()
+    const { cart, removeItem, setCart, cleanCart } = useCartContext()
 
-    const [loader, setLoader] = useState(false)
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const navigate = useNavigate()
-    
-    const { user } = useAuth()
-    
     // Cart Total price
     let total = 0
     cart.forEach((item) => (total += Math.round((item.cantidadElegida * item.price))))
@@ -59,18 +51,6 @@ export const CartList = () => {
             setCart([...cart_products, { ...itemSelected, cantidadElegida: itemSelected.cantidadElegida - 1 }])
         }
     }
-    
-    // functions excuted when clicking buy cart
-    const buyCartItems = async () => {
-        await setLoader(true)
-        await sendOrder(cart, user)
-            .then(resp => setOrderId(resp.id))
-        setTimeout(() => {
-            setCart([])
-            setLoader(false)
-        }, 1500)
-        navigate('/order-purchased')
-    }
 
     return (
         <>
@@ -81,55 +61,77 @@ export const CartList = () => {
                         <Text m='0' fontSize='18px' color='#999' fontWeight='100'>¿No sabés qué comprar? ¡Miles de productos te esperan!</Text>
                     </Box>
                     :
-                    <Box>
-                        {cart.map(item => {
-                            return (
-                                <Box mt='1.5em' key={item.id}>
-                                    <Flex align='center' gap='30px'>
-                                        <Flex className='cart-title' align='center' justifySelf='flex-start' w='730px'>
-                                            <Image w='50px' h='50px' src={item.thumbnail} />
-                                            <Box>
-                                                <Text ms='.75em' my='0' fontSize='1.25rem'>{item.title}</Text>
-                                                <Text fontSize='14px' cursor='pointer' color={theme.colors.blue} ms='1em' mb='.5em' onClick={removeItemCart} data-id={item.id}>Eliminar</Text>
+                    <>
+                        <Box>
+                            {cart.map(item => {
+                                return (
+                                    <Box mt='1.5em' key={item.id}>
+                                        <Flex align='center' gap='30px'>
+                                            <Flex className='cart-title' align='center' justifySelf='flex-start' w='730px'>
+                                                <Image w='50px' h='50px' src={item.thumbnail} />
+                                                <Box>
+                                                    <Text ms='.75em' my='0' fontSize='1.25rem'>{item.title}</Text>
+                                                    <Text fontSize='14px' cursor='pointer' color={theme.colors.blue} ms='1em' mb='.5em' onClick={removeItemCart} data-id={item.id}>Eliminar</Text>
+                                                </Box>
+                                            </Flex>
+                                            <Box display='flex' flexDirection='column' w='auto' alignItems='flex-end'>
+                                                <Box className='cart-quantity' borderRadius='4px' border='1px solid #e6e6e6' display='flex' alignItems='center' justifyContent='center'>
+                                                    <Button color={theme.colors.blue} bg='transparent' border='none' onClick={decreaseItem} data-id={item.id}>-</Button>
+                                                    <Text w='40px' textAlign='center'>{item.cantidadElegida}</Text>
+                                                    <Button color={theme.colors.blue} bg='transparent' border='none' onClick={increaseItem} data-id={item.id}>+</Button>
+                                                </Box>
+                                                <Text textAlign='center' m='0' fontSize='14px' color='#999'>{item.available_quantity !== item.cantidadElegida ? `${item.available_quantity} disponibles` : noStock}</Text>
+                                            </Box>
+                                            <Box className='cart-price' w='120px'>
+                                                <Text textAlign='center' fontSize='26px'>${Math.round((item.price) * item.cantidadElegida).toLocaleString("es", "Ar")}</Text>
                                             </Box>
                                         </Flex>
-                                        <Box display='flex' flexDirection='column' w='auto' alignItems='flex-end'>
-                                            <Box className='cart-quantity' borderRadius='4px' border='1px solid #e6e6e6' display='flex' alignItems='center' justifyContent='center'>
-                                                <Button color={theme.colors.blue} bg='transparent' border='none' onClick={decreaseItem} data-id={item.id}>-</Button>
-                                                <Text w='40px' textAlign='center'>{item.cantidadElegida}</Text>
-                                                <Button color={theme.colors.blue} bg='transparent' border='none' onClick={increaseItem} data-id={item.id}>+</Button>
-                                            </Box>
-                                            <Text textAlign='center' m='0' fontSize='14px' color='#999'>{item.available_quantity !== item.cantidadElegida ? `${item.available_quantity} disponibles` : noStock}</Text>
-                                        </Box>
-                                        <Box className='cart-price' w='120px'>
-                                            <Text textAlign='center' fontSize='26px'>${Math.round((item.price) * item.cantidadElegida).toLocaleString("es", "Ar")}</Text>
-                                        </Box>
-                                    </Flex>
+                                    </Box>
+                                )
+                            })
+                            }
+                            <Flex justifyContent='end' flexDirection='column' alignItems='end' borderTop='1px solid #e6e6e6' borderBottom='1px solid #e6e6e6'>
+                                <Box display='flex' alignItems='center'>
+                                    <Text fontSize='26px'>Total</Text>
+                                    <Text fontSize='28px' ml='2em'>${total.toLocaleString("es", "AR")}</Text>
                                 </Box>
-                            )
-                        })
-                        }
-                        <Flex justifyContent='end' flexDirection='column' alignItems='end' borderTop='1px solid #e6e6e6' borderBottom='1px solid #e6e6e6'>
-                            <Box display='flex' alignItems='center'>
-                                <Text fontSize='26px'>Total</Text>
-                                <Text fontSize='28px' ml='2em'>${total.toLocaleString("es", "AR")}</Text>
-                            </Box>
-                            <Button
-                                isLoading={loader}
-                                marginBottom='26px'
-                                cursor='pointer'
-                                w='200px'
-                                h='48px'
-                                border='none' bg={theme.colors.blue}
-                                color='white'
-                                fontWeight='100'
-                                _hover={{ bg: 'rgba(52,131,250,.8)' }}
-                                onClick={buyCartItems}
-                            >
-                                Comprar
-                            </Button>
-                        </Flex>
-                    </Box>
+                                <Stack direction='row'>
+                                    <Button
+                                        display='flex'
+                                        gap='5px'
+                                        alignItems='center'
+                                        onClick={cleanCart}
+                                        color='#3483fa'
+                                        h='48px'
+                                        cursor='pointer'
+                                        marginBottom='26px'
+                                        fontWeight='100'
+                                        border='none'
+                                        bg='rgba(65, 137, 230, .15)'
+                                        _hover={{ bg: 'rgba(65, 137, 230, .2)' }}
+                                    >
+                                        <FaTrashAlt />
+                                        Vaciar Carrito
+                                    </Button>
+                                    <Button
+                                        marginBottom='26px'
+                                        cursor='pointer'
+                                        w='200px'
+                                        h='48px'
+                                        border='none'
+                                        bg={theme.colors.blue}
+                                        color='white'
+                                        fontWeight='100'
+                                        _hover={{ bg: 'rgba(52,131,250,.8)' }}
+                                        onClick={onOpen}
+                                    >
+                                        Comprar
+                                    </Button>
+                                </Stack>
+                            </Flex>
+                        </Box>
+                        <BuyInfoModal onClose={onClose} isOpen={isOpen} />
+                    </>
             }
         </>
     )

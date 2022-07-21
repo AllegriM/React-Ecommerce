@@ -15,14 +15,14 @@ export default function ForgotPassword() {
     // Executes a restore email function on useAuth Context
     const submitEmail = async (e) => {
         e.preventDefault()
+        setLoading(true)
         try{
-            setLoading(true)
+            setLoading(false)
             resetPassword(email)
         }
         catch(error){
             console.log(error)
         }
-        setLoading(false)
     }
     
     // handle email data to passit to above function

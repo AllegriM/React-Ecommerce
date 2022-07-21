@@ -15,6 +15,7 @@ import { PurchaseOrder } from "./pages/Purchase/PurchaseOrder";
 import { RegisterForm } from "./components/RegisterForm";
 import PrivateRoutes from "./components/ProtectedRoutes";
 import ForgotPassword from "./components/ForgotPassword";
+import Category from "./pages/Categories/Category";
 
 export default function App() {
 
@@ -28,6 +29,9 @@ export default function App() {
                 <Route element={<PrivateRoutes />}>
                   <Route path='/home' element={<Home />} exact />
                   <Route path='/products/:prodId' element={<ProductDetailCard />} />
+                  <Route path='/tecnologia' element={<Category category='tecnologia' title='Tecnologia' />} exact/>
+                  <Route path='/mueble' element={<Category category='mueble' title='Muebles' />} exact/>
+                  <Route path='/deportes' element={<Category category='deporte' title='Deportes' />} exact/>
                   <Route path='/cart' element={<Cart />} />
                   <Route path='/search/:keyword' element={<ProductList />} />
                   <Route path='/favorites' element={<Favorites />} />

@@ -2,11 +2,11 @@ import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 // Send order to Firebase 
 export const sendOrder = ( cart, user ) => {
-
+    console.log(user)
     let total = 0
     cart.forEach((item) => (total += Math.round((item.cantidadElegida * item.price))))
     const order = {}
-        order.buyer = { name: user.displayName, phone: "11111", email: user.email }
+        order.buyer = { name: user.name, lastname: user.lastname, phone: user.phone, email: user.email }
         order.items = 
             cart.map(item => {
             const id = item.id

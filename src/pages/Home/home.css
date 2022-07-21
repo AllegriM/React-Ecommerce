@@ -76,6 +76,7 @@ main {
 }
 
 .pay-methods{
+    color: var(--clr-letra-gris);
     padding: 0 15px;
     max-width: 1155px;
     margin: 0 auto;

@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import CategoryPath from '../../components/DetailCardPage/ProductCategoryTree'
 import { SellerItems } from '../../components/DetailCardPage/ProductSellerItems'
@@ -8,7 +8,7 @@ import { SelectQuantity } from '../../components/DetailCardPage/ProdQuantitySele
 import { CartContext } from '../../Context/cartContext'
 import { AddCartButton } from '../../components/DetailCardPage/ProductCartBtn'
 import { AmountContext } from '../../Context/amountSelContext'
-import { Box } from '@chakra-ui/react'
+import { Box, Spinner, Stack } from '@chakra-ui/react'
 import { ImagesProdChanger } from '../../components/DetailCardPage/ProductImages'
 import { ReviewContext } from '../../Context/reviewData'
 import { StarsCollection } from '../../components/Stars/StarsCollection'
@@ -16,15 +16,28 @@ import { FavButton } from '../../components/FavButton/FavBtn'
 
 export const ProductCardDetail = ({ data }) => {
 
+    const [loading, setLoading] = useState(true)
+
     const { amount, setProdAmount } = useContext(AmountContext)
-
+    
     const { cart, addToCart } = useContext(CartContext)
-
+    
     const { prodReviews } = useContext(ReviewContext)
-
+    
     const prodId = useParams()
-
+    
+    useEffect(() => {
+        setTimeout(() =>{
+            if (amount && cart && prodReviews && data) return setLoading(false)
+        }, 700)
+    }, [])
+    
     return (
+        loading ? 
+        <Stack align='center' justify='center' height='80vh'>
+            <Spinner size='xl' />
+        </Stack>
+        :
         <>
             <div className='detail-container'>
                 <CategoryPath prodID={prodId} />

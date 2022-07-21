@@ -513,12 +513,18 @@ ul {
 }
 
 .ask-section .ask-input {
+    background-color: white;
     width: 550px;
     height: 25px;
     padding: .75em;
     border-radius: 0.375em;
     border: 1px solid rgb(143, 143, 143);
     font-size: 1rem;
+}
+
+.ask-input::placeholder{
+    color: var(--clr-letra-gris);
+    opacity: .6;
 }
 
 .ask-section form {

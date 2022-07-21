@@ -13,6 +13,7 @@ body{
   font-family: Nova,-apple-system,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--clr-letra-gris);
 }
 
 :root {
@@ -46,6 +47,8 @@ a{
   min-height: 100vh;
   height: 100%;
   background-color: var(--clr-bg-gris);
+  color: var(--clr-letra-gris);
+
 }
 
 .contenedor{

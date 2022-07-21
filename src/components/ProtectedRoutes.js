@@ -6,7 +6,7 @@ const PrivateRoutes = () => {
     const { userLog, log } = useAuth()
 
     return (
-        userLog !== null & log === true ? <Outlet /> : <Navigate to='/'/> 
+        userLog !== null & log ? <Outlet /> : <Navigate to='/'/> 
     )
 }
 export default PrivateRoutes

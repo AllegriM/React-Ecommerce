@@ -177,3 +177,4 @@ export const RegisterForm = ({ setAccountCreated }) => {
         </Box>
     )
 }
+

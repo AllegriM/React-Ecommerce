@@ -15,9 +15,7 @@ export const AuthContextProvider = ({ children }) => {
     const userLogged = JSON.parse(localStorage.getItem("userLog"))
     // States
     const [user, setUser] = useState(null)
-    
-    const [loading, setLoading] = useState(true)
-    
+        
     const [log, setLog] = useState(isLogged)
     
     const [emailError, setEmailError] = useState(false)
@@ -85,14 +83,12 @@ export const AuthContextProvider = ({ children }) => {
     // Check when first render if there is a user logged
     useEffect(() => {
         onAuthStateChanged( auth, currentUser => setUser(currentUser) )
-        setLoading(false)
     }, [])
     
     return (
         <AuthContext.Provider
             value={{
                 user,
-                loading,
                 log,
                 emailError,
                 passwordError,
@@ -105,7 +101,7 @@ export const AuthContextProvider = ({ children }) => {
                 resetPassword
             }}
         >
-            {!loading && children}
+            {children}
         </AuthContext.Provider>
     )
 

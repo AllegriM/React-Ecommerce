@@ -1,6 +1,8 @@
+import { useId } from "react"
+
 export const AskForm = ( {handleChange, questions, newQuestion, setQuestions} ) => {
 
-    let randomNumber = ( Math.random() * (10 - 1 + 1)) + 1 
+    const id = useId()
     
     // Creation of a new question
     
@@ -9,7 +11,7 @@ export const AskForm = ( {handleChange, questions, newQuestion, setQuestions} ) 
         newQuestion = 
         {
             text: newQuestion,
-            id: randomNumber,
+            id: id,
         }
         setQuestions([newQuestion, ...questions])
     }

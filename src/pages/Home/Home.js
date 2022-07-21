@@ -12,7 +12,7 @@ export default function Main() {
 
     const { products } = useItemProds();
 
-    const [prodsDB] = useFireBaseProds();
+    const [prodsDB] = useFireBaseProds("items");
 
     return (
         <>
@@ -22,7 +22,7 @@ export default function Main() {
             <main>
                 <SliderBanner elements={sliderImages} />
                 <PayMethod />
-                <ProductSection products={prodsDB} title='Basado en tu última visita' />
+                <ProductSection products={prodsDB.slice(0,5)} title='Basado en tu última visita' />
                 <ProductSection products={products} title='Relacionado con tus visitas en Indumentaria' />
             </main>
         </>
