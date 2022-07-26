@@ -25,7 +25,7 @@ export const CartContextProvider = ({ children }) => {
         setTotal( cart.reduce( (acum,el) => acum + (el.selectedQuantity * el.price), 0 ) )
     }
 
-    // Add item to cart function
+    // Add item to cart function 
     const addToCart = (item) => {
         console.log(item)
         console.log(cart.some(itemInCart => itemInCart.id === item.id))
