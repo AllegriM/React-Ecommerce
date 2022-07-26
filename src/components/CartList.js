@@ -6,13 +6,10 @@ import BuyInfoModal from './BuyInfoModal'
 
 export const CartList = () => {
 
-    const { cart, removeItem, setCart, cleanCart } = useCartContext()
+    const { cart, removeItem, setCart, cleanCart, total } = useCartContext()
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    // Cart Total price
-    let total = 0
-    cart.forEach((item) => (total += Math.round((item.cantidadElegida * item.price))))
 
     // Red message when quantity is the max
     const noStock = <Text as="span" m='0' fontSize='14px' color='#ff5a5f' fontWeight='300'>Cantidad maxima</Text>
@@ -30,10 +27,10 @@ export const CartList = () => {
         const isInCart = cart.some(prod => prod.id === id)
         if (isInCart) {
             const cart_products = cart.filter(prod => prod !== itemSelected)
-            if (itemSelected.cantidadElegida === itemSelected.available_quantity) {
+            if (itemSelected.selectedQuantity === itemSelected.available_quantity) {
                 return
             } else {
-                setCart([...cart_products, { ...itemSelected, cantidadElegida: itemSelected.cantidadElegida + 1 }])
+                setCart([...cart_products, { ...itemSelected, selectedQuantity: itemSelected.selectedQuantity + 1 }])
             }
         }
     }
@@ -42,13 +39,13 @@ export const CartList = () => {
     const decreaseItem = (e) => {
         let id = e.target.getAttribute('data-id')
         let itemSelected = cart.find((item) => item.id === id)
-        if (itemSelected.cantidadElegida === 1) {
+        if (itemSelected.selectedQuantity === 1) {
             return
         }
         const isInCart = cart.some((prod) => prod.id === id)
         if (isInCart) {
             const cart_products = cart.filter(prod => prod !== itemSelected)
-            setCart([...cart_products, { ...itemSelected, cantidadElegida: itemSelected.cantidadElegida - 1 }])
+            setCart([...cart_products, { ...itemSelected, selectedQuantity: itemSelected.selectedQuantity - 1 }])
         }
     }
 
@@ -77,13 +74,13 @@ export const CartList = () => {
                                             <Box display='flex' flexDirection='column' w='auto' alignItems='flex-end'>
                                                 <Box className='cart-quantity' borderRadius='4px' border='1px solid #e6e6e6' display='flex' alignItems='center' justifyContent='center'>
                                                     <Button color={theme.colors.blue} bg='transparent' border='none' onClick={decreaseItem} data-id={item.id}>-</Button>
-                                                    <Text w='40px' textAlign='center'>{item.cantidadElegida}</Text>
+                                                    <Text w='40px' textAlign='center'>{item.selectedQuantity}</Text>
                                                     <Button color={theme.colors.blue} bg='transparent' border='none' onClick={increaseItem} data-id={item.id}>+</Button>
                                                 </Box>
-                                                <Text textAlign='center' m='0' fontSize='14px' color='#999'>{item.available_quantity !== item.cantidadElegida ? `${item.available_quantity} disponibles` : noStock}</Text>
+                                                <Text textAlign='center' m='0' fontSize='14px' color='#999'>{item.available_quantity !== item.selectedQuantity ? `${item.available_quantity} disponibles` : noStock}</Text>
                                             </Box>
                                             <Box className='cart-price' w='120px'>
-                                                <Text textAlign='center' fontSize='26px'>${Math.round((item.price) * item.cantidadElegida).toLocaleString("es", "Ar")}</Text>
+                                                <Text textAlign='center' fontSize='26px'>${Math.round((item.price) * item.selectedQuantity).toLocaleString("es", "Ar")}</Text>
                                             </Box>
                                         </Flex>
                                     </Box>

@@ -15,7 +15,7 @@ export default function Navbar() {
 
     const { user, logOut } = useAuth()
 
-    const { cart, totalCartItems } = useCartContext()
+    const { cart, quantity } = useCartContext()
 
     const { favs, removeFav } = useContext(FavContext)
 
@@ -133,7 +133,7 @@ export default function Navbar() {
                             </Menu>
                             <Text my='0' cursor='pointer' href="#" className="user-data my-notis"></Text>
                             <Link to={`/cart`} className={`user-data ${cartIcon}`}>
-                                <Text className='cart-items'>{totalCartItems}</Text>
+                                <Text className='cart-items'>{quantity}</Text>
                             </Link>
                         </div>
                     </div>

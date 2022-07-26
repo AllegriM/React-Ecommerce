@@ -15,7 +15,7 @@ export const AuthContextProvider = ({ children }) => {
     const userLogged = JSON.parse(localStorage.getItem("userLog"))
     // States
     const [user, setUser] = useState(null)
-        
+    console.log(user)
     const [log, setLog] = useState(isLogged)
     
     const [emailError, setEmailError] = useState(false)

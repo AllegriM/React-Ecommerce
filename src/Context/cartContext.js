@@ -1,21 +1,50 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { AmountContext } from "./amountSelContext";
 
 export const CartContext = createContext([])
 export const useCartContext = () => useContext(CartContext)
 
 export const CartContextProvider = ({ children }) => {
 
+    const { amount } = useContext(AmountContext)
     // estados y funciones 
 
+    const [quantity, setQuantity] = useState()
     const [orderId, setOrderId] = useState("")
-
     const [cart, setCart] = useState([])
+    const [total, setTotal] = useState()
 
+
+
+
+    const addQuantity = () => {
+        setQuantity(cart.reduce((acum, el) => acum + el.selectedQuantity, 0))
+    }
+
+    const addTotal =()=>{
+        setTotal( cart.reduce( (acum,el) => acum + (el.selectedQuantity * el.price), 0 ) )
+    }
 
     // Add item to cart function
     const addToCart = (item) => {
-        setCart(item)
+        console.log(item)
+        console.log(cart.some(itemInCart => itemInCart.id === item.id))
+        const isInCart = cart.some(itemInCart => itemInCart.id === item.id)
+        if (isInCart) {
+            const index = cart.findIndex(el => el.id === item.id)
+            const addQuantity = cart[index].selectedQuantity + amount
+            cart[index].selectedQuantity = addQuantity
+        } else {
+            setCart([...cart, { ...item, selectedQuantity: amount }])
+        }
+        addQuantity()
+        addTotal()
     }
+
+    useEffect(()=>{
+        addQuantity()
+        addTotal()
+    }, [cart])
 
     // Remove item to cart function
     const removeItem = (id) => {
@@ -25,16 +54,14 @@ export const CartContextProvider = ({ children }) => {
     const cleanCart = () => {
         setCart([])
     }
-
-    // render count items in cart
-    let totalCartItems = 0
-    cart?.forEach(item => totalCartItems += item.cantidadElegida)
-
+    console.log(cart)
     return (
         <CartContext.Provider value={{
             cart,
             orderId,
-            totalCartItems,
+            quantity,
+            total,
+            addQuantity,
             cleanCart,
             addToCart,
             removeItem,

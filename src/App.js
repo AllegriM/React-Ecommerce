@@ -20,8 +20,8 @@ import Category from "./pages/Categories/Category";
 export default function App() {
 
   return (
-    <CartContextProvider>
-      <AmountContextProvider>
+    <AmountContextProvider>
+      <CartContextProvider>
         <FavContextProvider>
           <div className="App">
             <section className='contenido'>
@@ -29,14 +29,14 @@ export default function App() {
                 <Route element={<PrivateRoutes />}>
                   <Route path='/home' element={<Home />} exact />
                   <Route path='/products/:prodId' element={<ProductDetailCard />} />
-                  <Route path='/tecnologia' element={<Category category='tecnologia' title='Tecnologia' />} exact/>
-                  <Route path='/mueble' element={<Category category='mueble' title='Muebles' />} exact/>
-                  <Route path='/deportes' element={<Category category='deporte' title='Deportes' />} exact/>
+                  <Route path='/tecnologia' element={<Category category='tecnologia' title='Tecnologia' />} exact />
+                  <Route path='/mueble' element={<Category category='mueble' title='Muebles' />} exact />
+                  <Route path='/deportes' element={<Category category='deporte' title='Deportes' />} exact />
                   <Route path='/cart' element={<Cart />} />
                   <Route path='/search/:keyword' element={<ProductList />} />
                   <Route path='/favorites' element={<Favorites />} />
                   <Route path='/order-purchased' element={<PurchaseOrder />} />
-                  <Route path='*' element={<PageNotFound />} /> 
+                  <Route path='*' element={<PageNotFound />} />
                 </Route>
                 <Route path='/forgot-password' element={<ForgotPassword />} />
                 <Route path='/register' element={<RegisterForm />} />
@@ -45,7 +45,7 @@ export default function App() {
             </section>
           </div>
         </FavContextProvider>
-      </AmountContextProvider>
-    </CartContextProvider>
+      </CartContextProvider>
+    </AmountContextProvider>
   );
 }
