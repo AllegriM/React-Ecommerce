@@ -27,8 +27,6 @@ export const CartContextProvider = ({ children }) => {
 
     // Add item to cart function 
     const addToCart = (item) => {
-        console.log(item)
-        console.log(cart.some(itemInCart => itemInCart.id === item.id))
         const isInCart = cart.some(itemInCart => itemInCart.id === item.id)
         if (isInCart) {
             const index = cart.findIndex(el => el.id === item.id)
@@ -54,7 +52,7 @@ export const CartContextProvider = ({ children }) => {
     const cleanCart = () => {
         setCart([])
     }
-    console.log(cart)
+
     return (
         <CartContext.Provider value={{
             cart,
