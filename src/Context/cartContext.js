@@ -14,9 +14,6 @@ export const CartContextProvider = ({ children }) => {
     const [cart, setCart] = useState([])
     const [total, setTotal] = useState()
 
-
-
-
     const addQuantity = () => {
         setQuantity(cart.reduce((acum, el) => acum + el.selectedQuantity, 0))
     }
@@ -28,6 +25,8 @@ export const CartContextProvider = ({ children }) => {
     // Add item to cart function 
     const addToCart = (item) => {
         const isInCart = cart.some(itemInCart => itemInCart.id === item.id)
+        // const itemQuantity = cart.find(itemInCart => {if (itemInCart.id === item.id) return item.selectedQuantity})
+        // console.log(itemQuantity)
         if (isInCart) {
             const index = cart.findIndex(el => el.id === item.id)
             const addQuantity = cart[index].selectedQuantity + amount

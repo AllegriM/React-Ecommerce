@@ -8,14 +8,3 @@ export const AddCartButton = ({ addToCart, item }) => {
         </Button>
     )
 }
-
-// const addItem = () => {
-//     if (isInCart) {
-//         // if (cart.find(itemInCart => itemInCart.id === item.id).cantidadElegida >= item.available_quantity) return item.available_quantity
-//         // else{
-//             cart.find(itemInCart => itemInCart.id === item.id).cantidadElegida += prodAmount;
-//             // }
-//         } else {
-//             addToCart([...cart, { ...item, cantidadElegida: prodAmount }])
-//         }
-// }

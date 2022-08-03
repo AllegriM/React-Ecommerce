@@ -27,7 +27,7 @@ export const Cart = () => {
             </Navbar>
             <Container backgroundColor='#EBEBEB' h='100vh' maxW='90%'>
                 <Box position='relative' mx='auto' boxShadow='0 1px 2px 0 rgb(0 0 0 / 30%)' borderRadius='4px' flex backgroundColor='#FFFFFF' w='90%' maxW='70rem' minH='370px' padding='2rem' mt='1em'>
-                    <Button position='absolute' color='black' display='flex' alignItems='center' gap='10px' right='2em'>
+                    <Button position='absolute' border='none' color='black' display='flex' alignItems='center' gap='10px' right='2em'>
                         <Link className='link-home' to='/home'><FaHome color='#3483fa'/>Inicio</Link>
                     </Button>
                     <Tabs ps='2em' pt='4em' w='85%'>

@@ -1,4 +1,4 @@
-import logo from '../../imgs/logo__large_plus.png'
+// import logo from '../../imgs/logo__large_plus.png'
 import promo from '../../imgs/nav-promo-lvl6.webp'
 import { Link, useNavigate } from "react-router-dom"
 import './nav.css';
@@ -42,7 +42,9 @@ export default function Navbar() {
             <header className='nav-header'>
                 <div className='nav-content'>
                     <nav className='nav-top'>
-                        <Link to='/home'><img src={logo} alt='logo' height='34px' width='134px' /></Link>
+                        <Link to='/home'>
+                            <Text fontWeight='900' m='0' color='#28317E'>CadoMerLibre</Text>
+                        </Link>
                         <SearchForm />
                         <Text my='0' cursor='pointer' href='#'><img src={promo} className='promo-img' alt="promo" height='39px' width='340px' /></Text>
                     </nav>
@@ -56,7 +58,7 @@ export default function Navbar() {
                             <ul className='nav-items'>
                                 <li>
                                     <Menu>
-                                        <MenuButton className='nav-item nav-item-cat' as={Button} color='#333333' fontWeight='100' fontSize='14px' border='none'>
+                                        <MenuButton className='nav-item nav-item-cat' bg="#fff159" _hover={{bg: "transparent"}} cursor='pointer' as={Button} color='#333333' fontWeight='100' fontSize='14px' border='none'>
                                             Categorias
                                         </MenuButton>
                                         <MenuList className='menu-list' zIndex='10' bg='#333'>

@@ -11,12 +11,11 @@ export const useAuth = () => {
 }
 export const AuthContextProvider = ({ children }) => {
 
-    const isLogged = JSON.parse(localStorage.getItem("log"));
-    const userLogged = JSON.parse(localStorage.getItem("userLog"))
+    // const isLogged = JSON.parse(localStorage.getItem("log"));
     // States
-    const [user, setUser] = useState(null)
-    console.log(user)
-    const [log, setLog] = useState(isLogged)
+    const [user, setUser] = useState(() => JSON.parse(localStorage.getItem("userLog"))|| null)
+
+    // const [log, setLog] = useState(isLogged)
     
     const [emailError, setEmailError] = useState(false)
     
@@ -49,7 +48,7 @@ export const AuthContextProvider = ({ children }) => {
             await signInWithEmailAndPassword(auth, email, password)
             localStorage.setItem("userLog",JSON.stringify(user))
             JSON.stringify(localStorage.setItem("log", true))
-            setLog(isLogged)
+            // setLog(isLogged)
         }
         catch (error){
             console.log(error.code)
@@ -77,7 +76,7 @@ export const AuthContextProvider = ({ children }) => {
         await signOut(auth);
         localStorage.setItem("userLog", JSON.stringify(null))
         JSON.stringify(localStorage.setItem("log", false))
-        setLog(isLogged)
+        // setLog(isLogged)
     }
 
     // Check when first render if there is a user logged
@@ -89,12 +88,11 @@ export const AuthContextProvider = ({ children }) => {
         <AuthContext.Provider
             value={{
                 user,
-                log,
+                // log,
                 emailError,
                 passwordError,
                 errorMessage,
                 message,
-                userLogged,
                 signUp,
                 logOut,
                 logIn,
